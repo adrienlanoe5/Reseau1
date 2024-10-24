@@ -1,0 +1,27 @@
+4.5 3/2/2023
+recupererPosition renvoie désormais un Objet (x,y) au lieu d'un tuple
+main.py amélioré, plus d'interaction console, davantage d'actualiser()
+coquilles dans la doc
+
+4.4 16/11
+Coquille dans récupererTouche
+Réordonnancement entre attendreXXX et recupererXXX, afin que le premier soit privilégié
+
+4.3 10/11
+Ajout attendreClic()
+Ajout attendreTouche()
+Gestion du clic droit dans recupererClic*()
+
+4.2 9/11
+Erreur dans la doc pour la méthode deplacer()
+
+4.1 28/10
+Changement des noms des classes
+Correctif de la doc (couleurs hexa, champs de ObjetGraphique, paquets pour install)
+
+4
+Camel Case
+Ajout de l'option sizefont à afficherTexte
+
+3.3
+Gestion pos souris
