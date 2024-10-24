@@ -9,7 +9,7 @@ class interface():
     def affichage(self):
         for j in range(3):
             for i in range(3):
-                self.g.dessinerRectangle(i*100 +25 ,200,50,40,"white")
+                self.g.dessinerRectangle(i*100 +25 ,200,50,40,"whit")
         self.g.attendreClic()
 
 
