@@ -7,8 +7,9 @@ class interface():
 
 
     def affichage(self):
-        for i in range(10):
-            self.g.dessinerDisque(100,500,30,"white")
+
+        for i in range(4):
+            self.g.dessinerRectangle(i*100 +25 ,200,50,40,"yellow")
         self.g.attendreClic()
     def addition(self,a,b):
         return a+b
