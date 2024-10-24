@@ -7,10 +7,12 @@ class interface():
 
 
     def affichage(self):
-
-        for i in range(4):
-            self.g.dessinerRectangle(i*100 +25 ,200,50,40,"yellow")
+        for j in range(3):
+            for i in range(3):
+                self.g.dessinerRectangle(i*100 +25 ,200,50,40,"white")
         self.g.attendreClic()
+
+
     def addition(self,a,b):
         return a+b
 
