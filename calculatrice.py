@@ -1,15 +1,23 @@
-import tkiteasy
+from tkiteasy import *
 
-def addition(a,b):
-    return a+b
+class interface():
+    def __init__(self):
+        self.g=ouvrirFenetre(600,600)
 
-def division(a,b):
-    return a/b
+    def addition(self,a,b):
+        return a+b
 
-def multiplication(a,b):
-    return a*b
+    def division(self,a,b):
+        return a/b
 
-def soustraction(a,b):
-    return a-b
+    def multiplication(self,a,b):
+        return a*b
 
-def garderminchiffre(nombre): # pour avoir un nombre fini de chiffres à afficher sur la calculatrice
+    def soustraction(self,a,b):
+        return a-b
+
+    def garderminchiffre(self,nombre): # pour avoir un nombre fini de chiffres à afficher sur la calculatrice
+        pass
+
+interface()
+ouvrirFenetre(100,100)
