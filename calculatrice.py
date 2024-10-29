@@ -1,5 +1,6 @@
 from tkiteasy import *
 
+liste_symboles_dopérations=["*","/","+","-"]
 class interface():
     def __init__(self):
         self.g=ouvrirFenetre(300,400)
@@ -13,7 +14,10 @@ class interface():
                 self.g.afficherTexte(str((i+1)+3*j), i*80+50 ,120+70*j, "white", 25)
         self.g.dessinerRectangle(1 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
         self.g.afficherTexte("0", 1 * 80 + 50, 120 + 70 * 3, "white", 25)
-        self.g.attendreClic()
+        for i in range (4):
+            self.g.dessinerCercle(i * 40 + 25, 80, 30, "grey")
+            self.g.afficherTexte(liste_symboles_dopérations[i], i * 80 + 50, 120 + 70 * j, "white", 25)
+
 
 
     def addition(self,a,b):
