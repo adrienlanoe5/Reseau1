@@ -17,6 +17,7 @@ class interface():
         for i in range (4):
             self.g.dessinerCercle(i * 40 + 25, 80, 30, "grey")
             self.g.afficherTexte(loperations[i], i * 80 + 50, 100, "white", 25)
+        self.g.attendreClic()
 
 
 
@@ -36,4 +37,4 @@ class interface():
         pass
 
 I=interface()
-#I.affichage()
+I.affichage()
