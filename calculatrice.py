@@ -15,8 +15,8 @@ class interface():
         self.g.dessinerRectangle(1 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
         self.g.afficherTexte("0", 1 * 80 + 50, 120 + 70 * 3, "white", 25)
         for i in range (4):
-            self.g.dessinerCercle(i * 40 + 25, 80, 30, "grey")
-            self.g.afficherTexte(loperations[i], i * 80 + 50, 100, "white", 25)
+            self.g.dessinerCercle(i * 55 + 50, 75, 20, "grey")
+            self.g.afficherTexte(loperations[i], i * 55 + 50, 75, "white", 25)
         self.g.attendreClic()
 
 
