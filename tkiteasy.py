@@ -9,11 +9,13 @@ from PIL import ImageTk, Image
 # classe ObjetGraphique
 ################################################################################
 class ObjetGraphique():
+    annuaire = {}
     def __init__(self, num, x, y, col):
         self.num = num
         self.x = x
         self.y = y
         self.col = col
+        ObjetGraphique.annuaire[num] = self
 
 
 ################################################################################
@@ -60,15 +62,32 @@ class Canevas(tk.Canvas):
     def changerPixel(self, x, y, col):
         return ObjetGraphique(self.dessinerRectangle(x,y,1,1,col), x, y, col)
 
-    def afficherImage(self, x, y, filename):
+    def afficherImage(self, x, y, filename, sx=None, sy=None):
         image = Image.open(filename)
         if not image:
             print("Erreur: afficherImage",filename,": fichier incorrect")
             return
+        if sx!=None and sy!=None:
+            image = image.resize((sx,sy), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(image)
         self.img[img] = True
         self.create_rectangle(x, y, x+img.width()-1, y+img.height()-1, outline='')
         return ObjetGraphique(self.create_image(x, y, image=img, anchor="nw"), x, y, None)
+
+# dessinerFleche: ne renvoit pas d'objet graphique
+# N = longueur des branches de la flèche
+    def dessinerFleche(self,x,y,x2,y2,N,col,ep=1):
+        self.dessinerLigne(x,y,x2,y2,col,ep)
+        vx,vy = x2-x,y2-y                   # vecteur initial
+        m = max(abs(vx),abs(vy))
+        vx /= m
+        vy /= m                             # normalisation
+        px,py = x2-vx*N,y2-vy*N             # point intermédiaire
+        pvx,pvy = vy,-vx                    # 90°
+        fx1,fy1 = px+pvx*N,py+pvy*N         # 1ère extrémité 
+        fx2,fy2 = px-pvx*N,py-pvy*N         # 2nde extrémité
+        self.dessinerLigne(x2,y2,fx1,fy1,col,ep)
+        self.dessinerLigne(x2,y2,fx2,fy2,col,ep)
 
 ################################################################################
 # MODIFICATEURS
@@ -80,6 +99,7 @@ class Canevas(tk.Canvas):
 
     def supprimer(self, obj):
         self.delete(obj.num)
+        del ObjetGraphique.annuaire[obj.num]
         obj = None
 
     def changerCouleur(self, obj, col):
@@ -88,6 +108,14 @@ class Canevas(tk.Canvas):
 
     def changerTexte(self, obj, txt):
         self.itemconfigure(obj.num, text=txt)
+        
+    def placerAuDessus(self,obj):
+        if type(obj)==ObjetGraphique:
+            self.tag_raise(obj.num)
+        
+    def placerAuDessous(self,obj):
+        if type(obj)==ObjetGraphique:
+            self.tag_lower(obj.num)
 
 ################################################################################
 # EVENEMENTS
@@ -145,6 +173,12 @@ class Canevas(tk.Canvas):
         self.update()
         posx,posy = self.lastpos[0],self.lastpos[1]
         return ObjetGraphique(None,posx,posy,None)
+    
+    def recupererObjet(self, x, y):
+        ido = self.find_overlapping(x, y, x, y)
+        if not ido:
+            return None
+        return ObjetGraphique.annuaire[ido[-1]]
 
 ################################################################################
 # AUTRES FONCTIONS
@@ -157,7 +191,11 @@ class Canevas(tk.Canvas):
             
     def pause(self, sleeptime=0.0005):
         sleep(sleeptime)
-
+        
+    def supprimerTout(self):
+        for num in ObjetGraphique.annuaire:
+            self.delete(num)
+        ObjetGraphique.annuaire = {}
 
 
 def ouvrirFenetre(x=400, y=200):
