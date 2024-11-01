@@ -12,6 +12,10 @@ class interface():
                 self.g.dessinerRectangle(i*200 +25 ,200+70*j,50,40,"white")
         self.g.attendreClic()
 
+    def deroulement(self):
+        pass
+    def superclean(self):
+        pass
 
     def addition(self,a,b):
         return a+b
