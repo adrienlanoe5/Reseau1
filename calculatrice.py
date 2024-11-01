@@ -1,3 +1,9 @@
+# A faire :
+# partie traitement calcul
+# configurer les calculs pour mettre les decimales
+# rajouter le bouton pour la décimale
+
+
 from tkiteasy import *
 
 operations = ["*", "/", "+", "-"]
@@ -76,7 +82,22 @@ class interface():
         self.g.fermerFenetre()
 
     def resultat(self):
-        pass
+        # reconstitution des nombres
+        liste = []
+        ch = ""
+        for i in range(len(self.memoire)):
+            if type(self.memoire[i]) == int:
+                ch += str(self.memoire[i])
+            elif type(self.memoire[i]) == str:
+                nombre = int(ch)
+                ch = ""
+                liste.append(nombre)
+                liste.append(self.memoire[i])
+
+        nombre = int(ch)
+        ch = ""
+        liste.append(nombre)
+        print(liste)
 
     def addition(self, a, b):
         return a + b
@@ -96,6 +117,3 @@ class interface():
 
 I = interface()
 I.deroulement()
-
-
-
