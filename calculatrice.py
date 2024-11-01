@@ -6,9 +6,9 @@ operations = ["*", "/", "+", "-"]
 class interface():
     def __init__(self):
         self.g = ouvrirFenetre(350, 400)
-        self.memoire = []
-        self.memoire_affichage = []
-        self.objet = {}
+        self.memoire = []  # utilisee pour la phase de calcul
+        self.memoire_affichage = []  # utilisee pour l'affichage dans la fenetre
+        self.objet = {}  # stocker les boutons chiffres et operations
 
     def affichage(self):
         # chiffres
@@ -50,13 +50,13 @@ class interface():
             clic = self.g.attendreClic()
             x = self.g.recupererObjet(clic.x, clic.y)
 
-            if x == self.quitter_lettres or x == self.quitter_carre:
+            if x == self.quitter_lettres or x == self.quitter_carre:  # quitter le programme
                 self.fin()
 
-            elif x == self.entrer_carre or x == self.entrer_lettres:
+            elif x == self.entrer_carre or x == self.entrer_lettres:  # declenchement phase de calcul
                 self.resultat()
 
-            elif x == self.effacer_carre or x == self.effacer_lettres:
+            elif x == self.effacer_carre or x == self.effacer_lettres:  # effacer tout
                 self.superclean()
 
             elif x in self.objet:
@@ -66,12 +66,13 @@ class interface():
                 obj_affiche = self.g.afficherTexte(str(self.objet[x]), 300, 30, col='white', sizefont=25)
                 self.memoire_affichage.append(obj_affiche)
 
-    def superclean(self):
+    def superclean(self):  # effacer tout et reinitialisation
         self.g.supprimerTout()
         self.memoire = []
+        self.memoire_affichage = []
         self.affichage()
 
-    def fin(self):
+    def fin(self):  # fermeture programme
         self.g.fermerFenetre()
 
     def resultat(self):
@@ -95,5 +96,6 @@ class interface():
 
 I = interface()
 I.deroulement()
+
 
 
