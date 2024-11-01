@@ -1,21 +1,32 @@
 from tkiteasy import *
 
+loperations=["*","/","+","-"]
 class interface():
     def __init__(self):
-        self.g=ouvrirFenetre(400,1200)
+        self.g=ouvrirFenetre(300,400)
         dico_objets={}
 
 
     def affichage(self):
         for j in range(3):
             for i in range(3):
-                self.g.dessinerRectangle(i*200 +25 ,200+70*j,50,40,"white")
+                self.g.dessinerRectangle(i*80+25 ,100+70*j,50,40,"grey")
+                self.g.afficherTexte(str((i+1)+3*j), i*80+50 ,120+70*j, "white", 25)
+        self.g.dessinerRectangle(1 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
+        self.g.afficherTexte("0", 1 * 80 + 50, 120 + 70 * 3, "white", 25)
+        self.g.dessinerRectangle(2 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
+        self.g.afficherTexte("Entrer", 2 * 80 + 50, 120 + 70 * 3, "white", 10)
+        for i in range (4):
+            self.g.dessinerCercle(i * 55 + 50, 75, 20, "grey")
+            self.g.afficherTexte(loperations[i], i * 55 + 50, 75, "white", 25)
         self.g.attendreClic()
 
     def deroulement(self):
         pass
     def superclean(self):
         pass
+
+
 
     def addition(self,a,b):
         return a+b
@@ -34,5 +45,3 @@ class interface():
 
 I=interface()
 I.affichage()
-
-
