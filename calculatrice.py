@@ -1,12 +1,10 @@
 # A faire :
 # partie traitement calcul
-# configurer les calculs pour mettre les decimales
-# rajouter le bouton pour la décimale
 
 
 from tkiteasy import *
 
-operations = ["*", "/", "+", "-"]
+operations = ["*", "/", "+", "-", "."]
 
 
 class interface():
@@ -43,7 +41,7 @@ class interface():
         self.effacer_lettres = self.g.afficherTexte("Effacer", 3 * 80 + 55, 120 + 70 * 3, "white", 10)
 
         # operations
-        for i in range(4):
+        for i in range(5):
             bouton = self.g.dessinerDisque(i * 55 + 50, 75, 20, "grey")
             op = self.g.afficherTexte(operations[i], i * 55 + 50, 75, "white", 25)
             self.objet[bouton] = operations[i]
@@ -86,15 +84,15 @@ class interface():
         liste = []
         ch = ""
         for i in range(len(self.memoire)):
-            if type(self.memoire[i]) == int:
+            if type(self.memoire[i]) == int or self.memoire[i] == ".":
                 ch += str(self.memoire[i])
             elif type(self.memoire[i]) == str:
-                nombre = int(ch)
+                nombre = float(ch)
                 ch = ""
                 liste.append(nombre)
                 liste.append(self.memoire[i])
 
-        nombre = int(ch)
+        nombre = float(ch)
         ch = ""
         liste.append(nombre)
         print(liste)
