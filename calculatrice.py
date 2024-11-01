@@ -7,6 +7,7 @@ class interface():
     def __init__(self):
         self.g = ouvrirFenetre(350, 400)
         self.memoire = []
+        self.memoire_affichage = []
         self.objet = {}
 
     def affichage(self):
@@ -32,12 +33,12 @@ class interface():
         self.quitter_lettres = self.g.afficherTexte("Quitter", 55, 120 + 70 * 3, "white", 10)
 
         # bouton effacer
-        self.g.dessinerRectangle(3 * 80 + 25, 100 + 70 * 3, 60, 40, "grey")
-        self.g.afficherTexte("Effacer", 3 * 80 + 55, 120 + 70 * 3, "white", 10)
+        self.effacer_carre = self.g.dessinerRectangle(3 * 80 + 25, 100 + 70 * 3, 60, 40, "grey")
+        self.effacer_lettres = self.g.afficherTexte("Effacer", 3 * 80 + 55, 120 + 70 * 3, "white", 10)
 
         # operations
         for i in range(4):
-            bouton = self.g.dessinerCercle(i * 55 + 50, 75, 20, "grey")
+            bouton = self.g.dessinerDisque(i * 55 + 50, 75, 20, "grey")
             op = self.g.afficherTexte(operations[i], i * 55 + 50, 75, "white", 25)
             self.objet[bouton] = operations[i]
             self.objet[op] = operations[i]
@@ -58,8 +59,12 @@ class interface():
             elif x == self.effacer_carre or x == self.effacer_lettres:
                 self.superclean()
 
-            else:
-                pass
+            elif x in self.objet:
+                for objet in self.memoire_affichage:
+                    self.g.deplacer(objet, -15, 0)
+                self.memoire.append(self.objet[x])
+                obj_affiche = self.g.afficherTexte(str(self.objet[x]), 300, 30, col='white', sizefont=25)
+                self.memoire_affichage.append(obj_affiche)
 
     def superclean(self):
         self.g.supprimerTout()
@@ -90,3 +95,5 @@ class interface():
 
 I = interface()
 I.deroulement()
+
+
