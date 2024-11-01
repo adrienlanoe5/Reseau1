@@ -1,47 +1,92 @@
 from tkiteasy import *
 
-loperations=["*","/","+","-"]
+operations = ["*", "/", "+", "-"]
+
+
 class interface():
     def __init__(self):
-        self.g=ouvrirFenetre(300,400)
-        dico_objets={}
-
+        self.g = ouvrirFenetre(350, 400)
+        self.memoire = []
+        self.objet = {}
 
     def affichage(self):
+        # chiffres
         for j in range(3):
             for i in range(3):
-                self.g.dessinerRectangle(i*80+25 ,100+70*j,50,40,"grey")
-                self.g.afficherTexte(str((i+1)+3*j), i*80+50 ,120+70*j, "white", 25)
-        self.g.dessinerRectangle(1 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
-        self.g.afficherTexte("0", 1 * 80 + 50, 120 + 70 * 3, "white", 25)
-        self.g.dessinerRectangle(2 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
-        self.g.afficherTexte("Entrer", 2 * 80 + 50, 120 + 70 * 3, "white", 10)
-        for i in range (4):
-            self.g.dessinerCercle(i * 55 + 50, 75, 20, "grey")
-            self.g.afficherTexte(loperations[i], i * 55 + 50, 75, "white", 25)
-        self.g.attendreClic()
+                bouton = self.g.dessinerRectangle(i * 80 + 25, 100 + 70 * j, 50, 40, "grey")
+                chiffre = self.g.afficherTexte(str((i + 1) + 3 * j), i * 80 + 50, 120 + 70 * j, "white", 25)
+                self.objet[bouton] = (i + 1) + 3 * j
+                self.objet[chiffre] = (i + 1) + 3 * j
 
-    def deroulement(self):
-        pass
+        # bouton 0
+        bouton = self.g.dessinerRectangle(1 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
+        chiffre = self.g.afficherTexte("0", 1 * 80 + 50, 120 + 70 * 3, "white", 25)
+        self.objet[bouton], self.objet[chiffre] = 0, 0
+
+        # bouton entrer
+        self.entrer_carre = self.g.dessinerRectangle(2 * 80 + 25, 100 + 70 * 3, 50, 40, "grey")
+        self.entrer_lettres = self.g.afficherTexte("Entrer", 2 * 80 + 50, 120 + 70 * 3, "white", 10)
+
+        # bouton quitter
+        self.quitter_carre = self.g.dessinerRectangle(25, 100 + 70 * 3, 60, 40, "grey")
+        self.quitter_lettres = self.g.afficherTexte("Quitter", 55, 120 + 70 * 3, "white", 10)
+
+        # bouton effacer
+        self.g.dessinerRectangle(3 * 80 + 25, 100 + 70 * 3, 60, 40, "grey")
+        self.g.afficherTexte("Effacer", 3 * 80 + 55, 120 + 70 * 3, "white", 10)
+
+        # operations
+        for i in range(4):
+            bouton = self.g.dessinerCercle(i * 55 + 50, 75, 20, "grey")
+            op = self.g.afficherTexte(operations[i], i * 55 + 50, 75, "white", 25)
+            self.objet[bouton] = operations[i]
+            self.objet[op] = operations[i]
+
+    def deroulement(self):  # appel des fonctions et gestion des fonctionnalites
+        self.affichage()
+        stop = False
+        while stop == False:
+            clic = self.g.attendreClic()
+            x = self.g.recupererObjet(clic.x, clic.y)
+
+            if x == self.quitter_lettres or x == self.quitter_carre:
+                self.fin()
+
+            elif x == self.entrer_carre or x == self.entrer_lettres:
+                self.resultat()
+
+            elif x == self.effacer_carre or x == self.effacer_lettres:
+                self.superclean()
+
+            else:
+                pass
+
     def superclean(self):
+        self.g.supprimerTout()
+        self.memoire = []
+        self.affichage()
+
+    def fin(self):
+        self.g.fermerFenetre()
+
+    def resultat(self):
+        pass
+
+    def addition(self, a, b):
+        return a + b
+
+    def division(self, a, b):
+        return a / b
+
+    def multiplication(self, a, b):
+        return a * b
+
+    def soustraction(self, a, b):
+        return a - b
+
+    def garderminchiffre(self, nombre):  # pour avoir un nombre fini de chiffres à afficher sur la calculatrice
         pass
 
 
-
-    def addition(self,a,b):
-        return a+b
-
-    def division(self,a,b):
-        return a/b
-
-    def multiplication(self,a,b):
-        return a*b
-
-    def soustraction(self,a,b):
-        return a-b
-
-    def garderminchiffre(self,nombre): # pour avoir un nombre fini de chiffres à afficher sur la calculatrice
-        pass
-
-I=interface()
-I.affichage()
+I = interface()
+I.deroulement()
