@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="debut partie calcul">
-      <change beforePath="$PROJECT_DIR$/calculatrice.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice.py" afterDir="false" />
-    </list>
+    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="ajout decimales" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +105,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730490624448</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ajout decimales">
+      <option name="closed" value="true" />
+      <created>1730494995694</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730494995694</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ajout decimales">
+      <option name="closed" value="true" />
+      <created>1730495028839</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730495028839</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -117,6 +131,7 @@
     <MESSAGE value="modif librairie (j'avais téléchargé la mauvaise et j'opérais avec une autre )" />
     <MESSAGE value="commentaires et ajouts superclean" />
     <MESSAGE value="debut partie calcul" />
-    <option name="LAST_COMMIT_MESSAGE" value="debut partie calcul" />
+    <MESSAGE value="ajout decimales" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout decimales" />
   </component>
 </project>

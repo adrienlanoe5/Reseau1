@@ -1,6 +1,5 @@
 # A faire :
-# partie traitement calcul
-
+# affichage du résultat
 
 from tkiteasy import *
 
@@ -58,7 +57,8 @@ class interface():
                 self.fin()
 
             elif x == self.entrer_carre or x == self.entrer_lettres:  # declenchement phase de calcul
-                self.resultat()
+                resultat = self.resultat()
+                # gérer le résultat ici
 
             elif x == self.effacer_carre or x == self.effacer_lettres:  # effacer tout
                 self.superclean()
@@ -95,22 +95,9 @@ class interface():
         nombre = float(ch)
         ch = ""
         liste.append(nombre)
-        print(liste)
-
-    def addition(self, a, b):
-        return a + b
-
-    def division(self, a, b):
-        return a / b
-
-    def multiplication(self, a, b):
-        return a * b
-
-    def soustraction(self, a, b):
-        return a - b
-
-    def garderminchiffre(self, nombre):  # pour avoir un nombre fini de chiffres à afficher sur la calculatrice
-        pass
+        for i in range(len(liste)):
+            ch += str(liste[i])
+        return eval(ch)
 
 
 I = interface()
