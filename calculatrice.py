@@ -57,9 +57,14 @@ class interface():
                 self.fin()
 
             elif x == self.entrer_carre or x == self.entrer_lettres:  # declenchement phase de calcul
-                resultat = self.resultat()
-                # gérer le résultat ici
-
+                resultat = str(self.resultat())
+                self.superclean()
+                for c in resultat:
+                    self.memoire.append(c)
+                    for objet in self.memoire_affichage:
+                        self.g.deplacer(objet, -15, 0)
+                    obj_affiche = self.g.afficherTexte(str(c), 300, 30, col='white', sizefont=25)
+                    self.memoire_affichage.append(obj_affiche)
             elif x == self.effacer_carre or x == self.effacer_lettres:  # effacer tout
                 self.superclean()
 
@@ -91,13 +96,31 @@ class interface():
                 ch = ""
                 liste.append(nombre)
                 liste.append(self.memoire[i])
-
         nombre = float(ch)
         ch = ""
         liste.append(nombre)
-        for i in range(len(liste)):
-            ch += str(liste[i])
+        while len(liste)>=2:
+            a=liste.pop(len(liste)-1)
+            b=liste.pop(len(liste)-1)
+            c=liste.pop(len(liste)-1)
+            liste.append(self.operation(a,b,c))
+        ch=str(liste[0])
+        try:
+            ch+=str(liste[1])
+        except:
+            pass
+        print(ch)
         return eval(ch)
+
+    def operation(self,a,b,c):
+        if b=="*":
+            return a*c
+        elif b=="/":
+            return a/c
+        elif b=="+":
+            return a+c
+        elif b=="-":
+            return a-c
 
 
 I = interface()
