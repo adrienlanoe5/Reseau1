@@ -1,5 +1,3 @@
-# A faire :
-# affichage du résultat
 
 from tkiteasy import *
 
