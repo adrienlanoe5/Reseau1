@@ -21,6 +21,9 @@ class perceptron:
             sum+=self.w[i]*entree[i]
         return self.fonction_activation (sum)
 
+    def entrainement(self,entree,resultatattendu):
+        erreur= resultatattendu - calcul_valeur(entree)
+        for i in range(len(w)):
 
 
 
