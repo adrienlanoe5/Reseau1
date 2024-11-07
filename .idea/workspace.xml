@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="ajout decimales">
+    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="debut">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/perceptron.py" beforeDir="false" afterPath="$PROJECT_DIR$/perceptron.py" afterDir="false" />
     </list>
@@ -174,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730563264845</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="debut">
+      <option name="closed" value="true" />
+      <created>1730976487230</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730976487230</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +211,7 @@
     <MESSAGE value="debut partie calcul" />
     <MESSAGE value="ajout decimales" />
     <MESSAGE value="rajout du bouton entrer" />
-    <option name="LAST_COMMIT_MESSAGE" value="rajout du bouton entrer" />
+    <MESSAGE value="debut" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut" />
   </component>
 </project>
