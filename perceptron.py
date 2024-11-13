@@ -23,6 +23,17 @@ class perceptron:
     def maj_poids(self):
 
 
+    def calcul_valeur(self,entree): # l'etrée est une liste de 0 et de 1
+        sum=0
+        for i in range(len(entrée)):
+            sum+=self.w[i]*entree[i]
+        return self.fonction_activation (sum)
+
+    def entrainement(self,entree,resultatattendu):
+        erreur= resultatattendu - calcul_valeur(entree)
+        for i in range(len(w)):
+
+
 
 
 
