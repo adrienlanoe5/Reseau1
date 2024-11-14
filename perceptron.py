@@ -18,10 +18,6 @@ class perceptron:
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
 
-    def fonction_activation(self):
-        res=1/(1*exp(-sum))
-        return res
-
 
     def deroulement(self, image):
         self.observations = image
