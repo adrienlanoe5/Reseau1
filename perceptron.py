@@ -1,41 +1,46 @@
 from math import exp
+import numpy as np
+
+liste_images= []
 
 class perceptron:
     def __init__(self):
         self.biais=1
         self.label= 0 # importé avec l'image
         self.n=0.03 #taux d'apprentissage
-    def deroulement(self):
+        self.poids=list(np.random.uniform(0,1,28**2))
+        self.observations=[]
+
+
+    def deroulement(self, image):
+        self.observations = image
+        sum=self.attribution_poids()
+        resultat=self.fonction_activation(sum)
+        erreur=self.erreur(resultat)
+        self.maj_poids(erreur)
 
     def fonction_activation(self, sum):
-        res=1 / (1 + math.exp(-sum))
+        res=1 / (1 + exp(-sum))
         return res
 
     def erreur(self,resultat):
-        if self.label!=resultat
+        if self.label!=resultat :
             erreur=self.n(self.label-resultat)
             return erreur
         else :
             return 0
 
-    def poids(self):
-
-    def maj_poids(self):
-
-
-    def calcul_valeur(self,entree): # l'etrée est une liste de 0 et de 1
+    def attribution_poids(self):
         sum=0
-        for i in range(len(entrée)):
-            sum+=self.w[i]*entree[i]
-        return self.fonction_activation (sum)
+        for i in range(len(self.observations)):
+            sum+= self.poids[i]*self.observations[i]
+        return sum
 
-    def entrainement(self,entree,resultatattendu):
-        erreur= resultatattendu - calcul_valeur(entree)
-        for i in range(len(w)):
-
-
-
-
+    def maj_poids(self,erreur):
+        for i in range(len(self.poids)):
+            new_poids=self.poids[i]+self.n*erreur*self.observations[i]
+            self.poids[i]=new_poids
 
 Neurone=perceptron()
-Neurone.deroulement()
+for image in liste_images:
+    Neurone.deroulement(image)
