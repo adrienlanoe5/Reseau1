@@ -27,8 +27,10 @@ class perceptron:
         self.maj_poids(erreur)
 
     def fonction_activation(self, sum):
-        res=1 / (1 + exp(-sum))
-        return res
+        if sum<0.5:
+            return 0
+        else:
+            return 1
 
     def erreur(self,resultat):
         if self.label!=resultat :
