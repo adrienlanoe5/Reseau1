@@ -1,7 +1,14 @@
+import sklearn
+from sklearn import datasets
+
+digits = sklearn.datasets.load_digits() # charge jeu de données dans digits
+
+digits.images[0]
+
 from math import exp
 import numpy as np
 
-liste_images= []
+liste_images=[]
 
 class perceptron:
     def __init__(self):
@@ -10,6 +17,10 @@ class perceptron:
         self.n=0.03 #taux d'apprentissage
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
+
+    def fonction_activation(self):
+        res=1/(1*exp(-sum))
+        return res
 
 
     def deroulement(self, image):
@@ -44,3 +55,6 @@ class perceptron:
 Neurone=perceptron()
 for image in liste_images:
     Neurone.deroulement(image)
+Neurone.deroulement()
+
+
