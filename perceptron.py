@@ -55,4 +55,3 @@ for image in liste_images:
     Neurone.deroulement(image)
 Neurone.deroulement()
 
-
