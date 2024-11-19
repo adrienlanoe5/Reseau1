@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="c">
+    <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="images non compressées">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture données.py" beforeDir="false" afterPath="$PROJECT_DIR$/lecture données.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reseaudeneurones/données images non compressées/t10k-images.idx3-ubyte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reseaudeneurones/données images non compressées/t10k-labels.idx1-ubyte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reseaudeneurones/données images non compressées/train-images.idx3-ubyte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reseaudeneurones/données images non compressées/train-labels.idx1-ubyte" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/perceptron.py" beforeDir="false" afterPath="$PROJECT_DIR$/perceptron.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +38,12 @@
     &quot;assignee&quot;: &quot;clementdeguine&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/adrienlanoe5/Reseau1.git",
-    "accountId": "d34f22a3-2d3a-409a-bda4-63c6b5d29e4f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/adrienlanoe5/Reseau1.git&quot;,
+    &quot;accountId&quot;: &quot;d34f22a3-2d3a-409a-bda4-63c6b5d29e4f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -49,18 +52,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.calculatrice.executor": "Run",
-    "Python.perceptron.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/adrie/PycharmProjects/TP programmation avancée/Reseau1/Reseaudeneurones"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.calculatrice.executor&quot;: &quot;Run&quot;,
+    &quot;Python.perceptron.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/adrie/PycharmProjects/TP programmation avancée/Reseau1/Reseaudeneurones&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\adrie\PycharmProjects\TP programmation avancée\Reseau1\Reseaudeneurones" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adrie\PycharmProjects\TP programmation avancée\Reseau1\Reseaudeneurones" />
+      <recent name="C:\Users\adrie\PycharmProjects\TP programmation avancée\Reseau1" />
     </key>
   </component>
   <component name="RunManager" selected="Python.perceptron">
@@ -91,9 +98,6 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -251,7 +255,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731581912746</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="c">
+      <option name="closed" value="true" />
+      <created>1731582843999</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1731582843999</updated>
+    </task>
+    <task id="LOCAL-00017" summary="images non compressées">
+      <option name="closed" value="true" />
+      <created>1731583039045</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731583039045</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,6 +311,7 @@
     <MESSAGE value="rajout du bouton entrer" />
     <MESSAGE value="debut" />
     <MESSAGE value="c" />
-    <option name="LAST_COMMIT_MESSAGE" value="c" />
+    <MESSAGE value="images non compressées" />
+    <option name="LAST_COMMIT_MESSAGE" value="images non compressées" />
   </component>
 </project>
