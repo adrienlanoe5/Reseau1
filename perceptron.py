@@ -106,7 +106,9 @@ import matplotlib.pyplot as plt
 #
 # Set file paths based on added MNIST Datasets
 
-input_path = r"D:\L3\cours\projet info 1\Reseau1"
+import urllib.request
+a=urllib.request.urlretrieve("https://github.com/MrHeadbang/machineLearning/blob/main/mnist.zip", "fichier")
+input_path = r"C:\Users\adrie\PycharmProjects\TP programmation avancée\Reseau1\Reseaudeneurones\archive"
 training_images_filepath = join(input_path, 'train-images-idx3-ubyte/train-images-idx3-ubyte')
 training_labels_filepath = join(input_path, 'train-labels-idx1-ubyte/train-labels-idx1-ubyte')
 test_images_filepath = join(input_path, 't10k-images-idx3-ubyte/t10k-images-idx3-ubyte')
