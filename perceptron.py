@@ -106,11 +106,10 @@ import matplotlib.pyplot as plt
 #
 # Set file paths based on added MNIST Datasets
 
-input_path = 'Reseaudeneurones/archive/'
 training_images_filepath = 'Reseaudeneurones/archive/t10k-images.idx3-ubyte'
 training_labels_filepath = 'Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
-test_images_filepath = input_path+ r't10k-images.idx3-ubyte'
-test_labels_filepath = input_path+ r't10k-labels.idx1-ubyte'
+test_images_filepath = 'Reseaudeneurones/archive/train-images.idx3-ubyte'
+test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 
 
 #
