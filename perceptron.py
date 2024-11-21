@@ -1,3 +1,19 @@
+#X_train : liste à 2 niveaux
+#1er niveau : une image
+#2ème : plusieurs listes correspondant à chacune à un niveau de l'image
+#Y_train : labels
+
+#fonctions à créer :
+#- fonction de normalisation des images : diviser tous les pixels par 255
+#- fonction test : ne met pas à jour les poids sinon même systeme que fonction deroulement
+#- fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ, reussite/(reussite+defaite)
+
+
+#autres modifs :
+#initialiser les poids à 0
+#utiliser methode .ravel() pour modifier le contenu des listes dans x_train
+#configurer le label : on choisit un chiffre d'entrainement, si pas le chiffre mettre 0 comme réponse sinon 1
+
 from math import exp
 import numpy as np
 
@@ -54,8 +70,6 @@ for image in liste_images:
 
 import struct
 from array import array
-from os.path import join
-
 
 #
 # MNIST Data Loader Class
@@ -97,13 +111,6 @@ class MnistDataloader(object):
         return (x_train, y_train), (x_test, y_test)
     #
 
-# Verify Reading Dataset via MnistDataloader class
-#
-
-import random
-import matplotlib.pyplot as plt
-
-#
 # Set file paths based on added MNIST Datasets
 
 training_images_filepath = 'Reseaudeneurones/archive/t10k-images.idx3-ubyte'
