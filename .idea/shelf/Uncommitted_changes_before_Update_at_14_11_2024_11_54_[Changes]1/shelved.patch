@@ -1,0 +1,37 @@
+Index: perceptron.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from math import exp\r\nimport numpy as np\r\n\r\nliste_images= []\r\n\r\nclass perceptron:\r\n    def __init__(self):\r\n        self.biais=1\r\n        self.label= 0 # importé avec l'image\r\n        self.n=0.03 #taux d'apprentissage\r\n        self.poids=list(np.random.uniform(0,1,28**2))\r\n        self.observations=[]\r\n\r\n\r\n    def deroulement(self, image):\r\n        self.observations = image\r\n        sum=self.attribution_poids()\r\n        resultat=self.fonction_activation(sum)\r\n        erreur=self.erreur(resultat)\r\n        self.maj_poids(erreur)\r\n\r\n    def fonction_activation(self, sum):\r\n        res=1 / (1 + exp(-sum))\r\n        return res\r\n\r\n    def erreur(self,resultat):\r\n        if self.label!=resultat :\r\n            erreur=self.n(self.label-resultat)\r\n            return erreur\r\n        else :\r\n            return 0\r\n\r\n    def attribution_poids(self):\r\n        sum=0\r\n        for i in range(len(self.observations)):\r\n            sum+= self.poids[i]*self.observations[i]\r\n        return sum\r\n\r\n    def maj_poids(self,erreur):\r\n        for i in range(len(self.poids)):\r\n            new_poids=self.poids[i]+self.n*erreur*self.observations[i]\r\n            self.poids[i]=new_poids\r\n\r\nNeurone=perceptron()\r\nfor image in liste_images:\r\n    Neurone.deroulement(image)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/perceptron.py b/perceptron.py
+--- a/perceptron.py	(revision 6b27168aa6d005c50711b45d6cd54afa26f431a5)
++++ b/perceptron.py	(date 1731581633903)
+@@ -20,12 +20,15 @@
+         self.maj_poids(erreur)
+ 
+     def fonction_activation(self, sum):
+-        res=1 / (1 + exp(-sum))
+-        return res
++        if sum < 0.5:
++            return 0
++        else:
++            return 1
++
+ 
+     def erreur(self,resultat):
+         if self.label!=resultat :
+-            erreur=self.n(self.label-resultat)
++            erreur=self.n*(self.label-resultat)
+             return erreur
+         else :
+             return 0
+@@ -34,6 +37,7 @@
+         sum=0
+         for i in range(len(self.observations)):
+             sum+= self.poids[i]*self.observations[i]
++        sum+=self.biais
+         return sum
+ 
+     def maj_poids(self,erreur):
