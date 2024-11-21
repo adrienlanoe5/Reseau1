@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="417d468c-af34-4568-b9f9-88867cf423fe" name="Changes" comment="import du dataset d'entrainement et du code">
+      <change beforePath="$PROJECT_DIR$/.idea/Reseau1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Reseau1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,15 +271,7 @@
       <option name="project" value="LOCAL" />
       <updated>1731583039045</updated>
     </task>
-    <task id="LOCAL-00018" summary="import du dataset d'entrainement et du code">
-      <option name="closed" value="true" />
-      <created>1732051139772</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1732051139772</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -318,7 +312,6 @@
     <MESSAGE value="debut" />
     <MESSAGE value="c" />
     <MESSAGE value="images non compressées" />
-    <MESSAGE value="import du dataset d'entrainement et du code" />
-    <option name="LAST_COMMIT_MESSAGE" value="import du dataset d'entrainement et du code" />
+    <option name="LAST_COMMIT_MESSAGE" value="images non compressées" />
   </component>
 </project>
