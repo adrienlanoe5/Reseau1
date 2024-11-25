@@ -78,14 +78,6 @@ class perceptron:
         return self.reussite / (self.reussite + self.defaite)
 
 
-Neurone=perceptron()
-for image in liste_images:
-    Neurone.apprentissage(image)
-#Neurone.apprentissage()
-
-Neurone.taux_reussite()
-Neurone.reset()
-
 #
 # MNIST Dataset
 
@@ -145,3 +137,11 @@ test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_filepath, test_images_filepath,
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
+
+
+
+Neurone=perceptron()
+for image in x_train:
+    Neurone.apprentissage(image, y_train[image])
+Neurone.taux_reussite()
+Neurone.reset()
