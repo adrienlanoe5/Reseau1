@@ -25,9 +25,15 @@ class perceptron:
         self.n=0.03 #taux d'apprentissage
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
+        self.reussite=0
+        self.defaite=0
 
+    def reset(self):
+        self.reussite=0
+        self.defaite=0
 
-    def deroulement(self, image, label):
+    def apprentissage (self, image, label):
+        self.reset()
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
@@ -35,6 +41,7 @@ class perceptron:
         self.maj_poids(erreur)
 
     def test(self, image, label):
+        self.reset()
         self.label=label
         self.observations = image
         sum=self.attribution_poids()
@@ -42,8 +49,10 @@ class perceptron:
 
     def fonction_activation(self, sum):
         if sum<0.5:
+            self.defaite+=1
             return 0
         else:
+            self.reussite+=1
             return 1
 
     def erreur(self,resultat):
@@ -65,16 +74,16 @@ class perceptron:
             new_poids=self.poids[i]+self.n*erreur*self.observations[i]
             self.poids[i]=new_poids
 
-    def taux_reussite(self, reussite, defaite):
-        return reussite / (reussite + defaite)
+    def taux_reussite(self):
+        return self.reussite / (self.reussite + self.defaite)
 
 
 Neurone=perceptron()
 for image in liste_images:
-    Neurone.deroulement(image)
-#Neurone.deroulement()
+    Neurone.apprentissage(image)
+#Neurone.apprentissage()
 
-
+Neurone.taux_reussite
 #
 # MNIST Dataset
 
@@ -134,13 +143,3 @@ test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_filepath, test_images_filepath,
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
-
-
-p=perceptron()
-
-for i in range (len(x_train)):
-    im=[] # création d'une image en une liste de taille 28*28
-    for liste in image :
-        im+=liste
-    p.label=y_train[i]
-    p.deroulement(im)
