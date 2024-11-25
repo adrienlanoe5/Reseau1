@@ -27,7 +27,7 @@ class perceptron:
         self.observations=[]
 
 
-    def deroulement(self, image):
+    def deroulement(self, image, label):
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
@@ -57,6 +57,7 @@ class perceptron:
         sum=0
         for i in range(len(self.observations)):
             sum+= self.poids[i]*self.observations[i]
+        sum+=self.biais
         return sum
 
     def maj_poids(self,erreur):
@@ -66,6 +67,7 @@ class perceptron:
 
     def taux_reussite(self, reussite, defaite):
         return reussite / (reussite + defaite)
+
 
 Neurone=perceptron()
 for image in liste_images:
