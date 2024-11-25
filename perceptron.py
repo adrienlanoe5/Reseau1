@@ -32,17 +32,14 @@ class perceptron:
         self.reussite=0
         self.defaite=0
 
-    def apprentissage (self, image, label):
-        self.reset()
+    def apprentissage (self, image):
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         erreur=self.erreur(resultat)
         self.maj_poids(erreur)
 
-    def test(self, image, label):
-        self.reset()
-        self.label=label
+    def test(self, image):
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
@@ -83,7 +80,9 @@ for image in liste_images:
     Neurone.apprentissage(image)
 #Neurone.apprentissage()
 
-Neurone.taux_reussite
+Neurone.taux_reussite()
+Neurone.reset()
+
 #
 # MNIST Dataset
 
