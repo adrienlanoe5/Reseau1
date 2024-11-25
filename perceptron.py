@@ -21,7 +21,7 @@ class perceptron:
         self.n=0.03 #taux d'apprentissage
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
-        self.label=3
+        self.label="3"
         self.reussite=0
         self.defaite=0
 
@@ -141,7 +141,14 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 
 
 Neurone=perceptron()
+
+#phase apprentissage
 for image in x_train:
     Neurone.apprentissage(image, y_train[image])
 Neurone.taux_reussite()
 Neurone.reset()
+
+#phase test
+#for image in x_test:
+#    Neurone.test(image, y_test[image])
+#Neurone.taux_reussite()
