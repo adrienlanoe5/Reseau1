@@ -25,6 +25,7 @@ class perceptron:
         self.n=0.03 #taux d'apprentissage
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
+        self.label=3
         self.reussite=0
         self.defaite=0
 
@@ -32,31 +33,32 @@ class perceptron:
         self.reussite=0
         self.defaite=0
 
-    def apprentissage (self, image):
+    def apprentissage (self, image,label_image):
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         erreur=self.erreur(resultat)
         self.maj_poids(erreur)
 
-    def test(self, image):
+    def test(self, image,label_image):
         self.observations = image
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
+        self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
         if sum<0.5:
-            self.defaite+=1
             return 0
         else:
-            self.reussite+=1
             return 1
 
-    def erreur(self,resultat):
-        if self.label!=resultat :
+    def erreur(self,resultat,label_image):
+        if self.label!=label_image :
+            self.defaite+=1
             erreur=self.n*(self.label-resultat)
             return erreur
         else :
+            self.reussite+=1
             return 0
 
     def attribution_poids(self):
