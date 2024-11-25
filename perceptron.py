@@ -14,7 +14,7 @@
 #utiliser methode .ravel() pour modifier le contenu des listes dans x_train
 #configurer le label : on choisit un chiffre d'entrainement, si pas le chiffre mettre 0 comme réponse sinon 1
 
-from math import exp
+
 import numpy as np
 
 liste_images=[]
@@ -22,7 +22,6 @@ liste_images=[]
 class perceptron:
     def __init__(self):
         self.biais=1
-        self.label= 0 # importé avec l'image
         self.n=0.03 #taux d'apprentissage
         self.poids=list(np.random.uniform(0,1,28**2))
         self.observations=[]
@@ -35,6 +34,12 @@ class perceptron:
         erreur=self.erreur(resultat)
         self.maj_poids(erreur)
 
+    def test(self, image, label):
+        self.label=label
+        self.observations = image
+        sum=self.attribution_poids()
+        resultat=self.fonction_activation(sum)
+
     def fonction_activation(self, sum):
         if sum<0.5:
             return 0
@@ -43,7 +48,7 @@ class perceptron:
 
     def erreur(self,resultat):
         if self.label!=resultat :
-            erreur=self.n(self.label-resultat)
+            erreur=self.n*(self.label-resultat)
             return erreur
         else :
             return 0
@@ -58,6 +63,9 @@ class perceptron:
         for i in range(len(self.poids)):
             new_poids=self.poids[i]+self.n*erreur*self.observations[i]
             self.poids[i]=new_poids
+
+    def taux_reussite(self, reussite, defaite):
+        return reussite / (reussite + defaite)
 
 Neurone=perceptron()
 for image in liste_images:
