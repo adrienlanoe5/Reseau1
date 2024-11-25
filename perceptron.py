@@ -3,12 +3,8 @@
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-#fonctions à créer :
-#- fonction de normalisation des images : diviser tous les pixels par 255
-#- fonction test : ne met pas à jour les poids sinon même systeme que fonction deroulement
-#- fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ, reussite/(reussite+defaite)
 
-
+#- fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
 #autres modifs :
 #initialiser les poids à 0
 #utiliser methode .ravel() pour modifier le contenu des listes dans x_train
@@ -33,15 +29,20 @@ class perceptron:
         self.reussite=0
         self.defaite=0
 
+    def normalisation_image(self,image):
+        for pixel in image:
+            image[pixel]=pixel/255
+            return image
+
     def apprentissage (self, image,label_image):
-        self.observations = image
+        self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         erreur=self.erreur(resultat)
         self.maj_poids(erreur)
 
     def test(self, image,label_image):
-        self.observations = image
+        self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         self.erreur(resultat,label_image)
