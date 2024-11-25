@@ -125,5 +125,12 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
-print(x_train[0])
-print(y_train[0])
+
+p=perceptron()
+
+for i in range (len(x_train)):
+    im=[] # création d'une image en une liste de taille 28*28
+    for liste in image :
+        im+=liste
+    p.label=y_train[i]
+    p.deroulement(im)
