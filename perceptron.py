@@ -6,9 +6,6 @@
 
 #- fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
 #autres modifs :
-#initialiser les poids à 0
-#utiliser methode .ravel() pour modifier le contenu des listes dans x_train
-#configurer le label : on choisit un chiffre d'entrainement, si pas le chiffre mettre 0 comme réponse sinon 1
 
 
 import numpy as np
@@ -19,7 +16,8 @@ class perceptron:
     def __init__(self):
         self.biais=1
         self.n=0.03 #taux d'apprentissage
-        self.poids=list(np.random.uniform(0,1,28**2))
+        #self.poids=list(np.random.uniform(0,1,28**2))
+        self.poids=[0 for i in range(28**2)]
         self.observations=[]
         self.label="3"
         self.reussite=0
@@ -56,8 +54,8 @@ class perceptron:
     def erreur(self,resultat,label_image):
         if self.label!=label_image :
             self.defaite+=1
-            erreur=self.n*(self.label-resultat)
-            return erreur
+            #return int(self.label) -int(label_image)
+            return 1
         else :
             self.reussite+=1
             return 0
@@ -144,11 +142,13 @@ Neurone=perceptron()
 
 #phase apprentissage
 for image in x_train:
-    Neurone.apprentissage(image, y_train[image])
+    new_image=image.np.ravel()
+    Neurone.apprentissage(new_image, y_train[image])
 Neurone.taux_reussite()
 Neurone.reset()
 
 #phase test
 #for image in x_test:
-#    Neurone.test(image, y_test[image])
+#    new_image=image.np.ravel()
+#    Neurone.test(new_image, y_test[image])
 #Neurone.taux_reussite()
