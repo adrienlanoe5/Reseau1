@@ -46,7 +46,7 @@ class perceptron:
     def test(self, image,label_image):
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
-        resultat=self.fonction_activation(sum/len(self.observations))
+        resultat=self.fonction_activation(sum)
         return self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
@@ -157,7 +157,7 @@ for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
 print(Neurone.taux_reussite())
-
+print(Neurone.poids)
 Neurone.reset()
 
 #phase test
