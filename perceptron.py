@@ -19,7 +19,7 @@ class perceptron:
         #self.poids=list(np.random.uniform(0,1,28**2))
         self.poids=[0 for i in range(28**2)]
         self.observations=[]
-        self.label="3"
+        self.label=3
         self.reussite=0
         self.defaite=0
 
@@ -51,14 +51,18 @@ class perceptron:
         else:
             return 1
 
-    def erreur(self,resultat,label_image):
-        if self.label!=label_image :
-            self.defaite+=1
+    #def erreur(self,resultat,label_image):
+        #if self.label!=label_image :
+            #self.defaite+=1
             #return int(self.label) -int(label_image)
-            return 1
-        else :
-            self.reussite+=1
-            return 0
+            #return 1
+        #else :
+            #self.reussite+=1
+            #return 0
+
+    def erreur(self,label_image):
+        return self.label-label_image
+
 
     def attribution_poids(self):
         sum=0
