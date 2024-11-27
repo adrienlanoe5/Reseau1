@@ -16,10 +16,10 @@ class perceptron:
     def __init__(self):
         self.biais=1
         self.n=0.03 #taux d'apprentissage
-        #self.poids=list(np.random.uniform(0,1,28**2))
-        self.poids=[0 for i in range(28**2)]
+        self.poids=list(np.random.uniform(0,1,28**2))
+        #self.poids=[0 for i in range(28**2)]
         self.observations=[]
-        self.label="3"
+        self.label=3
         self.reussite=0
         self.defaite=0
 
@@ -33,17 +33,21 @@ class perceptron:
             return image
 
     def apprentissage (self, image,label_image):
+        if label_image==self.label:
+            signe = 1
+        else :
+            signe=-1
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
-        erreur=self.erreur(resultat)
-        self.maj_poids(erreur)
+        erreur=self.erreur(resultat,label_image)
+        self.maj_poids(erreur,signe)
 
     def test(self, image,label_image):
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
-        resultat=self.fonction_activation(sum)
-        self.erreur(resultat,label_image)
+        resultat=self.fonction_activation(sum/len(self.observations))
+        return self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
         if sum<0.5:
@@ -52,7 +56,7 @@ class perceptron:
             return 1
 
     def erreur(self,resultat,label_image):
-        if self.label!=label_image :
+        if (self.label!=label_image and resultat==1) or (self.label==label_image and resultat==0):
             self.defaite+=1
             #return int(self.label) -int(label_image)
             return 1
@@ -65,11 +69,11 @@ class perceptron:
         for i in range(len(self.observations)):
             sum+= self.poids[i]*self.observations[i]
         sum+=self.biais
-        return sum
+        return sum/(len(self.observations)+1)
 
-    def maj_poids(self,erreur):
+    def maj_poids(self,erreur,signe):
         for i in range(len(self.poids)):
-            new_poids=self.poids[i]+self.n*erreur*self.observations[i]
+            new_poids=self.poids[i]+self.n*erreur*self.observations[i]*signe
             self.poids[i]=new_poids
 
     def taux_reussite(self):
@@ -141,10 +145,19 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 Neurone=perceptron()
 
 #phase apprentissage
-for image in x_train:
-    new_image=image.np.ravel()
-    Neurone.apprentissage(new_image, y_train[image])
-Neurone.taux_reussite()
+for i in range (len(x_train)) :
+    new_image=np.ravel(x_train[i])
+    Neurone.apprentissage(new_image, y_train[i])
+
+#phase de testsfor i in range (len(x_train)) :
+n_essais=0
+n_reussites=0
+for i in range (len(x_test)) :
+    n_essais+=1
+    new_image=np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
+print(Neurone.taux_reussite())
+
 Neurone.reset()
 
 #phase test
