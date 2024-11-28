@@ -86,6 +86,7 @@ class perceptron:
     def normalisation_image(self,image):
         for i in range (len(image)):
             image[i]=image[i]/255
+        image = np.append(image, [self.biais])
         return image
 
     def apprentissage (self, image,label_image):
@@ -118,7 +119,7 @@ class perceptron:
         sum=0
         for i in range(len(self.observations)):
             sum+= self.poids[i]*self.observations[i]
-        sum+=self.biais
+        #sum+=self.biais
         return sum
 
     def maj_poids(self,erreur):
