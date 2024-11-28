@@ -86,7 +86,7 @@ class perceptron:
     def normalisation_image(self,image):
         for pixel in image:
             image[pixel]=pixel/255
-            return image
+        return image
 
     def apprentissage (self, image,label_image):
         self.observations = self.normalisation_image(image)
@@ -137,15 +137,12 @@ for i in range (len(x_train)) :
     Neurone.apprentissage(new_image, y_train[i])
 
 #phase de tests for i in range (len(x_train)) :
-n_essais=0
 n_reussites=0
 for i in range (len(x_test)) :
-    n_essais+=1
     new_image=np.ravel(x_test[i])
     if Neurone.test(new_image, y_test[i]):
         n_reussites+=1
-print("pourcentage d'erreur",(1-n_reussites/n_essais)*100)
-
+print("pourcentage d'erreur",(1-n_reussites/len(x_test))*100)
 
 #phase test
 #for image in x_test:
