@@ -136,7 +136,7 @@ for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#phase de testsfor i in range (len(x_train)) :
+#phase de tests for i in range (len(x_train)) :
 n_essais=0
 n_reussites=0
 for i in range (len(x_test)) :
