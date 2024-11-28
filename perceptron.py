@@ -2,8 +2,14 @@
 #1er niveau : une image
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
-#fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
+#fonction taux de réussite doit être égal à 0.89 environ
 
+#Choses à faire pendant les vacances:
+#faire des tests meilleurs paramètres/choix
+#faire des bruits dans les donnees de tests
+#- entre 1 et 4 pixels à modifier
+#- paramètre gaussien qui influence l'ensemble des pixels
+#centrer le paramètre selon une N(0,1) puis N(1,1) et autre
 import numpy as np
 
 class perceptron:
