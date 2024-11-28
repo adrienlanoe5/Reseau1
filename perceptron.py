@@ -140,7 +140,7 @@ for i in range (len(x_train)) :
     Neurone.apprentissage(new_image, y_train[i])
 
 print(Neurone.taux_reussite())
-print(Neurone.poids)
+#print(Neurone.poids)
 Neurone.reset()
 
 #phase de tests
@@ -148,4 +148,4 @@ for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
 print(Neurone.taux_reussite())
-print(Neurone.poids)
+#print(Neurone.poids)
