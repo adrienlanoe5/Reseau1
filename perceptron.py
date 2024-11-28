@@ -46,10 +46,10 @@ class perceptron:
             return 1
 
     def erreur(self,resultat,label_image):
-        if (self.label!=label_image and resultat==1):
+        if self.label!=label_image and resultat==1:
             self.defaite+=1
             return -1
-        elif (self.label == label_image and resultat == 0):
+        elif self.label == label_image and resultat == 0:
             self.defaite+=1
             return 1
         else :
@@ -72,7 +72,6 @@ class perceptron:
         return self.reussite / (self.reussite + self.defaite)
 
 
-#
 # MNIST Dataset
 
 import struct
@@ -116,7 +115,6 @@ class MnistDataloader(object):
         x_train, y_train = self.read_images_labels(self.training_images_filepath, self.training_labels_filepath)
         x_test, y_test = self.read_images_labels(self.test_images_filepath, self.test_labels_filepath)
         return (x_train, y_train), (x_test, y_test)
-    #
 
 # Set file paths based on added MNIST Datasets
 
