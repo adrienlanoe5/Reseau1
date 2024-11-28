@@ -142,14 +142,16 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 Neurone=perceptron()
 
 #phase apprentissage
-for image in x_train:
-    new_image=image.np.ravel()
-    Neurone.apprentissage(new_image, y_train[image])
-Neurone.taux_reussite()
+for i in range(len(x_train)):
+    new_image=np.ravel(x_train[i])
+    Neurone.apprentissage(new_image, y_train[i])
+print(Neurone.taux_reussite())
+print(Neurone.poids)
 Neurone.reset()
 
 #phase test
-#for image in x_test:
-#    new_image=image.np.ravel()
-#    Neurone.test(new_image, y_test[image])
-#Neurone.taux_reussite()
+for i in range(len(x_test)):
+    new_image=np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
+print(Neurone.taux_reussite())
+print(Neurone.poids)
