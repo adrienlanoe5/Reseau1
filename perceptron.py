@@ -2,22 +2,16 @@
 #1er niveau : une image
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
-
-
-#- fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
-#autres modifs :
-
+#fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
 
 import numpy as np
-
-liste_images=[]
 
 class perceptron:
     def __init__(self):
         self.biais=1
         self.n=0.03 #taux d'apprentissage
-        self.poids=list(np.random.uniform(0,1,28**2))
-        #self.poids=[0 for i in range(28**2)]
+        #self.poids=list(np.random.uniform(0,1,28**2))
+        self.poids=[0 for i in range(28**2)]
         self.observations=[]
         self.label=3
         self.reussite=0
