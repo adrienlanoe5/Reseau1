@@ -96,10 +96,6 @@ class perceptron:
         self.maj_poids(erreur)
 
     def test(self, image,label_image):
-        if label_image==self.label:
-            self.attendu=1
-        else:
-            self.attendu=0
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
@@ -112,6 +108,10 @@ class perceptron:
             return 1
 
     def erreur(self,resultat,label_image):
+        if label_image==self.label:
+            self.attendu=1
+        else:
+            self.attendu=0
         return self.attendu-resultat
 
     def attribution_poids(self):
