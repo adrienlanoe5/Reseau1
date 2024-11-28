@@ -84,8 +84,8 @@ class perceptron:
         self.attendu=0
 
     def normalisation_image(self,image):
-        for pixel in image:
-            image[pixel]=pixel/255
+        for i in range (len(image)):
+            image[i]=image[i]/255
         return image
 
     def apprentissage (self, image,label_image):
@@ -102,7 +102,7 @@ class perceptron:
         return self.attendu==resultat
 
     def fonction_activation(self, sum):
-        if sum<0.5:
+        if sum<0:
             return 0
         else:
             return 1
