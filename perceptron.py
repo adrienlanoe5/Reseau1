@@ -22,8 +22,8 @@ class perceptron:
         self.defaite=0
 
     def normalisation_image(self,image):
-        for pixel in image:
-            image[pixel]=pixel/255
+        for i in range(len(image)) :
+            image[i]=image[i]/255
         return image
 
     def apprentissage (self, image,label_image):
