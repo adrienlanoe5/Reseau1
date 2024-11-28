@@ -33,21 +33,17 @@ class perceptron:
             return image
 
     def apprentissage (self, image,label_image):
-        if label_image==self.label:
-            signe = 1
-        else :
-            signe=-1
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         erreur=self.erreur(resultat,label_image)
-        self.maj_poids(erreur,signe)
+        self.maj_poids(erreur)
 
     def test(self, image,label_image):
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
-        return self.erreur(resultat,label_image)
+        self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
         if sum<0.5:
@@ -56,9 +52,11 @@ class perceptron:
             return 1
 
     def erreur(self,resultat,label_image):
-        if (self.label!=label_image and resultat==1) or (self.label==label_image and resultat==0):
+        if (self.label!=label_image and resultat==1):
             self.defaite+=1
-            #return int(self.label) -int(label_image)
+            return -1
+        elif (self.label == label_image and resultat == 0):
+            self.defaite+=1
             return 1
         else :
             self.reussite+=1
@@ -71,9 +69,9 @@ class perceptron:
         sum+=self.biais
         return sum/(len(self.observations)+1)
 
-    def maj_poids(self,erreur,signe):
+    def maj_poids(self,erreur):
         for i in range(len(self.poids)):
-            new_poids=self.poids[i]+self.n*erreur*self.observations[i]*signe
+            new_poids=self.poids[i]+self.n*erreur*self.observations[i]
             self.poids[i]=new_poids
 
     def taux_reussite(self):
@@ -149,19 +147,13 @@ for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#phase de testsfor i in range (len(x_train)) :
-n_essais=0
-n_reussites=0
-for i in range (len(x_test)) :
-    n_essais+=1
-    new_image=np.ravel(x_test[i])
-    Neurone.test(new_image, y_test[i])
 print(Neurone.taux_reussite())
 print(Neurone.poids)
 Neurone.reset()
 
-#phase test
-#for image in x_test:
-#    new_image=image.np.ravel()
-#    Neurone.test(new_image, y_test[image])
-#Neurone.taux_reussite()
+#phase de tests
+for i in range (len(x_test)) :
+    new_image=np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
+print(Neurone.taux_reussite())
+print(Neurone.poids)
