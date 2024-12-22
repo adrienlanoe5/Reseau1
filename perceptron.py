@@ -167,3 +167,5 @@ for i in range (len(liste_resultats)):
         max=liste_resultats[i]
 
 print(nmax)
+
+#n trouvé 0.29 avec  0.8991833333333333 de taux de réussite
