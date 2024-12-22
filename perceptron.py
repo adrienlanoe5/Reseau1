@@ -13,9 +13,9 @@
 import numpy as np
 
 class perceptron:
-    def __init__(self):
+    def __init__(self,n):
         self.biais=1
-        self.n=0.03 #taux d'apprentissage
+        self.n=n #taux d'apprentissage
         #self.poids=list(np.random.uniform(0,1,28**2+1))
         self.poids=[0 for i in range(28**2+1)]
         self.observations=[]
@@ -136,26 +136,34 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
+n_liste=[0.27+0.01*x for x in range(7)]
+liste_resultats=[]
 
+for elem in n_liste:
+    Neurone=perceptron(elem)
 
-Neurone=perceptron()
+    #phase apprentissage
+    for i in range (len(x_train)) :
+        new_image=np.ravel(x_train[i])
+        Neurone.apprentissage(new_image, y_train[i])
 
-#phase apprentissage
-for i in range (len(x_train)) :
-    new_image=np.ravel(x_train[i])
-    Neurone.apprentissage(new_image, y_train[i])
+    Neurone.reset()
 
-print(Neurone.taux_reussite())
-print(Neurone.reussite,Neurone.defaite)
-#print(Neurone.poids)
-Neurone.reset()
-print(Neurone.reussite,Neurone.defaite)
+    #phase de tests
+    for i in range (len(x_test)) :
+        new_image=np.ravel(x_test[i])
+        Neurone.test(new_image, y_test[i])
 
-#phase de tests
-for i in range (len(x_test)) :
-    new_image=np.ravel(x_test[i])
-    Neurone.test(new_image, y_test[i])
-print(Neurone.reussite,Neurone.defaite)
+    print(Neurone.taux_reussite())
+    liste_resultats.append(Neurone.taux_reussite())
 
-print(Neurone.taux_reussite())
-#print(Neurone.poids)
+print(liste_resultats)
+
+max=0
+nmax=0
+for i in range (len(liste_resultats)):
+    if liste_resultats[i]>max:
+        nmax=n_liste[i]
+        max=liste_resultats[i]
+
+print(nmax)
