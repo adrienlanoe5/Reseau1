@@ -41,17 +41,30 @@ class perceptron:
         self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
-        nb=1/(1+exp(-sum)) #fonction sigmoïde
-        #nb=tan(sum) #fonction tangente
-        #nb=(exp(sum)-exp(-sum))/(exp(sum)+exp(-sum)) #fonction tangente hyperbolique
-        #if sum<0.5:
-        if nb<0.5:
+
+        if sum<0.5:
             return 0
         else:
-            return 1
+           return 1
 
+    def fonction_activation_val_cont(self,sum):
+        nb = 1 / (1 + exp(-sum))  # fonction sigmoïde
+        # nb=tan(sum) #fonction tangente
+        # nb=(exp(sum)-exp(-sum))/(exp(sum)+exp(-sum)) #fonction tangente hyperbolique
+        return nb
 
     def erreur(self,resultat,label_image):
+        if self.label!=label_image and resultat==1:
+            self.defaite+=1
+            return -1
+        elif self.label == label_image and resultat == 0:
+            self.defaite+=1
+            return 1
+        else :
+            self.reussite+=1
+            return 0
+
+    def erreur_val_continues(self,resultat,label_image): #en chantier
         if self.label!=label_image and resultat==1:
             self.defaite+=1
             return -1
