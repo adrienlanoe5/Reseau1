@@ -5,12 +5,12 @@
 #fonction taux de réussite : à calculer à la fin des phases d'apprentissage et de test, doit être égal à 0.89 environ,
 
 import numpy as np
-
+from math import exp,tan
 class perceptron:
     def __init__(self):
         self.biais=1
         self.n=0.03 #taux d'apprentissage
-        #self.poids=list(np.random.uniform(0,1,28**2))
+        #self.poids=list(np.random.standard_normal(28**2+1))
         self.poids=[0 for i in range(28**2+1)]
         self.observations=[]
         self.label=3
@@ -41,10 +41,15 @@ class perceptron:
         self.erreur(resultat,label_image)
 
     def fonction_activation(self, sum):
-        if sum<0.5:
+        nb=1/(1+exp(-sum)) #fonction sigmoïde
+        #nb=tan(sum) #fonction tangente
+        #nb=(exp(sum)-exp(-sum))/(exp(sum)+exp(-sum)) #fonction tangente hyperbolique
+        #if sum<0.5:
+        if nb<0.5:
             return 0
         else:
             return 1
+
 
     def erreur(self,resultat,label_image):
         if self.label!=label_image and resultat==1:
@@ -66,6 +71,7 @@ class perceptron:
     def maj_poids(self,erreur):
         for i in range(len(self.poids)):
             new_poids=self.poids[i]+self.n*erreur*self.observations[i]
+            #new_poids = self.poids[i] + self.n * (erreur**2) * self.observations[i] #distance au carré
             self.poids[i]=new_poids
 
     def taux_reussite(self):
@@ -146,7 +152,7 @@ Neurone.reset()
 for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
-print(Neurone.reussite,Neurone.defaite)
+#print(Neurone.reussite,Neurone.defaite)
 
 print(Neurone.taux_reussite())
 #print(Neurone.poids)
