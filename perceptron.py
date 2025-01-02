@@ -140,10 +140,7 @@ for i in range (len(x_train)) :
     Neurone.apprentissage(new_image, y_train[i])
 
 print(Neurone.taux_reussite())
-#print(Neurone.reussite,Neurone.defaite)
-#print(Neurone.poids)
 Neurone.reset()
-print(Neurone.reussite,Neurone.defaite)
 
 #phase de tests
 for i in range (len(x_test)) :
