@@ -11,7 +11,7 @@ class perceptron:
         self.biais=1
         self.n=0.03 #taux d'apprentissage
         #self.poids=list(np.random.uniform(0,1,28**2))
-        self.poids=[0 for i in range(28**2)]
+        self.poids=[0 for i in range(28**2+1)]
         self.observations=[]
         self.label=3
         self.reussite=0
@@ -22,8 +22,9 @@ class perceptron:
         self.defaite=0
 
     def normalisation_image(self,image):
-        for pixel in image:
-            image[pixel]=pixel/255
+        for i in range(len(image)):
+            image[i] = image[i] / 255
+        image = np.append(image, [self.biais])
         return image
 
     def apprentissage (self, image,label_image):
@@ -60,7 +61,6 @@ class perceptron:
         sum=0
         for i in range(len(self.observations)):
             sum+= self.poids[i]*self.observations[i]
-        sum+=self.biais
         return sum/(len(self.observations)+1)
 
     def maj_poids(self,erreur):
@@ -140,7 +140,7 @@ for i in range (len(x_train)) :
     Neurone.apprentissage(new_image, y_train[i])
 
 print(Neurone.taux_reussite())
-print(Neurone.reussite,Neurone.defaite)
+#print(Neurone.reussite,Neurone.defaite)
 #print(Neurone.poids)
 Neurone.reset()
 print(Neurone.reussite,Neurone.defaite)
