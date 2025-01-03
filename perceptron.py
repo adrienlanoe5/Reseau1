@@ -42,7 +42,12 @@ class perceptron:
         self.erreur(resultat,label_image)
 
     def bruitage(self):
-        self.observations[14,14]=0
+        # bruitage au centre selon une valeur fixe
+        self.observations[377]=0.5
+        self.observations[378]=0.5
+        #self.observations[405]=0
+        #self.observations[406]=0
+
 
     def fonction_activation(self, sum):
         #nb = 1 / (1 + exp(-sum))  # fonction sigmoïde
