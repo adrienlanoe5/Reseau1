@@ -23,12 +23,13 @@ class perceptron:
     def normalisation_image(self,image):
         for i in range(len(image)):
             image[i] = image[i] / 255
+            bruit=self.bruitage()
+            image[i]=image[i]+bruit #bruitage
         image = np.append(image, [self.biais])
         return image
 
     def apprentissage (self, image,label_image):
         self.observations = self.normalisation_image(image)
-        self.bruitage()
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         erreur=self.erreur(resultat,label_image)
@@ -36,18 +37,15 @@ class perceptron:
 
     def test(self, image,label_image):
         self.observations = self.normalisation_image(image)
-        self.bruitage()
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         self.erreur(resultat,label_image)
 
-    def bruitage(self):
-        # bruitage au centre selon une valeur fixe
-        self.observations[377]=0.5
-        self.observations[378]=0.5
-        #self.observations[405]=0
-        #self.observations[406]=0
-
+    def bruitage (self):
+        #bruitage sur tous les pixels
+        ecart_type=
+        bruit=np.random.normal(0,ecart_type,1)
+        return bruit
 
     def fonction_activation(self, sum):
         #nb = 1 / (1 + exp(-sum))  # fonction sigmoïde
