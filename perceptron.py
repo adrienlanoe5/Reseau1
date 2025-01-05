@@ -20,11 +20,18 @@ class perceptron:
         self.reussite=0
         self.defaite=0
 
-    def normalisation_image(self,image):
+    def normalisation_image_bruit(self,image):
         for i in range(len(image)):
             image[i] = image[i] / 255
             bruit=self.bruitage()
             image[i]=image[i]+bruit #bruitage
+        image = np.append(image, [self.biais])
+        return image
+
+    def normalisation_image(self,image):
+        for i in range(len(image)):
+            #image[i] = image[i] / 255
+            image[i] =0
         image = np.append(image, [self.biais])
         return image
 
@@ -36,6 +43,7 @@ class perceptron:
         self.maj_poids(erreur)
 
     def test(self, image,label_image):
+        #self.observations = self.normalisation_image_bruit(image)
         self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
@@ -43,7 +51,7 @@ class perceptron:
 
     def bruitage (self):
         #bruitage sur tous les pixels
-        ecart_type=
+        ecart_type=0.05
         bruit=np.random.normal(0,ecart_type,1)
         return bruit
 
