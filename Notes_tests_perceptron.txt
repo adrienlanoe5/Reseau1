@@ -1,0 +1,113 @@
+Consignes :
+faire des tests meilleurs paramètres/choix (chiffres...)
+faire des bruits dans les données de tests (2 étapes)
+
+Test des meilleurs paramètres :
+
+Valeur des paramètres par défaut :
+taux d'apprentissage : 0.03
+initialisation des poids : à 0
+Nombre : 3
+fonction d'activation : Fonction de seuil
+Mesure de l'erreur : distance directe entre les deux termes
+
+Taux de prévision selon le nombre :
+Nombre		Taux 	   	
+1		0.887
+2		0.900
+3		0,898
+4		0.902
+5		0.910
+6		0.901
+7		0.895
+8		0.902
+9		0.901	
+
+Commentaire : Le taux de prévision ne change pas significativement selon le nombre (variation maximale de +/- 2%).
+
+Modification du taux d'apprentissage :
+Taux d'apprentissage 	Taux de prévision
+	0.01			0,898
+	0.03 			0,898		(par défaut)
+	0.06			0.897
+	0.25			0.898
+	0.5			0.867
+	0.75			0.7583
+	1			0.819
+Commentaire :  Le taux de prévision change significativement. Plus le taux d'apprentissage devient grand, plus le taux de prévision oscille et perd en précision. En testant avec des plus petites valeurs que 0.03, le perceptron semble mettre un peu plus de temps dans la phase d'apprentissage.
+
+Modification de la méthode de la mesure de l'erreur :
+	Méthode 				Taux de prévision	
+distance directe entre les deux termes   		0,898  		(par défaut)
+carré de la distance entre les deux termes		0,897
+
+Commentaire : Puisque les valeurs des erreurs sont 0,1 ou -1, la différence de variation des poids semble minime. Dans ce problème, les 2 méthodes ont l'air d'être équivalentes.
+
+Modification de la méthode d'initialisation des poids :
+	Méthode 				Taux de prévision	
+Init. à 0						0,898		(par défaut)
+Init. par loi uniforme					0.897
+Init. par loi normale 					0.897
+
+Commentaire : Pas de changement sur le taux de prévision. La méthode d'initialisation des poids n'a pas d'incidence sur le taux de prévision.
+
+Modification de la fonction d'activation :
+	Fonction d'activation		Taux de prévision
+Fonction de seuil				0,898		(par défaut)
+Fonction sigmoïde				0.738
+Fonction tangente				0.897
+Fonction tangente hyperbolique			0.897
+
+Commentaire : Le taux de prévision semble changer selon la fonction d'activation. Les fonctions de seuil, tangente et tangente hyperbolique semblent être équivalentes en termes d'efficacité dans cette situation. La fonction sigmoïde n'a pas l'air d'être appropriée à ce problème.
+
+Conclusion : Les paramètres par défaut semblent être une combinaison optimale pour ce problème. Après avoir testé quasiment toutes les combinaisons des modifications ci-dessus, j'arrive à trouver des résultats médiocres mais pas un meilleur résultat. Cela paraît étrange de ne pas pouvoir améliorer le taux de réussite en faisant varier quelques paramètres.
+
+Exemple de mauvaise combinaison : fonction sigmoïde, carré de la distance entre les deux termes donnent un taux de prévision correctes de 0.102.
+
+
+Bruits dans les données de tests :
+
+Bruits gaussien sur tous les pixels :
+Bruitage réalisé sur les images de la phase d'entrainement et de test 
+Le bruitage est appliqué sur la valeur normalisée du pixel : on ajoute ou on retranche aléatoirement une valeur choisie entre les bornes définies en suivant une loi N(0,1).
+    Ecart type	    Taux de réussite 	
+	0.05		 0.897
+	0.1		 0.897
+	0.15		 0.897	
+	0.5		 0.816
+	0.65		 0.807
+	0.75		 0.856
+	
+Commentaire : Le bruitage gaussien a un effet relativement négatif lorsque le perceptron est entraîné avec du bruitage. Il faut un bruitage gaussien important pour que le taux de réussite soit réellement affecté. Le bruitage aurait peut-être eu un effet supérieur si l'image était en couleurs. Les couleurs se seraient mélangées. De faibles nuances dans le gris ne changent pas beaucoup l'apparence du chiffre.
+
+Bruitage uniquement sur la phase de test :
+Ecart type	    Taux de réussite 	
+	0.05		 0.897 
+	0.15		 0.897	
+	0.25		 0.897
+	0.4		 0.629
+	0.5		 0.144		 
+	0.75		 0.102
+
+Commentaire : Lorsque le perceptron n'est pas entraîné à reconnaitre des chiffres avec des bruitages, ses performances sont grandement affectées dès que le bruitage devient important. On observe une différence de réussite allant jusqu'à 60%.
+
+
+Bruits sur un nombre aléatoire de pixels avec saturation :
+Les bruitages sur les tests suivants sont réalisés sur la phase de test.
+Nombre de pixels dans une image : 784
+Nombre de pixels choisis	Mode de sélection des pixels		Saturation					Taux de réussite 
+	tous				Aucun			   tous les pixels prennent 0 pour valeur			0.897			
+	la moitié			1 pixel sur 2		   La moitié choisie prend 0 pour valeur			0.897				la moitié		la 1ère moitié des lignes	   La moitié choisie prend 0 pour valeur			0.897	
+	la moitié		la 1ère moitié des lignes	   La moitié choisie prend 1 pour valeur			0.897	
+				Les 4 lignes du milieu		   Les pixels des lignes choisies prennent 0			0.897
+
+	tous				Aucun 			   Loi uniforme entre -1 et 1					0.897
+	tous 				Aucun 			   Loi uniforme et bruit gaussien avec écart type de 0.4	0.273			
+
+Commentaire : 
+Dans le premier test, l'image devient un carré blanc. Néanmoins, le taux de réussite est le même qu'avec les paramètres par défaut. Je ne comprends pas.
+Résultat incompréhensible pour le 2ème, 3ème, 4ème test et 5ème tests: même en supprimant une partie de l'image, il n'y a aucune différence dans la prévision réussite au chiffre près.
+Un bruitage avec la loi uniforme ne change pas la performance du perceptron. Cependant, en combinant plusieurs lois, la performance est considérablement réduite. Certains bruits comme la loi uniforme ne changent pas la performance du perceptron, mais la superposition de plusieurs bruits réduit le taux de réussite considérablement.	
+
+
+
