@@ -4,7 +4,7 @@
 #Y_train : labels
 
 import numpy as np
-#from math import exp,tan
+from math import exp,tan
 class perceptron:
     def __init__(self):
         self.biais=1
@@ -28,10 +28,17 @@ class perceptron:
         image = np.append(image, [self.biais])
         return image
 
+    def normalisation_image_bruit2(self,image):
+        for i in range(len(image)):
+            image[i] = image[i] / 255
+            if 336<i<448:
+                image[i] =0
+        image = np.append(image, [self.biais])
+        return image
+
     def normalisation_image(self,image):
         for i in range(len(image)):
-            #image[i] = image[i] / 255
-            image[i] =0
+            image[i] = image[i] / 255
         image = np.append(image, [self.biais])
         return image
 
@@ -43,16 +50,19 @@ class perceptron:
         self.maj_poids(erreur)
 
     def test(self, image,label_image):
-        #self.observations = self.normalisation_image_bruit(image)
-        self.observations = self.normalisation_image(image)
+        self.observations = self.normalisation_image_bruit(image)
+        #self.observations = self.normalisation_image_bruit2(image)
+        #self.observations = self.normalisation_image(image)
         sum=self.attribution_poids()
         resultat=self.fonction_activation(sum)
         self.erreur(resultat,label_image)
 
     def bruitage (self):
-        #bruitage sur tous les pixels
-        ecart_type=0.05
-        bruit=np.random.normal(0,ecart_type,1)
+        #bruitage gaussien
+        ecart_type=0.4
+        bruit=np.random.normal(0,ecart_type,1) +np.random.uniform(-ecart_type,ecart_type,1)
+        #bruitage loi uniforme
+        #bruit=np.random.uniform(-ecart_type,ecart_type,1)
         return bruit
 
     def fonction_activation(self, sum):
@@ -167,7 +177,7 @@ Neurone.reset()
 for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
-#print(Neurone.reussite,Neurone.defaite)
+print(Neurone.reussite,Neurone.defaite)
 
 print(Neurone.taux_reussite())
 #print(Neurone.poids)
