@@ -5,14 +5,34 @@
 
 #liste choses à faire:
 #- dérivée fonction activation
-
+#- cross entropy loss
 
 import numpy as np
 
 class reseau_neurones():
     def __init__(self, liste_neurones):
         self.nb_neurones =liste_neurones
-        self.nb_couches=len(self.nb_neurones)      #ensemble des couches cachées et la derniere
+        self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
+        self.liste_poids= self.initialisation_poids()
+        self.label=3
+
+    def initialisation_poids(self):
+        liste=[]
+        mat_1=np.zeros(self.nb_neurones[0],28*28+1)
+        for i in range(1,self.nb_couches):
+            mat=np.zeros(self.nb_neurones[i],self.nb_neurones[i-1]+1)
+            liste.append(mat)
+        return liste
+
+    def apprentissage(self,image,label_image):
+        resultat_couche=image
+        for i in range(self.nb_couches):
+            resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
+
+    def forward_propagation_produit_matriciel(self, couche, inputs):
+        vect_resultat=np.matmul(self.liste_poids[couche],inputs)
+        new_vect=np.append(vect_resultat, [1])
+        return new_vect
 
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
@@ -79,3 +99,21 @@ test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_filepath, test_images_filepath,
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
+
+
+Neurone=reseau_neurones()
+#phase apprentissage
+for i in range (len(x_train)) :
+    new_image=np.ravel(x_train[i])
+    Neurone.apprentissage(new_image, y_train[i])
+
+#print(Neurone.taux_reussite())
+#Neurone.reset()
+
+#phase de tests
+for i in range (len(x_test)) :
+    new_image=np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
+#print(Neurone.reussite,Neurone.defaite)
+
+#print(Neurone.taux_reussite())
