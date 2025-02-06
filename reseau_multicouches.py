@@ -3,7 +3,20 @@
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
+#liste choses à faire:
+#- dérivée fonction activation
+
+
 import numpy as np
+
+class reseau_neurones():
+    def __init__(self, liste_neurones):
+        self.nb_neurones =liste_neurones
+        self.nb_couches=len(self.nb_neurones)      #ensemble des couches cachées et la derniere
+
+    def fonction_activation(self,x):
+        return 1/(1 + np.exp(-x)) #sigmoide
+
 
 
 
