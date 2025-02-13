@@ -36,6 +36,7 @@ class reseau_neurones():
         self.defaite=0
 
     def apprentissage(self,image,label_image):
+        #forward propagation
         self.archi_resultats = []
         resultat_couche=self.normalisation_image(image)
         for i in range(self.nb_couches):
@@ -46,6 +47,11 @@ class reseau_neurones():
         label_pred=str(np.argmax(resultat))
         erreur=self.erreur(resultat, label_pred, label_image)
 
+        # backward propagation
+        der_erreur=2*np.sum(attendu-self.resultat)
+        for i in range(len(self.liste_poids)):
+            der_erreur=self.mettre_a_jour_poids(i,erreur)
+
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
@@ -55,7 +61,7 @@ class reseau_neurones():
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
 
-    def softmax(self,liste):
+    def softmax(self,liste): #axis à tester
         return np.exp(liste) / np.sum(np.exp(liste), axis=0)
 
     def erreur(self, resultat, label_pred, label_image): #a modifier
@@ -69,11 +75,6 @@ class reseau_neurones():
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
-
-    def backward_propagation(self):
-        der_erreur=2*np.sum(attendu-self.resultat)
-        for i in range(len(self.liste_poids)):
-            der_erreur=self.mettre_a_jour_poids(i,erreur)
 
     def mettre_a_jour_poids(self,i):
 
