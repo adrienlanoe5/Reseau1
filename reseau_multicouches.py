@@ -70,6 +70,14 @@ class reseau_neurones():
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
 
+    def backward_propagation(self):
+        der_erreur=2*np.sum(attendu-self.resultat)
+        for i in range(len(self.liste_poids)):
+            der_erreur=self.mettre_a_jour_poids(i,erreur)
+
+    def mettre_a_jour_poids(self,i):
+
+
 
 
 
@@ -117,6 +125,7 @@ class MnistDataloader(object):
         x_test, y_test = self.read_images_labels(self.test_images_filepath, self.test_labels_filepath)
         return (x_train, y_train), (x_test, y_test)
 
+
 # Set file paths based on added MNIST Datasets
 
 training_images_filepath = 'Reseaudeneurones/archive/t10k-images.idx3-ubyte'
@@ -130,6 +139,7 @@ test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_filepath, test_images_filepath,
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
+
 
 
 Neurone=reseau_neurones()
