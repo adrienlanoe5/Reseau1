@@ -82,9 +82,11 @@ class reseau_neurones():
         vect=np.reshape(vect,(dim[1],dim[0]))
 
         #vecteur des dérivées
+        vect_derivees=[]
 
         #calcul final
-
+        vect_erreur=self.produit_coordonnees(vect, vect_derivees)
+        return vect_erreur
 
 
 
