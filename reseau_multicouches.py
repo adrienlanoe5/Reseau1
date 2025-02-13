@@ -14,14 +14,13 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
-        self.label=3
-        self.archi_resultats=[]
         self.reussite=0
         self.defaite=0
 
     def initialisation_poids(self):
         liste=[]
         mat_1=np.zeros(self.nb_neurones[0],28*28+1)
+        liste.append(mat_1)
         for i in range(1,self.nb_couches):
             mat=np.zeros(self.nb_neurones[i],self.nb_neurones[i-1]+1)
             liste.append(mat)
@@ -37,13 +36,16 @@ class reseau_neurones():
         self.defaite=0
 
     def apprentissage(self,image,label_image):
+        self.archi_resultats = []
         resultat_couche=self.normalisation_image(image)
         for i in range(self.nb_couches):
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
         resultat=self.softmax(resultat_couche)
-        erreur=self.erreur(resultat, label_image)
+        label_pred=str(np.argmax(resultat))
+        erreur=self.erreur(resultat, label_pred, label_image)
+
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
@@ -54,18 +56,15 @@ class reseau_neurones():
         return 1/(1 + np.exp(-x)) #sigmoide
 
     def softmax(self,liste):
-        return max(np.exp(liste) / np.sum(np.exp(liste), axis=0))
+        return np.exp(liste) / np.sum(np.exp(liste), axis=0)
 
-    def erreur(self, resultat, label_image): #a modifier
-            if self.label != label_image and resultat == 1:
+    def erreur(self, resultat, label_pred, label_image): #a modifier
+            if label_pred != label_image :
                 self.defaite += 1
-                return -1
-            elif self.label == label_image and resultat == 0:
-                self.defaite += 1
-                return 1
+                return -resultat
             else:
                 self.reussite += 1
-                return 0
+                return 1-resultat
 
 
     def taux_reussite(self):
@@ -139,13 +138,13 @@ for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#print(Neurone.taux_reussite())
-#Neurone.reset()
+print(Neurone.taux_reussite())
+Neurone.reset()
 
 #phase de tests
-for i in range (len(x_test)) :
-    new_image=np.ravel(x_test[i])
-    Neurone.test(new_image, y_test[i])
+#for i in range (len(x_test)) :
+    #new_image=np.ravel(x_test[i])
+    #Neurone.test(new_image, y_test[i])
 #print(Neurone.reussite,Neurone.defaite)
 
 #print(Neurone.taux_reussite())
