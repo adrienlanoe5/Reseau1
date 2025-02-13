@@ -15,6 +15,9 @@ class reseau_neurones():
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
         self.label=3
+        self.archi_resultats=[]
+        self.reussite=0
+        self.defaite=0
 
     def initialisation_poids(self):
         liste=[]
@@ -24,10 +27,23 @@ class reseau_neurones():
             liste.append(mat)
         return liste
 
+    def normalisation_image(self,image):
+        for i in range(len(image)):
+            image[i] = image[i] / 255
+        return image
+
+    def reset(self):
+        self.reussite=0
+        self.defaite=0
+
     def apprentissage(self,image,label_image):
-        resultat_couche=image
+        resultat_couche=self.normalisation_image(image)
         for i in range(self.nb_couches):
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche)
+            self.archi_resultats.append(resultat_couche)
+        resultat=self.softmax(resultat_couche)
+        erreur=self.erreur(resultat, label_image)
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
@@ -37,7 +53,23 @@ class reseau_neurones():
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
 
+    def softmax(self,liste):
+        return max(np.exp(liste) / np.sum(np.exp(liste), axis=0))
 
+    def erreur(self, resultat, label_image): #a modifier
+            if self.label != label_image and resultat == 1:
+                self.defaite += 1
+                return -1
+            elif self.label == label_image and resultat == 0:
+                self.defaite += 1
+                return 1
+            else:
+                self.reussite += 1
+                return 0
+
+
+    def taux_reussite(self):
+        return self.reussite / (self.reussite + self.defaite)
 
 
 
