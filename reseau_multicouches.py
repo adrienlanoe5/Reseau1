@@ -3,9 +3,18 @@
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
+#formule calcul erreur :
+#erreur = dérivée fonction d'activation du neurone où on veut la maj avec en valeur la valeur de la fonction d'activation du poids
+	#x  la somme des erreurs pondérées par les poids des neurones de la couche i+1
+
+#calcul erreur dernière couche:
+#erreur= résultat voulu (0 ou 1) - résultat obtenu
+
+#formule correction poids :
+#new_poids= poids + learning rate x valeur neuronne couche i x erreur
+
 #liste choses à faire:
-#- dérivée fonction activation
-#- cross entropy loss
+#- cross entropy loss site voir discord
 
 import numpy as np
 
@@ -16,6 +25,7 @@ class reseau_neurones():
         self.liste_poids= self.initialisation_poids()
         self.reussite=0
         self.defaite=0
+        self.n=0.03
 
     def initialisation_poids(self):
         liste=[]
@@ -48,7 +58,8 @@ class reseau_neurones():
         erreur=self.erreur(resultat, label_pred, label_image)
 
         # backward propagation
-        der_erreur=2*np.sum(attendu-self.resultat)
+
+        #der_erreur=2*np.sum(attendu-self.resultat)
         for i in range(len(self.liste_poids)):
             der_erreur=self.mettre_a_jour_poids(i,erreur)
 
@@ -58,13 +69,25 @@ class reseau_neurones():
         new_vect=np.append(vect_resultat, [1])
         return new_vect
 
+    def mettre_a_jour_poids(self,i):
+        erreur=
+# erreur = dérivée fonction d'activation du neurone où on veut la maj avec en valeur la valeur de la fonction d'activation du poids
+# x  la somme des erreurs pondérées par les poids des neurones de la couche i+1
+
+        new_mat_poids= self.liste_poids + self.n*erreur
+        self.liste_poids[i]=new_mat_poids
+#new_poids= poids + learning rate x valeur neuronne couche i x erreur
+
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
+
+    def derivee_fonction_activation(self, x):
+        return np.exp(-x) / ((1 + np.exp(-x))**2)
 
     def softmax(self,liste): #axis à tester
         return np.exp(liste) / np.sum(np.exp(liste), axis=0)
 
-    def erreur(self, resultat, label_pred, label_image): #a modifier
+    def erreur(self, resultat, label_pred, label_image): #a modifier avec cross entropy loss
             if label_pred != label_image :
                 self.defaite += 1
                 return -resultat
@@ -76,7 +99,7 @@ class reseau_neurones():
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
 
-    def mettre_a_jour_poids(self,i):
+
 
 
 
