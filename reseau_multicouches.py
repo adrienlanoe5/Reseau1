@@ -74,7 +74,7 @@ class reseau_neurones():
     def backward_propagation(self):
         der_erreur=2*np.sum(attendu-self.resultat)
         for i in range(len(self.liste_poids)):
-            der_erreur=self.mettre_a_jour_poids(i,erreur)
+            der_erreur=self.mettre_a_jour_poids(i,der_erreur)
 
     def mettre_a_jour_poids(self,i):
 
