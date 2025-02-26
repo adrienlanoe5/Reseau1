@@ -14,7 +14,6 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
-        self.label=3
         self.archi_resultats=[]
         self.reussite=0
         self.defaite=0
