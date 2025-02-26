@@ -98,14 +98,20 @@ class reseau_neurones():
         return np.array(new_vect)
 
     def maj_poids(self,i,erreur):
-
+        #calculs préliminaires
         mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
         dim = mat_valeurs_neurones_erreur.shape()
         vect_learning_rate=np.transpose(np.array([self.n for k in range(dim[0])]))
         mat=self.produit_coordonnees(vect_learning_rate,mat_valeurs_neurones_erreur)
 
-        dim=self.liste_poids[i].shape()
-        mat_finale=
+        #mise à la dimension correcte
+        dim_voulue=self.liste_poids[i].shape()
+        vect=[]
+        for i in range (dim[0]):
+            vect.append([mat[i] for k in range(dim_voulue[1])])
+        mat_finale=np.array(vect)
+
+        #calcul final
         new_mat_poids= self.liste_poids[i] + mat_finale
         self.liste_poids[i]=np.array(new_mat_poids)
 #new_poids= poids + learning rate x valeur neuronne couche i x erreur
