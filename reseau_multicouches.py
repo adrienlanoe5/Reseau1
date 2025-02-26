@@ -37,13 +37,33 @@ class reseau_neurones():
         self.defaite=0
 
     def apprentissage(self,image,label_image):
-        resultat_couche=self.normalisation_image(image)
+        resultat_couche=self.normalisation_image(image) #farward propagation
         for i in range(self.nb_couches):
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
         resultat=self.softmax(resultat_couche)
         erreur=self.erreur(resultat, label_image)
+
+        #rétropropagation
+
+        for i in range(self.nb_couches,-1): #parcours de l'ensemble des couches dans l'ordre décroissant
+            erreur_avec_derivee=self.appliquer_derivee(i,erreur) #on calcul l'erreur sans la dérivée de la fonction d'activation
+            self.mettre_a_jour_poids(i,erreur_avec_derivee)
+            erreur=self.erreur_couche_precedente(i,erreur_avec_derivee)  # rajout de la dérivée de la fonction d'activation
+
+
+    def appliquer_derivee(self,i,erreur):
+        for j in range(len(erreur)):
+            erreur[j]=erreur[j]*self.valeurs_neurones[i][j]*(1-self.valeurs_neurones[i][j])
+        return erreur
+
+
+    def erreur_couche_precedente(self,i,erreur_avec_derivee): #retourne le vecteur d'erreur de la couche i-1 sans la dérivée de la fonction d'activation
+        return np.matmul(np.transpose(self.liste_poids[i]),erreur_avec_derivee)
+
+
+
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
@@ -77,6 +97,9 @@ class reseau_neurones():
             der_erreur=self.mettre_a_jour_poids(i,der_erreur)
 
     def mettre_a_jour_poids(self,i):
+        matrice_poids=self.liste_poids[i]
+        #création du vecteur de correction des poids
+
 
 
 
