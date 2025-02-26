@@ -3,18 +3,9 @@
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-#formule calcul erreur :
-#erreur = dérivée fonction d'activation du neurone où on veut la maj avec en valeur la valeur de la fonction d'activation du poids
-	#x  la somme des erreurs pondérées par les poids des neurones de la couche i+1
-
-#calcul erreur dernière couche:
-#erreur= résultat voulu (0 ou 1) - résultat obtenu
-
-#formule correction poids :
-#new_poids= poids + learning rate x valeur neuronne couche i x erreur
-
-#liste choses à faire / bugs potentiels:
-#-
+#liste choses à faire:
+#- dérivée fonction activation
+#- cross entropy loss
 
 import numpy as np
 
@@ -23,14 +14,13 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
+        self.archi_resultats=[]
         self.reussite=0
         self.defaite=0
-        self.n=0.03
 
     def initialisation_poids(self):
         liste=[]
         mat_1=np.zeros(self.nb_neurones[0],28*28+1)
-        liste.append(mat_1)
         for i in range(1,self.nb_couches):
             mat=np.zeros(self.nb_neurones[i],self.nb_neurones[i-1]+1)
             liste.append(mat)
@@ -46,22 +36,32 @@ class reseau_neurones():
         self.defaite=0
 
     def apprentissage(self,image,label_image):
-        #forward propagation
-        self.archi_resultats = []
-        self.archi_erreurs=[]
-        resultat_couche=self.normalisation_image(image)
+        resultat_couche=self.normalisation_image(image) #farward propagation
         for i in range(self.nb_couches):
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
         resultat=self.softmax(resultat_couche)
-        label_pred=str(np.argmax(resultat))
+        erreur=self.erreur(resultat, label_image)
 
-        # backward propagation
-        erreur = self.erreur(resultat, label_pred, label_image)
+        #rétropropagation
 
-        for i in range(self.nb_couches-1,0,-1):
-            self.calcul_erreur(i)
+        for i in range(self.nb_couches,-1): #parcours de l'ensemble des couches dans l'ordre décroissant
+            erreur_avec_derivee=self.appliquer_derivee(i,erreur) #on calcul l'erreur sans la dérivée de la fonction d'activation
+            self.mettre_a_jour_poids(i,erreur_avec_derivee)
+            erreur=self.erreur_couche_precedente(i,erreur_avec_derivee)  # rajout de la dérivée de la fonction d'activation
+
+
+    def appliquer_derivee(self,i,erreur):
+        for j in range(len(erreur)):
+            erreur[j]=erreur[j]*self.valeurs_neurones[i][j]*(1-self.valeurs_neurones[i][j])
+        return erreur
+
+
+    def erreur_couche_precedente(self,i,erreur_avec_derivee): #retourne le vecteur d'erreur de la couche i-1 sans la dérivée de la fonction d'activation
+        return np.matmul(np.transpose(self.liste_poids[i]),erreur_avec_derivee)
+
+
 
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
@@ -69,59 +69,35 @@ class reseau_neurones():
         new_vect=np.append(vect_resultat, [1])
         return new_vect
 
-
-    def calcul_erreur(self,i):
-        #formule erreur :
-        # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
-        # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
-        dim=self.archi_erreurs[i+1].shape()
-        vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
-        vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
-        del vect[-1]
-        dim =vect.shape()
-        vect=np.reshape(vect,(dim[1],dim[0]))
-
-        #vecteur des dérivées
-        vect_derivees=[]
-
-        #calcul final
-        vect_erreur=self.produit_coordonnees(vect, vect_derivees)
-        return vect_erreur
-
-
-
-    def maj_poids(self,i):
-        new_mat_poids= self.liste_poids + self.n*erreur
-        self.liste_poids[i]=new_mat_poids
-#new_poids= poids + learning rate x valeur neuronne couche i x erreur
-
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
 
-    def derivee_fonction_activation(self, x):
-        return np.exp(-x) / ((1 + np.exp(-x))**2)
+    def softmax(self,liste):
+        return max(np.exp(liste) / np.sum(np.exp(liste), axis=0))
 
-    def softmax(self,liste): #axis à tester
-        return np.exp(liste) / np.sum(np.exp(liste), axis=0)
-
-    def erreur(self, resultat, label_pred, label_image): #a modifier avec cross entropy loss
-            if label_pred != label_image :
+    def erreur(self, resultat, label_image): #a modifier
+            if self.label != label_image and resultat == 1:
                 self.defaite += 1
-
+                return -1
+            elif self.label == label_image and resultat == 0:
+                self.defaite += 1
+                return 1
             else:
                 self.reussite += 1
+                return 0
 
-
-    def produit_coordonnees(self,a,b):
-        dim=a.shape()
-        new_vect=[]
-        for i in range(dim[0]):
-            new_vect.append(np.matmul(a[i],b[i]))
-        return np.array(new_vect)
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
 
+    def backward_propagation(self):
+        der_erreur=2*np.sum(attendu-self.resultat)
+        for i in range(len(self.liste_poids)):
+            der_erreur=self.mettre_a_jour_poids(i,der_erreur)
+
+    def mettre_a_jour_poids(self,i):
+        matrice_poids=self.liste_poids[i]
+        #création du vecteur de correction des poids
 
 
 
@@ -188,20 +164,20 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-liste=[4,7,2,5,6,10]
-Neurone=reseau_neurones(liste)
+
+Neurone=reseau_neurones()
 #phase apprentissage
 for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-print(Neurone.taux_reussite())
-Neurone.reset()
+#print(Neurone.taux_reussite())
+#Neurone.reset()
 
 #phase de tests
-#for i in range (len(x_test)) :
-    #new_image=np.ravel(x_test[i])
-    #Neurone.test(new_image, y_test[i])
+for i in range (len(x_test)) :
+    new_image=np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
 #print(Neurone.reussite,Neurone.defaite)
 
 #print(Neurone.taux_reussite())
