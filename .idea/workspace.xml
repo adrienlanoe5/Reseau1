@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -451,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740611052542</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740611352257</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1740611352257</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

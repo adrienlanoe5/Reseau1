@@ -63,7 +63,7 @@ class reseau_neurones():
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
         new_vect=np.append(vect_resultat, [1])
-        return new_vect
+        return np.array(new_vect)
 
 
     def calcul_erreur(self,i):
@@ -98,8 +98,16 @@ class reseau_neurones():
         return np.array(new_vect)
 
     def maj_poids(self,i,erreur):
-        new_mat_poids= self.liste_poids + self.n*erreur
-        self.liste_poids[i]=new_mat_poids
+
+        mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
+        dim = mat_valeurs_neurones_erreur.shape()
+        vect_learning_rate=np.transpose(np.array([self.n for k in range(dim[0])]))
+        mat=self.produit_coordonnees(vect_learning_rate,mat_valeurs_neurones_erreur)
+
+        dim=self.liste_poids[i].shape()
+        mat_finale=
+        new_mat_poids= self.liste_poids[i] + mat_finale
+        self.liste_poids[i]=np.array(new_mat_poids)
 #new_poids= poids + learning rate x valeur neuronne couche i x erreur
 
     def fonction_activation(self,x):
