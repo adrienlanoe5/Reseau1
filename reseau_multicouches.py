@@ -73,13 +73,24 @@ class reseau_neurones():
         vect=np.reshape(vect,(dim[1],dim[0]))
 
         #vecteur des dérivées
+        vect_res_couche_i=self.archi_resultats[i]
+        dim=vect_res_couche_i.shape()
         vect_derivees=[]
+        for i in range (dim[0]):
+            nb=self.derivee_fonction_activation(vect_res_couche_i[i])
+            vect_derivees.append(nb)
+        vect_derivees=np.array(vect_derivees)
 
         #calcul final
         vect_erreur=self.produit_coordonnees(vect, vect_derivees)
         return vect_erreur
 
-
+    def produit_coordonnees(self,a,b):
+        dim=a.shape()
+        new_vect=[]
+        for i in range(dim[0]):
+            new_vect.append(np.matmul(a[i],b[i]))
+        return np.array(new_vect)
 
     def maj_poids(self,i,erreur):
         new_mat_poids= self.liste_poids + self.n*erreur
@@ -101,14 +112,6 @@ class reseau_neurones():
 
             else:
                 self.reussite += 1
-
-
-    def produit_coordonnees(self,a,b):
-        dim=a.shape()
-        new_vect=[]
-        for i in range(dim[0]):
-            new_vect.append(np.matmul(a[i],b[i]))
-        return np.array(new_vect)
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
