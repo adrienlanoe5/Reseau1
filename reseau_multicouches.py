@@ -49,10 +49,15 @@ class reseau_neurones():
         label_pred=str(np.argmax(resultat))
 
         # backward propagation
+        # derniere couche
         erreur = self.erreur(resultat, label_pred, label_image)
 
+        #couches précédentes
         for i in range(self.nb_couches-1,0,-1):
-            self.calcul_erreur(i)
+            vect_erreur=self.calcul_erreur(i)
+            self.archi_erreurs.append(vect_erreur)
+            self.maj_poids(i,vect_erreur)
+
 
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
@@ -76,7 +81,7 @@ class reseau_neurones():
         vect_res_couche_i=self.archi_resultats[i]
         dim=vect_res_couche_i.shape()
         vect_derivees=[]
-        for i in range (dim[0]):
+        for i in range(dim[0]):
             nb=self.derivee_fonction_activation(vect_res_couche_i[i])
             vect_derivees.append(nb)
         vect_derivees=np.array(vect_derivees)
