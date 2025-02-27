@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="enlève label">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,9 +30,12 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/adrienlanoe5/Reseau1.git&quot;,
-    &quot;accountId&quot;: &quot;d34f22a3-2d3a-409a-bda4-63c6b5d29e4f&quot;
+    &quot;accountId&quot;: &quot;d619ed8f-20c3-48d5-b18c-7b66fc72b5ef&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -42,18 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.perceptron.executor": "Run",
-    "Python.reseau_multicouches.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.perceptron.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
       </set>
     </attachedChunks>
   </component>
@@ -65,54 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
-    </task>
-    <task id="LOCAL-00001" summary="tri">
-      <option name="closed" value="true" />
-      <created>1732185104862</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1732185104862</updated>
-    </task>
-    <task id="LOCAL-00002" summary="tst">
-      <option name="closed" value="true" />
-      <created>1732185285291</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732185285291</updated>
-    </task>
-    <task id="LOCAL-00003" summary="tst">
-      <option name="closed" value="true" />
-      <created>1732186467027</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732186467027</updated>
-    </task>
-    <task id="LOCAL-00004" summary="instructions">
-      <option name="closed" value="true" />
-      <created>1732187917286</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1732187917286</updated>
-    </task>
-    <task id="LOCAL-00005" summary="clean up">
-      <option name="closed" value="true" />
-      <created>1732188128881</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1732188128881</updated>
-    </task>
-    <task id="LOCAL-00006" summary="suite perceptron">
-      <option name="closed" value="true" />
-      <created>1732547917662</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1732547917662</updated>
     </task>
     <task id="LOCAL-00007" summary="suite perceptron">
       <option name="closed" value="true" />
@@ -348,45 +301,165 @@
     </task>
     <task id="LOCAL-00036" summary="modif">
       <option name="closed" value="true" />
-      <created>1739436818904</created>
+      <created>1738831770789</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1739436818904</updated>
+      <updated>1738831770789</updated>
     </task>
     <task id="LOCAL-00037" summary="modif">
       <option name="closed" value="true" />
-      <created>1739439984653</created>
+      <created>1738832639984</created>
       <option name="number" value="00037" />
       <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1739439984653</updated>
+      <updated>1738832639984</updated>
     </task>
-    <task id="LOCAL-00038" summary="backward propagation">
+    <task id="LOCAL-00038" summary="modif">
       <option name="closed" value="true" />
-      <created>1740572376226</created>
+      <created>1738835470880</created>
       <option name="number" value="00038" />
       <option name="presentableId" value="LOCAL-00038" />
       <option name="project" value="LOCAL" />
-      <updated>1740572376226</updated>
+      <updated>1738835470880</updated>
     </task>
-    <task id="LOCAL-00039" summary="backward propagation">
+    <task id="LOCAL-00039" summary="modif">
       <option name="closed" value="true" />
-      <created>1740572420062</created>
+      <created>1738847615534</created>
       <option name="number" value="00039" />
       <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1740572420062</updated>
+      <updated>1738847615534</updated>
     </task>
-    <task id="LOCAL-00040" summary="enlève label">
+    <task id="LOCAL-00040" summary="modif">
       <option name="closed" value="true" />
-      <created>1740572461962</created>
+      <created>1739435903813</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1740572461962</updated>
+      <updated>1739435903813</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739436802286</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1739436802286</updated>
+    </task>
+    <task id="LOCAL-00042" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739437374997</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1739437374997</updated>
+    </task>
+    <task id="LOCAL-00043" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739439980582</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1739439980582</updated>
+    </task>
+    <task id="LOCAL-00044" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739456601543</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1739456601543</updated>
+    </task>
+    <task id="LOCAL-00045" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739456688550</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1739456688550</updated>
+    </task>
+    <task id="LOCAL-00046" summary="modif">
+      <option name="closed" value="true" />
+      <created>1739521930368</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1739521930368</updated>
+    </task>
+    <task id="LOCAL-00047" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740610212150</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1740610212150</updated>
+    </task>
+    <task id="LOCAL-00048" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740611052542</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1740611052542</updated>
+    </task>
+    <task id="LOCAL-00049" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740611352257</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1740611352257</updated>
+    </task>
+    <task id="LOCAL-00050" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740612879332</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1740612879332</updated>
+    </task>
+    <task id="LOCAL-00051" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740613171321</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1740613171321</updated>
+    </task>
+    <task id="LOCAL-00052" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740614546839</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1740614546839</updated>
+    </task>
+    <task id="LOCAL-00053" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740614565582</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1740614565582</updated>
+    </task>
+    <task id="LOCAL-00054" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740614877604</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1740614877604</updated>
+    </task>
+    <task id="LOCAL-00055" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740616092614</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1740616092614</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -425,8 +498,6 @@
     <MESSAGE value="nettoyage" />
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
-    <MESSAGE value="backward propagation" />
-    <MESSAGE value="enlève label" />
-    <option name="LAST_COMMIT_MESSAGE" value="enlève label" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif" />
   </component>
 </project>
