@@ -78,6 +78,7 @@ class reseau_neurones():
         # backward propagation
         # derniere couche
         vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,rang_resultat))
+
         self.archi_erreurs.append(vect_erreur)
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
@@ -95,7 +96,8 @@ class reseau_neurones():
             else:
                 erreur=1-vect_resultat[0][i]
             vect_erreur.append(erreur)
-        return np.array(vect_erreur,dtype=object)
+        vect_erreur=np.array(vect_erreur,dtype=object)
+        return np.reshape(vect_erreur,(10,1))
 
 
     def calcul_erreur(self,i):
@@ -125,6 +127,8 @@ class reseau_neurones():
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
+        print(erreur)
+        print(self.archi_resultats[i])
         mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
         dim=np.shape(mat_valeurs_neurones_erreur)
         mat=self.n*mat_valeurs_neurones_erreur
@@ -143,7 +147,7 @@ class reseau_neurones():
         #new_poids= poids + learning rate x valeur neuronne couche i x erreur
 
     def produit_coordonnees(self,a,b):
-        dim=a.shape()
+        dim=np.shape(a)
         new_vect=[]
         for i in range(dim[0]):
             new_vect.append(np.matmul(a[i],b[i]))
