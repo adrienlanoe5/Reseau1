@@ -22,10 +22,10 @@ class reseau_neurones():
 
     def initialisation_poids(self):
         liste=[]
-        mat_1=np.zeros(self.nb_neurones[0],28*28+1)
+        mat_1=np.zeros((self.nb_neurones[0],28*28+1))
         liste.append(mat_1)
         for i in range(1,self.nb_couches):
-            mat=np.zeros(self.nb_neurones[i],self.nb_neurones[i-1]+1)
+            mat=np.zeros((self.nb_neurones[i],self.nb_neurones[i-1]+1))
             liste.append(mat)
         return np.array(liste)
 
