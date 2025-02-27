@@ -112,8 +112,8 @@ class reseau_neurones():
         vect_res_couche_i=self.archi_resultats[i]
         dim=np.shape(vect_res_couche_i)
         vect_derivees=[]
-        for i in range(dim[0]):
-            nb=self.derivee_fonction_activation(vect_res_couche_i[i])
+        for k in range(dim[0]):
+            nb=self.derivee_fonction_activation(vect_res_couche_i[k])
             vect_derivees.append(nb)
         vect_derivees=np.array(vect_derivees)
 
