@@ -24,7 +24,7 @@ class reseau_neurones():
         for i in range(1,self.nb_couches):
             mat=np.zeros(self.nb_neurones[i],self.nb_neurones[i-1]+1)
             liste.append(mat)
-        return liste
+        return np.array(liste)
 
     def normalisation_image(self,image):
         for i in range(len(image)):
@@ -37,13 +37,11 @@ class reseau_neurones():
 
     def test(self,image,label_image):
         # forward propagation
-        self.archi_resultats = []
-        self.archi_erreurs = []
         resultat_couche = self.normalisation_image(image)
         for i in range(self.nb_couches):
             resultat_couche = self.forward_propagation_produit_matriciel(i, resultat_couche)
-        resultat_couche = self.fonction_activation(resultat_couche)
-        self.archi_resultats.append(resultat_couche)
+            resultat_couche = self.fonction_activation(resultat_couche)
+
         resultat = self.softmax(resultat_couche)
         label_pred = str(np.argmax(resultat))
 
