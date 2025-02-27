@@ -45,16 +45,18 @@ class reseau_neurones():
 
     def test(self,image,label_image):
         # forward propagation
-        resultat_couche = self.normalisation_image(image)
+        resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
-            resultat_couche = self.forward_propagation_produit_matriciel(i, resultat_couche)
-            resultat_couche = self.fonction_activation(resultat_couche)
+            resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche)
 
-        resultat = self.softmax(resultat_couche)
-        label_pred = str(np.argmax(resultat))
 
-        # performance
-        self.performance(label_pred, label_image)
+        vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
+        rang_resultat=np.argmax(vect_resultat[0])
+        label_pred=str(vect_resultat[0][rang_resultat])
+
+        #performance
+        self.performance(label_pred,label_image)
 
     def apprentissage(self,image,label_image):
         #forward propagation
