@@ -62,14 +62,14 @@ class reseau_neurones():
         self.archi_erreurs=[]
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
-            resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
+            resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
-
+            print(self.archi_resultats)
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
         label_pred=str(vect_resultat[0][rang_resultat])
-        print(rang_resultat)
+
         #performance
         self.performance(label_pred,label_image)
 
@@ -77,7 +77,7 @@ class reseau_neurones():
         # derniere couche
         vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,rang_resultat))
         self.archi_erreurs.append(vect_erreur)
-        self.maj_poids(self.nb_couches,vect_erreur)
+        self.maj_poids(self.nb_couches-1,vect_erreur)
 
         #couches précédentes
         for i in range(self.nb_couches-1,0,-1):
@@ -85,23 +85,15 @@ class reseau_neurones():
             self.archi_erreurs.append(vect_erreur)
             self.maj_poids(i,vect_erreur)
 
-
-
-    def forward_propagation_produit_matriciel(self, couche, inputs):
-        vect_resultat=np.matmul(self.liste_poids[couche],inputs)
-        #new_vect=np.append(vect_resultat, [1])
-        return vect_resultat
-
     def erreur_derniere_couche(self,vect_resultat,rang_resultat):
         vect_erreur=[]
-        print(vect_resultat)
         for i in range(10):
             if i!=rang_resultat:
                 erreur=-vect_resultat[0][i]
-                vect_erreur.append(vect_erreur)
             else:
-                vect_erreur.append(1-vect_resultat[0][i])
-        return np.array(vect_erreur)
+                erreur=1-vect_resultat[0][i]
+            vect_erreur.append(erreur)
+        return np.array(vect_erreur,dtype=object)
 
 
     def calcul_erreur(self,i):
@@ -138,6 +130,7 @@ class reseau_neurones():
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
+        print(self.archi_resultats[i])
         mat_valeurs_neurones_erreur=self.archi_resultats[i]*erreur
         dim = mat_valeurs_neurones_erreur.shape()
         mat=self.n*mat_valeurs_neurones_erreur
