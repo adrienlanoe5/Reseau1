@@ -4,7 +4,6 @@
 #Y_train : labels
 
 #liste choses à faire:
-#- dérivée fonction activation
 #- cross entropy loss
 
 import numpy as np
