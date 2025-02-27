@@ -121,7 +121,7 @@ class reseau_neurones():
         vect_derivees=np.array(vect_derivees)
 
         #calcul final
-        vect_erreur=self.produit_coordonnees(vect, vect_derivees)
+        vect_erreur=vect*vect_derivees
         return vect_erreur
 
     def produit_coordonnees(self,a,b):
@@ -133,12 +133,9 @@ class reseau_neurones():
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
-        mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
+        mat_valeurs_neurones_erreur=self.archi_resultats[i]*erreur
         dim = mat_valeurs_neurones_erreur.shape()
-        vect_learning_rate=np.array([self.n for k in range(dim[0])])
-        dim=vect_learning_rate.shape()
-        vect_learning_rate=np.reshape(vect_learning_rate,(dim[1],dim[0]) )
-        mat=self.produit_coordonnees(vect_learning_rate,mat_valeurs_neurones_erreur)
+        mat=self.n*mat_valeurs_neurones_erreur
 
         #mise à la dimension correcte
         dim_voulue=self.liste_poids[i].shape()
