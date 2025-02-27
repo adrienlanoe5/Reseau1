@@ -6,6 +6,9 @@
 #liste choses à faire:
 #- cross entropy loss
 
+#Questions:
+#- np.transpose marche sur les vecteurs colonne ?
+
 import numpy as np
 
 class reseau_neurones():
@@ -92,6 +95,7 @@ class reseau_neurones():
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
         dim=self.archi_erreurs[i+1].shape()
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
+        #vect_trans_erreur_couche_suivante = np.transpose(self.archi_erreurs[i + 1])
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
         del vect[-1]
         dim =vect.shape()
@@ -121,7 +125,9 @@ class reseau_neurones():
         #calculs préliminaires
         mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
         dim = mat_valeurs_neurones_erreur.shape()
-        vect_learning_rate=np.transpose(np.array([self.n for k in range(dim[0])]))
+        vect_learning_rate=np.array([self.n for k in range(dim[0])])
+        dim=vect_learning_rate.shape()
+        vect_learning_rate=np.reshape(vect_learning_rate,(dim[1],dim[0]) )
         mat=self.produit_coordonnees(vect_learning_rate,mat_valeurs_neurones_erreur)
 
         #mise à la dimension correcte
