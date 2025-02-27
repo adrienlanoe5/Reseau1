@@ -61,7 +61,8 @@ class reseau_neurones():
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
         resultat=self.softmax(resultat_couche)
-        label_pred=str(np.argmax(resultat))
+        rang_resultat=np.argmax(resultat)
+        label_pred=str(resultat[rang_resultat])
 
         #performance
         self.performance(label_pred,label_image)
