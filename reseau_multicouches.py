@@ -100,17 +100,17 @@ class reseau_neurones():
         #formule erreur :
         # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
-        dim=self.archi_erreurs[i+1].shape()
+        dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
         #vect_trans_erreur_couche_suivante = np.transpose(self.archi_erreurs[i + 1])
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
         del vect[-1]
-        dim =vect.shape()
+        dim =np.shape(vect)
         vect=np.reshape(vect,(dim[1],dim[0]))
 
         #vecteur des dérivées
         vect_res_couche_i=self.archi_resultats[i]
-        dim=vect_res_couche_i.shape()
+        dim=np.shape(vect_res_couche_i)
         vect_derivees=[]
         for i in range(dim[0]):
             nb=self.derivee_fonction_activation(vect_res_couche_i[i])
@@ -123,16 +123,15 @@ class reseau_neurones():
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
-        print(self.archi_resultats[i])
         mat_valeurs_neurones_erreur=self.archi_resultats[i]*erreur
-        dim = mat_valeurs_neurones_erreur.shape()
+        dim =np.shape(mat_valeurs_neurones_erreur)
         mat=self.n*mat_valeurs_neurones_erreur
 
         #mise à la dimension correcte
-        dim_voulue=self.liste_poids[i].shape()
+        dim_voulue=np.shape(self.liste_poids[i])
         vect=[]
-        for i in range (dim[0]):
-            vect.append([mat[i] for k in range(dim_voulue[1])])
+        for k in range (dim[0]):
+            vect.append([mat[k] for j in range(dim_voulue[1])])
         mat_finale=np.array(vect)
 
         #calcul final
