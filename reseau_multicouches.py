@@ -36,9 +36,24 @@ class reseau_neurones():
         self.reussite=0
         self.defaite=0
 
+    def test(self,image,label_image):
+        # forward propagation
+        self.archi_resultats = []
+        self.archi_erreurs = []
+        resultat_couche = self.normalisation_image(image)
+        for i in range(self.nb_couches):
+            resultat_couche = self.forward_propagation_produit_matriciel(i, resultat_couche)
+        resultat_couche = self.fonction_activation(resultat_couche)
+        self.archi_resultats.append(resultat_couche)
+        resultat = self.softmax(resultat_couche)
+        label_pred = str(np.argmax(resultat))
+
+        # performance
+        self.performance(label_pred, label_image)
+
     def apprentissage(self,image,label_image):
         #forward propagation
-        self.archi_resultats = []
+        self.archi_resultats =[]
         self.archi_erreurs=[]
         resultat_couche=self.normalisation_image(image)
         for i in range(self.nb_couches):
@@ -48,9 +63,14 @@ class reseau_neurones():
         resultat=self.softmax(resultat_couche)
         label_pred=str(np.argmax(resultat))
 
+        #performance
+        self.performance(label_pred,label_image)
+
         # backward propagation
         # derniere couche
-        erreur = self.erreur(resultat, label_pred, label_image)
+        vect_erreur=np.array(self.erreur_derniere_couche())
+        self.archi_erreurs.append(vect_erreur)
+        self.maj_poids(self.nb_couches,vect_erreur)
 
         #couches précédentes
         for i in range(self.nb_couches-1,0,-1):
@@ -64,6 +84,9 @@ class reseau_neurones():
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
         new_vect=np.append(vect_resultat, [1])
         return np.array(new_vect)
+
+    def erreur_derniere_couche(self):
+        pass
 
 
     def calcul_erreur(self,i):
@@ -114,7 +137,8 @@ class reseau_neurones():
         #calcul final
         new_mat_poids= self.liste_poids[i] + mat_finale
         self.liste_poids[i]=np.array(new_mat_poids)
-#new_poids= poids + learning rate x valeur neuronne couche i x erreur
+        #formule de la maj des poids :
+        #new_poids= poids + learning rate x valeur neuronne couche i x erreur
 
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
@@ -125,10 +149,9 @@ class reseau_neurones():
     def softmax(self,liste): #axis à tester
         return np.exp(liste) / np.sum(np.exp(liste), axis=0)
 
-    def erreur(self, resultat, label_pred, label_image): #a modifier avec cross entropy loss
+    def performance(self,label_pred, label_image):
             if label_pred != label_image :
                 self.defaite += 1
-
             else:
                 self.reussite += 1
 
@@ -199,8 +222,8 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-
-Neurone=reseau_neurones()
+liste=[2,7,5,3,8,4,10]
+Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
