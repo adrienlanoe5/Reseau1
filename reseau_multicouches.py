@@ -65,7 +65,7 @@ class reseau_neurones():
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
-            print(resultat_couche)
+
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat)
         label_pred=str(vect_resultat[rang_resultat])
@@ -93,14 +93,13 @@ class reseau_neurones():
         return np.array(vect_resultat)
 
     def erreur_derniere_couche(self,vect_resultat,rang_resultat):
-        dim=vect_resultat.shape()
         vect_erreur=[]
-        for i in range(dim[1]):
+        for i in range(10):
             if i!=rang_resultat:
-                erreur=-int(vect_erreur[i])
+                erreur=-int(vect_resultat[i])
                 vect_erreur.append(vect_erreur)
             else:
-                vect_erreur.append(1-int(vect_erreur[i]))
+                vect_erreur.append(1-int(vect_resultat[i]))
         return np.array(vect_erreur)
 
 
