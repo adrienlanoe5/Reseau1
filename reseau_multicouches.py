@@ -56,7 +56,7 @@ class reseau_neurones():
         #forward propagation
         self.archi_resultats =[]
         self.archi_erreurs=[]
-        resultat_couche=np.reshape(self.normalisation_image(image),(28*28,1))
+        resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
