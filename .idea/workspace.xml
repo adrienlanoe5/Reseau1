@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
+    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="enlève label">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +31,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/adrienlanoe5/Reseau1.git&quot;,
-    &quot;accountId&quot;: &quot;d619ed8f-20c3-48d5-b18c-7b66fc72b5ef&quot;
+    &quot;accountId&quot;: &quot;d34f22a3-2d3a-409a-bda4-63c6b5d29e4f&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -42,17 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.perceptron.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.perceptron.executor": "Run",
+    "Python.reseau_multicouches.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
       </set>
     </attachedChunks>
   </component>
@@ -347,37 +348,45 @@
     </task>
     <task id="LOCAL-00036" summary="modif">
       <option name="closed" value="true" />
-      <created>1738831770789</created>
+      <created>1739436818904</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1738831770789</updated>
+      <updated>1739436818904</updated>
     </task>
     <task id="LOCAL-00037" summary="modif">
       <option name="closed" value="true" />
-      <created>1738832639984</created>
+      <created>1739439984653</created>
       <option name="number" value="00037" />
       <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1738832639984</updated>
+      <updated>1739439984653</updated>
     </task>
-    <task id="LOCAL-00038" summary="modif">
+    <task id="LOCAL-00038" summary="backward propagation">
       <option name="closed" value="true" />
-      <created>1738835470880</created>
+      <created>1740572376226</created>
       <option name="number" value="00038" />
       <option name="presentableId" value="LOCAL-00038" />
       <option name="project" value="LOCAL" />
-      <updated>1738835470880</updated>
+      <updated>1740572376226</updated>
     </task>
-    <task id="LOCAL-00039" summary="modif">
+    <task id="LOCAL-00039" summary="backward propagation">
       <option name="closed" value="true" />
-      <created>1738847615534</created>
+      <created>1740572420062</created>
       <option name="number" value="00039" />
       <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1738847615534</updated>
+      <updated>1740572420062</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="enlève label">
+      <option name="closed" value="true" />
+      <created>1740572461962</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1740572461962</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -416,6 +425,8 @@
     <MESSAGE value="nettoyage" />
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif" />
+    <MESSAGE value="backward propagation" />
+    <MESSAGE value="enlève label" />
+    <option name="LAST_COMMIT_MESSAGE" value="enlève label" />
   </component>
 </project>
