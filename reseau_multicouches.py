@@ -32,6 +32,7 @@ class reseau_neurones():
     def normalisation_image(self,image):
         for i in range(len(image)):
             image[i] = image[i] / 255
+        image = np.append(image, [1])
         return image
 
     def reset(self):
