@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,14 +68,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
-    </task>
-    <task id="LOCAL-00014" summary="suite perceptron">
-      <option name="closed" value="true" />
-      <created>1732642842156</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1732642842156</updated>
     </task>
     <task id="LOCAL-00015" summary="rien">
       <option name="closed" value="true" />
@@ -460,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740647669949</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="modif">
+      <option name="closed" value="true" />
+      <created>1740649170922</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1740649170922</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

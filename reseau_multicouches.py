@@ -24,10 +24,14 @@ class reseau_neurones():
         liste=[]
         mat_1=np.zeros((self.nb_neurones[0],28*28+1))
         liste.append(mat_1)
-        for i in range(1,self.nb_couches):
-            mat=np.zeros((self.nb_neurones[i],self.nb_neurones[i-1]+1))
+        mat_3 = np.zeros((self.nb_neurones[1]+1, self.nb_neurones[0]))
+        liste.append(mat_3)
+        for i in range(2,self.nb_couches-1):
+            mat=np.zeros((self.nb_neurones[i]+1,self.nb_neurones[i-1]+1))
             liste.append(mat)
-        return np.array(liste)
+        mat_2=np.zeros((self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2]+1))
+        liste.append(mat_2)
+        return liste
 
     def normalisation_image(self,image):
         for i in range(len(image)):
@@ -61,6 +65,7 @@ class reseau_neurones():
             resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
+            print(resultat_couche)
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat)
         label_pred=str(vect_resultat[rang_resultat])
@@ -84,8 +89,8 @@ class reseau_neurones():
 
     def forward_propagation_produit_matriciel(self, couche, inputs):
         vect_resultat=np.matmul(self.liste_poids[couche],inputs)
-        new_vect=np.append(vect_resultat, [1])
-        return np.array(new_vect)
+        #new_vect=np.append(vect_resultat, [1])
+        return np.array(vect_resultat)
 
     def erreur_derniere_couche(self,vect_resultat,rang_resultat):
         dim=vect_resultat.shape()
@@ -231,7 +236,7 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-liste=[2,7,5,3,8,4,10]
+liste=[5,2,8,3,4,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
