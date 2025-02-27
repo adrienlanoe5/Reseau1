@@ -65,7 +65,7 @@ class reseau_neurones():
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
-            print(self.archi_resultats)
+
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
         label_pred=str(vect_resultat[0][rang_resultat])
@@ -120,13 +120,6 @@ class reseau_neurones():
         #calcul final
         vect_erreur=vect*vect_derivees
         return vect_erreur
-
-    def produit_coordonnees(self,a,b):
-        dim=a.shape()
-        new_vect=[]
-        for i in range(dim[0]):
-            new_vect.append(np.matmul(a[i],b[i]))
-        return np.array(new_vect)
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
