@@ -27,7 +27,7 @@ class reseau_neurones():
         for i in range(1,self.nb_couches):
             mat=np.zeros((self.nb_neurones[i],self.nb_neurones[i-1]+1))
             liste.append(mat)
-        return np.array(liste)
+        return liste
 
     def normalisation_image(self,image):
         for i in range(len(image)):
@@ -103,7 +103,7 @@ class reseau_neurones():
         #formule erreur :
         # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
-        dim=self.archi_erreurs[i+1].shape()
+        dim=self.archi_erreurs[i+1].shape() #transpose parce que la transposée ne marche pas sur les vect colonne
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
         #vect_trans_erreur_couche_suivante = np.transpose(self.archi_erreurs[i + 1])
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
@@ -231,7 +231,7 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-liste=[2,7,5,3,8,4,10]
+liste=[2,7,5,3,8,4,9]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
