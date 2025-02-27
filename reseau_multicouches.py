@@ -120,13 +120,13 @@ class reseau_neurones():
         vect_derivees=np.array(vect_derivees)
 
         #calcul final
-        vect_erreur=vect*vect_derivees
+        vect_erreur=self.produit_coordonnees(vect,vect_derivees)
         return vect_erreur
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
-        mat_valeurs_neurones_erreur=self.archi_resultats[i]*erreur
-        dim =np.shape(mat_valeurs_neurones_erreur)
+        mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
+        dim=np.shape(mat_valeurs_neurones_erreur)
         mat=self.n*mat_valeurs_neurones_erreur
 
         #mise à la dimension correcte
@@ -141,6 +141,13 @@ class reseau_neurones():
         self.liste_poids[i]=np.array(new_mat_poids)
         #formule de la maj des poids :
         #new_poids= poids + learning rate x valeur neuronne couche i x erreur
+
+    def produit_coordonnees(self,a,b):
+        dim=a.shape()
+        new_vect=[]
+        for i in range(dim[0]):
+            new_vect.append(np.matmul(a[i],b[i]))
+        return np.array(new_vect)
 
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
