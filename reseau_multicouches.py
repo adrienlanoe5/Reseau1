@@ -44,6 +44,7 @@ class reseau_neurones():
         self.defaite=0
 
     def test(self,image,label_image):
+        print(label_image)
         # forward propagation
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
@@ -54,6 +55,8 @@ class reseau_neurones():
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
         label_pred=str(vect_resultat[0][rang_resultat])
+        print(vect_resultat)
+        print(label_pred)
 
         #performance
         self.performance(label_pred,label_image)
@@ -240,13 +243,13 @@ for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#print(Neurone.taux_reussite())
-#Neurone.reset()
+print(Neurone.taux_reussite())
+Neurone.reset() #reset les réussites et les échecs
 
 #phase de tests
 for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
-#print(Neurone.reussite,Neurone.defaite)
+print(Neurone.reussite,Neurone.defaite)
 
-#print(Neurone.taux_reussite())
+print(Neurone.taux_reussite())
