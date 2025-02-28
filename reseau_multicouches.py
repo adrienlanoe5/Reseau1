@@ -24,9 +24,13 @@ class reseau_neurones():
         liste=[]
         mat_1=np.zeros((self.nb_neurones[0],28*28+1))
         liste.append(mat_1)
-        for i in range(1,self.nb_couches):
-            mat=np.zeros((self.nb_neurones[i],self.nb_neurones[i-1]+1))
+        mat_3 = np.zeros((self.nb_neurones[1]+1, self.nb_neurones[0]))
+        liste.append(mat_3)
+        for i in range(2,self.nb_couches-1):
+            mat=np.zeros((self.nb_neurones[i]+1,self.nb_neurones[i-1]+1))
             liste.append(mat)
+        mat_2=np.zeros((self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2]+1))
+        liste.append(mat_2)
         return liste
 
     def normalisation_image(self,image):
@@ -41,29 +45,32 @@ class reseau_neurones():
 
     def test(self,image,label_image):
         # forward propagation
-        resultat_couche = self.normalisation_image(image)
+        resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
-            resultat_couche = self.forward_propagation_produit_matriciel(i, resultat_couche)
-            resultat_couche = self.fonction_activation(resultat_couche)
+            resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche)
 
-        resultat = self.softmax(resultat_couche)
-        label_pred = str(np.argmax(resultat))
 
-        # performance
-        self.performance(label_pred, label_image)
+        vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
+        rang_resultat=np.argmax(vect_resultat[0])
+        label_pred=str(vect_resultat[0][rang_resultat])
+
+        #performance
+        self.performance(label_pred,label_image)
 
     def apprentissage(self,image,label_image):
         #forward propagation
         self.archi_resultats =[]
-        self.archi_erreurs=[]
+        self.archi_erreurs={}
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
-            resultat_couche=self.forward_propagation_produit_matriciel(i,resultat_couche)
+            resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
+
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
-        rang_resultat=np.argmax(vect_resultat)
-        label_pred=str(vect_resultat[rang_resultat])
+        rang_resultat=np.argmax(vect_resultat[0])
+        label_pred=str(vect_resultat[0][rang_resultat])
 
         #performance
         self.performance(label_pred,label_image)
@@ -71,77 +78,65 @@ class reseau_neurones():
         # backward propagation
         # derniere couche
         vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,rang_resultat))
-        self.archi_erreurs.append(vect_erreur)
-        self.maj_poids(self.nb_couches,vect_erreur)
+
+        self.archi_erreurs[self.nb_couches-1]=vect_erreur
+        self.maj_poids(self.nb_couches-1,vect_erreur)
 
         #couches précédentes
-        for i in range(self.nb_couches-1,0,-1):
+        for i in range(self.nb_couches-2,0,-1):
             vect_erreur=self.calcul_erreur(i)
-            self.archi_erreurs.append(vect_erreur)
+            self.archi_erreurs[i]=vect_erreur
             self.maj_poids(i,vect_erreur)
 
-
-
-    def forward_propagation_produit_matriciel(self, couche, inputs):
-        vect_resultat=np.matmul(self.liste_poids[couche],inputs)
-        new_vect=np.append(vect_resultat, [1])
-        return np.array(new_vect)
-
     def erreur_derniere_couche(self,vect_resultat,rang_resultat):
-        dim=vect_resultat.shape()
         vect_erreur=[]
-        for i in range(dim[1]):
+        for i in range(10):
             if i!=rang_resultat:
-                erreur=-int(vect_erreur[i])
-                vect_erreur.append(vect_erreur)
+                erreur=-vect_resultat[0][i]
             else:
-                vect_erreur.append(1-int(vect_erreur[i]))
-        return np.array(vect_erreur)
+                erreur=1-vect_resultat[0][i]
+            vect_erreur.append(erreur)
+        vect_erreur=np.array(vect_erreur,dtype=object)
+        return np.reshape(vect_erreur,(10,1))
 
 
     def calcul_erreur(self,i):
         #formule erreur :
         # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
-        dim=self.archi_erreurs[i+1].shape() #transpose parce que la transposée ne marche pas sur les vect colonne
+        dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
         #vect_trans_erreur_couche_suivante = np.transpose(self.archi_erreurs[i + 1])
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
-        del vect[-1]
-        dim =vect.shape()
+        np.delete(vect,-1)
+        dim =np.shape(vect)
         vect=np.reshape(vect,(dim[1],dim[0]))
 
         #vecteur des dérivées
         vect_res_couche_i=self.archi_resultats[i]
-        dim=vect_res_couche_i.shape()
+        dim=np.shape(vect_res_couche_i)
         vect_derivees=[]
-        for i in range(dim[0]):
-            nb=self.derivee_fonction_activation(vect_res_couche_i[i])
+        for k in range(dim[0]):
+            nb=self.derivee_fonction_activation(vect_res_couche_i[k])
             vect_derivees.append(nb)
         vect_derivees=np.array(vect_derivees)
 
         #calcul final
-        vect_erreur=vect*vect_derivees
+        vect_erreur=self.produit_coordonnees(vect,vect_derivees)
+        vect_erreur=np.reshape(vect_erreur,(dim[0],1))
         return vect_erreur
-
-    def produit_coordonnees(self,a,b):
-        dim=a.shape()
-        new_vect=[]
-        for i in range(dim[0]):
-            new_vect.append(np.matmul(a[i],b[i]))
-        return np.array(new_vect)
 
     def maj_poids(self,i,erreur):
         #calculs préliminaires
-        mat_valeurs_neurones_erreur=self.archi_resultats[i]*erreur
-        dim = mat_valeurs_neurones_erreur.shape()
+        mat_valeurs_neurones_erreur=self.produit_coordonnees(self.archi_resultats[i],erreur)
+        dim=np.shape(mat_valeurs_neurones_erreur)
         mat=self.n*mat_valeurs_neurones_erreur
 
         #mise à la dimension correcte
-        dim_voulue=self.liste_poids[i].shape()
+        dim_voulue=np.shape(self.liste_poids[i])
         vect=[]
-        for i in range (dim[0]):
-            vect.append([mat[i] for k in range(dim_voulue[1])])
+        for k in range (dim[0]):
+            vect.append([mat[k] for j in range(dim_voulue[1])])
         mat_finale=np.array(vect)
 
         #calcul final
@@ -149,6 +144,13 @@ class reseau_neurones():
         self.liste_poids[i]=np.array(new_mat_poids)
         #formule de la maj des poids :
         #new_poids= poids + learning rate x valeur neuronne couche i x erreur
+
+    def produit_coordonnees(self,a,b):
+        dim=np.shape(a)
+        new_vect=[]
+        for i in range(dim[0]):
+            new_vect.append(np.matmul(a[i],b[i]))
+        return np.array(new_vect)
 
     def fonction_activation(self,x):
         return 1/(1 + np.exp(-x)) #sigmoide
@@ -231,7 +233,7 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-liste=[2,7,5,3,8,4,9]
+liste=[5,2,8,3,4,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
