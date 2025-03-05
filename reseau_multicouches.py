@@ -46,10 +46,9 @@ class reseau_neurones():
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
-        label_pred=str(vect_resultat[0][rang_resultat])
 
         #performance
-        self.performance(label_pred,label_image)
+        self.performance(rang_resultat, label_image)
 
     def apprentissage(self,image,label_image):
         #forward propagation
