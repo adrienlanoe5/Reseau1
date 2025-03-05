@@ -62,15 +62,18 @@ class reseau_neurones():
             self.archi_resultats.append(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
-        print(vect_resultat)
         rang_resultat=np.argmax(vect_resultat[0])
-        print(rang_resultat)
-        label_pred=str(vect_resultat[0][rang_resultat])
-        print(label_pred)
-        print("-----")
+        #label_pred=str(vect_resultat[0][rang_resultat])
+
+
+        #print(vect_resultat)
+        #print(rang_resultat)
+        #print(vect_resultat[0][rang_resultat])
+        #print(label_pred)
+        #print("-----")
 
         #performance
-        self.performance(label_pred,label_image)
+        self.performance(rang_resultat,label_image)
 
         # backward propagation
         # derniere couche
@@ -235,8 +238,8 @@ for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#print(Neurone.taux_reussite())
-#Neurone.reset()
+print(Neurone.taux_reussite())
+Neurone.reset()
 
 #phase de tests
 for i in range (len(x_test)) :
@@ -244,4 +247,4 @@ for i in range (len(x_test)) :
     Neurone.test(new_image, y_test[i])
 #print(Neurone.reussite,Neurone.defaite)
 
-#print(Neurone.taux_reussite())
+print(Neurone.taux_reussite())
