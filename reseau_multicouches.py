@@ -15,7 +15,7 @@ class reseau_neurones():
         self.reussite=0
         self.defaite=0
         self.n=0.01
-        self.max_norme=2
+        self.max_norme=1
 
     def initialisation_poids(self):
         liste=[]
