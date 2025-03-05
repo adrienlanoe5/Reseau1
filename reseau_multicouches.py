@@ -165,8 +165,9 @@ class reseau_neurones():
 
     def fonction_activation(self,vect):
         dim=np.shape(vect)
-        for i in range(dim[1]):
-            vect[i][0]=1/(1 + np.exp(-float(vect[i][0]))) #sigmoide
+        print(vect)
+        for i in range(dim[0]):
+            vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
         return vect
 
     def derivee_fonction_activation(self, x):
