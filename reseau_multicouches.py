@@ -91,7 +91,7 @@ class reseau_neurones():
         dim=np.shape(vect)
         sum=0
         for i in range (dim[1]):
-            sum= sum+ vect[0][i]*vect[0][i]
+            sum= sum+ float(vect[0][i])*float(vect[0][i])
         norme=math_sqrt(sum)
         if self.max_norme<norme:
            for k in range (dim[1]):
