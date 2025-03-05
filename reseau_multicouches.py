@@ -4,6 +4,8 @@
 #Y_train : labels
 
 import numpy as np
+from mpmath.math2 import math_sqrt
+
 
 class reseau_neurones():
     def __init__(self, liste_neurones):
@@ -13,6 +15,7 @@ class reseau_neurones():
         self.reussite=0
         self.defaite=0
         self.n=0.01
+        self.max_norme=2
 
     def initialisation_poids(self):
         liste=[]
@@ -73,15 +76,30 @@ class reseau_neurones():
         # backward propagation
         # derniere couche
         vect_erreur=self.erreur_derniere_couche(vect_resultat,rang_resultat)
-
+        vect_erreur=self.clipping_gradient(vect_erreur)
         self.archi_erreurs[self.nb_couches-1]=vect_erreur
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
         #couches précédentes
         for i in range(self.nb_couches-2,0,-1):
             vect_erreur=self.calcul_erreur(i)
+            vect_erreur = self.clipping_gradient(vect_erreur)
             self.archi_erreurs[i]=vect_erreur
             self.maj_poids(i,vect_erreur)
+
+    def clipping_gradient(self,vect):
+        dim=np.shape(vect)
+        sum=0
+
+        for i in range (dim[1]):
+            sum= sum+ vect[0][i]*vect[0][i]
+        norme=math_sqrt(sum)
+        if self.max_norme<norme:
+           for k in range (dim[1]):
+               nb=self.max_norme/norme
+               vect[0][k]=nb*vect[0][k]
+        return vect
+
 
     def erreur_derniere_couche(self,vect_resultat,rang_resultat):
         vect_erreur=[]
