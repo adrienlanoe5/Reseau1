@@ -12,7 +12,7 @@ class reseau_neurones():
         self.liste_poids= self.initialisation_poids()
         self.reussite=0
         self.defaite=0
-        self.n=0.03
+        self.n=0.01
 
     def initialisation_poids(self):
         liste=[]
@@ -66,12 +66,6 @@ class reseau_neurones():
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
-        #label_pred=str(vect_resultat[0][rang_resultat])
-
-
-        #print(vect_resultat)
-        #print(rang_resultat)
-        #print("-----")
 
         #performance
         self.performance(rang_resultat,label_image)
@@ -107,7 +101,6 @@ class reseau_neurones():
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
         dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
-        #vect_trans_erreur_couche_suivante = np.transpose(self.archi_erreurs[i + 1])
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
         np.delete(vect,-1)
         dim =np.shape(vect)
@@ -124,10 +117,6 @@ class reseau_neurones():
 
         #calcul final
         vect_erreur=self.produit_coordonnees(vect,vect_derivees)
-        print(vect)
-        print(vect_derivees)
-        print(vect_erreur)
-        print('_____')
         vect_erreur=np.reshape(vect_erreur,(dim[0],1))
         return vect_erreur
 
