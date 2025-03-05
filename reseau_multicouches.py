@@ -43,15 +43,21 @@ class reseau_neurones():
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
+        #print('label_image',label_image)
+        #print(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
+        #print(vect_resultat)
         rang_resultat=np.argmax(vect_resultat[0])
-        label_pred=str(vect_resultat[0][rang_resultat])
+        # label_pred=str(vect_resultat[0][rang_resultat])
+        label_pred=rang_resultat
+        #print(rang_resultat)
 
         #performance
         self.performance(label_pred,label_image)
 
     def apprentissage(self,image,label_image):
+        #print('poids',self.liste_poids)
         #forward propagation
         self.archi_resultats =[]
         self.archi_erreurs={}
@@ -60,37 +66,47 @@ class reseau_neurones():
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
+        #print('resultat_couche',resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
-        label_pred=str(vect_resultat[0][rang_resultat])
+        #label_pred=str(vect_resultat[0][rang_resultat])
+        label_pred =rang_resultat
+        print('label_pred',label_pred)
 
         #performance
         self.performance(label_pred,label_image)
 
         # backward propagation
         # derniere couche
-        vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,rang_resultat))
+        vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,label_image))
 
         self.archi_erreurs[self.nb_couches-1]=vect_erreur
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
         #couches précédentes
-        for i in range(self.nb_couches-2,0,-1):
+        #for i in range(self.nb_couches-2,0,-1):
+        for i in range(self.nb_couches - 2, -1, -1):
             vect_erreur=self.calcul_erreur(i)
             self.archi_erreurs[i]=vect_erreur
             self.maj_poids(i,vect_erreur)
 
-    def erreur_derniere_couche(self,vect_resultat,rang_resultat):
-        vect_erreur=[]
+    #def erreur_derniere_couche(self,vect_resultat,rang_resultat):
+    def erreur_derniere_couche(self, vect_resultat, label_image):
+        vect_erreur = []
         for i in range(10):
-            if i!=rang_resultat:
-                erreur=-vect_resultat[0][i]
+            # if i!=rang_resultat:
+            if i != label_image:
+                erreur = -vect_resultat[0][i]
             else:
-                erreur=1-vect_resultat[0][i]
+                erreur = 1 - vect_resultat[0][i]
+            if i==1 :
+                print('label',label_image,'erreur',erreur)
             vect_erreur.append(erreur)
-        vect_erreur=np.array(vect_erreur,dtype=object)
-        return np.reshape(vect_erreur,(10,1))
+        vect_erreur = np.array(vect_erreur, dtype=object)
+        # print('label_image',label_image,'vect_resultat',vect_resultat,'vect_erreur',vect_erreur,'---------------')
+        # print('erreur dernière couche',np.reshape(vect_erreur,(10,1)))
+        return np.reshape(vect_erreur, (10, 1))
 
 
     def calcul_erreur(self,i):
@@ -226,20 +242,20 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
 
-liste=[5,2,8,3,4,10]
+liste=[10,10,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 
-#print(Neurone.taux_reussite())
-#Neurone.reset()
+print(Neurone.taux_reussite())
+Neurone.reset() #reset les réussites et les échecs
 
 #phase de tests
 for i in range (len(x_test)) :
     new_image=np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
-#print(Neurone.reussite,Neurone.defaite)
+print(Neurone.reussite,Neurone.defaite)
 
-#print(Neurone.taux_reussite())
+print(Neurone.taux_reussite())
