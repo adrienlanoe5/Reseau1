@@ -76,7 +76,7 @@ class reseau_neurones():
 
         # backward propagation
         # derniere couche
-        vect_erreur=np.array(self.erreur_derniere_couche(vect_resultat,rang_resultat))
+        vect_erreur=self.erreur_derniere_couche(vect_resultat,rang_resultat)
 
         self.archi_erreurs[self.nb_couches-1]=vect_erreur
         self.maj_poids(self.nb_couches-1,vect_erreur)

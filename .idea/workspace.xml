@@ -77,22 +77,6 @@
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
     </task>
-    <task id="LOCAL-00010" summary="suite perceptron">
-      <option name="closed" value="true" />
-      <created>1732549355016</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1732549355016</updated>
-    </task>
-    <task id="LOCAL-00011" summary="suite perceptron">
-      <option name="closed" value="true" />
-      <created>1732549614832</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1732549614832</updated>
-    </task>
     <task id="LOCAL-00012" summary="suite perceptron">
       <option name="closed" value="true" />
       <created>1732549808944</created>
@@ -469,7 +453,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741203527865</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741204228008</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1741204228008</updated>
+    </task>
+    <task id="LOCAL-00060" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741204443833</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1741204443833</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
