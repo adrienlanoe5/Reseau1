@@ -3,12 +3,6 @@
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-#liste choses à faire:
-#- cross entropy loss
-
-#Questions:
-#- np.transpose marche sur les vecteurs colonne ?
-
 import numpy as np
 
 class reseau_neurones():
@@ -49,7 +43,6 @@ class reseau_neurones():
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
-
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
