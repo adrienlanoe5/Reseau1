@@ -14,19 +14,19 @@ class reseau_neurones():
         self.liste_poids= self.initialisation_poids()
         self.reussite=0
         self.defaite=0
-        self.n=0.01
-        self.max_norme=1
+        self.n=0.03
+        self.max_norme=0.5
 
     def initialisation_poids(self):
         liste=[]
         mat_1=self.tirage(self.nb_neurones[0],28*28+1)
         liste.append(mat_1)
-        mat_3 = self.tirage(self.nb_neurones[1]+1, self.nb_neurones[0])
+        mat_3 = self.tirage(self.nb_neurones[1], self.nb_neurones[0])
         liste.append(mat_3)
         for i in range(2,self.nb_couches-1):
-            mat=self.tirage(self.nb_neurones[i]+1,self.nb_neurones[i-1]+1)
+            mat=self.tirage(self.nb_neurones[i],self.nb_neurones[i-1])
             liste.append(mat)
-        mat_2=self.tirage(self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2]+1)
+        mat_2=self.tirage(self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2])
         liste.append(mat_2)
         return liste
 
@@ -119,7 +119,7 @@ class reseau_neurones():
         dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
-        np.delete(vect,-1)
+        #np.delete(vect,-1)
         dim =np.shape(vect)
         vect=np.reshape(vect,(dim[1],dim[0]))
 
@@ -163,8 +163,11 @@ class reseau_neurones():
             new_vect.append(np.matmul(a[i],b[i]))
         return np.array(new_vect)
 
-    def fonction_activation(self,x):
-        return 1/(1 + np.exp(-x)) #sigmoide
+    def fonction_activation(self,vect):
+        dim=np.shape(vect)
+        for i in range(dim[1]):
+            vect[i][0]=1/(1 + np.exp(-float(vect[i][0]))) #sigmoide
+        return vect
 
     def derivee_fonction_activation(self, x):
         return np.exp(-x) / ((1 + np.exp(-x))**2)
@@ -242,7 +245,7 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
-liste=[5,2,8,3,4,10]
+liste=[4,7,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
