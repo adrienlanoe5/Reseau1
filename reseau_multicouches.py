@@ -90,7 +90,6 @@ class reseau_neurones():
     def clipping_gradient(self,vect):
         dim=np.shape(vect)
         sum=0
-
         for i in range (dim[1]):
             sum= sum+ vect[0][i]*vect[0][i]
         norme=math_sqrt(sum)
