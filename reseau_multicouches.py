@@ -16,16 +16,20 @@ class reseau_neurones():
 
     def initialisation_poids(self):
         liste=[]
-        mat_1=np.zeros((self.nb_neurones[0],28*28+1))
+        mat_1=self.tirage(self.nb_neurones[0],28*28+1)
         liste.append(mat_1)
-        mat_3 = np.zeros((self.nb_neurones[1]+1, self.nb_neurones[0]))
+        mat_3 = self.tirage(self.nb_neurones[1]+1, self.nb_neurones[0])
         liste.append(mat_3)
         for i in range(2,self.nb_couches-1):
-            mat=np.zeros((self.nb_neurones[i]+1,self.nb_neurones[i-1]+1))
+            mat=self.tirage(self.nb_neurones[i]+1,self.nb_neurones[i-1]+1)
             liste.append(mat)
-        mat_2=np.zeros((self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2]+1))
+        mat_2=self.tirage(self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2]+1)
         liste.append(mat_2)
         return liste
+
+    def tirage(self, l,c):
+        mat=np.random.uniform(-1,1,(l,c))
+        return np.reshape(mat,(l,c))
 
     def normalisation_image(self,image):
         for i in range(len(image)):
