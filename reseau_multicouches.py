@@ -83,10 +83,7 @@ class reseau_neurones():
         #couches précédentes
         for i in range(self.nb_couches-2,0,-1):
             vect_erreur=self.calcul_erreur(i)
-            print(vect_erreur)
             vect_erreur = self.clipping_gradient(vect_erreur)
-            print(vect_erreur)
-            print('____')
             self.archi_erreurs[i]=vect_erreur
             self.maj_poids(i,vect_erreur)
 
