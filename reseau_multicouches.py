@@ -71,8 +71,6 @@ class reseau_neurones():
 
         #print(vect_resultat)
         #print(rang_resultat)
-        #print(vect_resultat[0][rang_resultat])
-        #print(label_pred)
         #print("-----")
 
         #performance
@@ -126,6 +124,10 @@ class reseau_neurones():
 
         #calcul final
         vect_erreur=self.produit_coordonnees(vect,vect_derivees)
+        print(vect)
+        print(vect_derivees)
+        print(vect_erreur)
+        print('_____')
         vect_erreur=np.reshape(vect_erreur,(dim[0],1))
         return vect_erreur
 
