@@ -120,8 +120,8 @@ class reseau_neurones():
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
         dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
+        print("___")
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
-        #np.delete(vect,-1)
         dim =np.shape(vect)
         vect=np.reshape(vect,(dim[1],dim[0]))
 
