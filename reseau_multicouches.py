@@ -22,13 +22,9 @@ class reseau_neurones():
         liste=[]
         mat_1=self.tirage(self.nb_neurones[0],28*28+1)
         liste.append(mat_1)
-        mat_3 = self.tirage(self.nb_neurones[1], self.nb_neurones[0])
-        liste.append(mat_3)
-        for i in range(2,self.nb_couches-1):
+        for i in range(1,self.nb_couches):
             mat=self.tirage(self.nb_neurones[i],self.nb_neurones[i-1])
             liste.append(mat)
-        mat_2=self.tirage(self.nb_neurones[self.nb_couches-1],self.nb_neurones[self.nb_couches-2])
-        liste.append(mat_2)
         return liste
 
     def tirage(self, l,c):
