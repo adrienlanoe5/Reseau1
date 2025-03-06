@@ -126,12 +126,9 @@ class reseau_neurones():
 
         #vecteur des dérivées
         vect_res_couche_i=self.archi_resultats[i]
-        print(self.archi_resultats)
-        print("toto")
         dim=np.shape(vect_res_couche_i)
         vect_derivees=[]
-        print(dim[0])
-        print("____")
+
         for k in range(dim[0]):
             nb=self.derivee_fonction_activation(vect_res_couche_i[k])
             vect_derivees.append(nb)
