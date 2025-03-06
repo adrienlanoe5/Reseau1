@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif" />
+    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,30 +76,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
-    </task>
-    <task id="LOCAL-00026" summary="modif">
-      <option name="closed" value="true" />
-      <created>1735850204506</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1735850204506</updated>
-    </task>
-    <task id="LOCAL-00027" summary="modif">
-      <option name="closed" value="true" />
-      <created>1735851377245</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1735851377245</updated>
-    </task>
-    <task id="LOCAL-00028" summary="modif">
-      <option name="closed" value="true" />
-      <created>1735939272864</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1735939272864</updated>
     </task>
     <task id="LOCAL-00029" summary="modif">
       <option name="closed" value="true" />
@@ -466,7 +445,31 @@
       <option name="project" value="LOCAL" />
       <updated>1741220311380</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741220788886</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1741220788886</updated>
+    </task>
+    <task id="LOCAL-00076" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741221372995</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1741221372995</updated>
+    </task>
+    <task id="LOCAL-00077" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741221424297</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1741221424297</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -506,16 +509,5 @@
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
     <option name="LAST_COMMIT_MESSAGE" value="modif" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reseau_multicouches.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

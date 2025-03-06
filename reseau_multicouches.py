@@ -12,6 +12,7 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
+        print(self.liste_poids)
         self.reussite=0
         self.defaite=0
         self.n=0.03
@@ -31,7 +32,7 @@ class reseau_neurones():
         return liste
 
     def tirage(self, l,c):
-        mat=np.random.uniform(-1,1,(l,c))
+        mat=np.random.uniform(-0.1,0.1,(l,c))
         return np.reshape(mat,(l,c))
 
     def normalisation_image(self,image):
@@ -70,6 +71,7 @@ class reseau_neurones():
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
 
+
         #performance
         self.performance(rang_resultat,label_image)
 
@@ -90,7 +92,6 @@ class reseau_neurones():
     def clipping_gradient(self,vect):
         dim=np.shape(vect)
         sum=0
-
         for i in range (dim[0]):
             sum= sum+ float(vect[i])*float(vect[i])
         norme=math_sqrt(sum)
@@ -174,8 +175,10 @@ class reseau_neurones():
     def derivee_fonction_activation(self, x):
         return np.exp(-x) / ((1 + np.exp(-x))**2)
 
-    def softmax(self,liste):
-        return np.exp(liste) / np.sum(np.exp(liste), axis=0)
+    def softmax(self,v):
+        if v.ndim==1:
+            v=v.reshape(1,-1)
+        return np.exp(v) / np.sum(np.exp(liste), axis=0,keepdims=True)
 
 
     def performance(self,label_pred, label_image):
@@ -248,13 +251,13 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
-liste=[4,7,10]
+liste=[124,68,32,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
     new_image=np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
-
+print(Neurone.liste_poids)
 print(Neurone.taux_reussite())
 Neurone.reset()
 
