@@ -81,7 +81,7 @@ class reseau_neurones():
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
         #couches précédentes
-        for i in range(self.nb_couches-2,0,-1):
+        for i in range(self.nb_couches-2,-1,-1):
             vect_erreur=self.calcul_erreur(i)
             vect_erreur = self.clipping_gradient(vect_erreur)
             self.archi_erreurs[i]=vect_erreur
@@ -120,15 +120,18 @@ class reseau_neurones():
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
         dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
-        print("___")
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
         dim =np.shape(vect)
         vect=np.reshape(vect,(dim[1],dim[0]))
 
         #vecteur des dérivées
         vect_res_couche_i=self.archi_resultats[i]
+        print(self.archi_resultats)
+        print("toto")
         dim=np.shape(vect_res_couche_i)
         vect_derivees=[]
+        print(dim[0])
+        print("____")
         for k in range(dim[0]):
             nb=self.derivee_fonction_activation(vect_res_couche_i[k])
             vect_derivees.append(nb)
