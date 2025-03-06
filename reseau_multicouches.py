@@ -12,7 +12,7 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
-        print(self.liste_poids)
+        #print(self.liste_poids)
         self.reussite=0
         self.defaite=0
         self.n=0.03
@@ -85,6 +85,10 @@ class reseau_neurones():
             self.archi_erreurs[i]=vect_erreur
             self.maj_poids(i,vect_erreur)
 
+        #print(self.liste_poids[1][0])
+        #print(self.liste_poids[2][0])
+        #print(self.liste_poids[3][0])
+        #print("_____")
     def clipping_gradient(self,vect):
         dim=np.shape(vect)
         sum=0
@@ -111,7 +115,7 @@ class reseau_neurones():
         return np.reshape(vect_erreur,(10,1))
 
 
-    def calcul_erreur(self,i):
+    def calcul_erreur(self,i): #l'erreur serait dans cette fonction
         #formule erreur :
         # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
@@ -247,7 +251,7 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
-liste=[124,68,32,10]
+liste=[2,2,6,10]
 Neurone=reseau_neurones(liste)
 #phase apprentissage
 for i in range (len(x_train)) :
