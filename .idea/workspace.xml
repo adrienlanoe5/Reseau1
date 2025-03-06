@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,46 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
-    </task>
-    <task id="LOCAL-00020" summary="fin  erreur et merge">
-      <option name="closed" value="true" />
-      <created>1732777711007</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1732777711007</updated>
-    </task>
-    <task id="LOCAL-00021" summary="nettoyage">
-      <option name="closed" value="true" />
-      <created>1732782360208</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1732782360208</updated>
-    </task>
-    <task id="LOCAL-00022" summary="nettoyage">
-      <option name="closed" value="true" />
-      <created>1732782793807</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1732782793807</updated>
-    </task>
-    <task id="LOCAL-00023" summary="nettoyage">
-      <option name="closed" value="true" />
-      <created>1732783121779</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1732783121779</updated>
-    </task>
-    <task id="LOCAL-00024" summary="retsauration version précédente">
-      <option name="closed" value="true" />
-      <created>1735831532197</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1735831532197</updated>
     </task>
     <task id="LOCAL-00025" summary="modif">
       <option name="closed" value="true" />
@@ -469,7 +428,47 @@
       <option name="project" value="LOCAL" />
       <updated>1741213760743</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741216936518</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1741216936518</updated>
+    </task>
+    <task id="LOCAL-00070" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741217571990</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1741217571990</updated>
+    </task>
+    <task id="LOCAL-00071" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741217841574</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1741217841574</updated>
+    </task>
+    <task id="LOCAL-00072" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741218294254</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1741218294254</updated>
+    </task>
+    <task id="LOCAL-00073" summary="modif">
+      <option name="closed" value="true" />
+      <created>1741218342293</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1741218342293</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,5 +508,16 @@
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
     <option name="LAST_COMMIT_MESSAGE" value="modif" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reseau_multicouches.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

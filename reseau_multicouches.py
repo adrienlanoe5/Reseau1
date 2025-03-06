@@ -154,7 +154,7 @@ class reseau_neurones():
 
         #calcul final
         new_mat_poids= self.liste_poids[i] + mat_finale
-        self.liste_poids[i]=np.array(new_mat_poids)
+        self.liste_poids[i]=new_mat_poids
         #formule de la maj des poids :
         #new_poids= poids + learning rate x valeur neuronne couche i x erreur
 
@@ -174,8 +174,9 @@ class reseau_neurones():
     def derivee_fonction_activation(self, x):
         return np.exp(-x) / ((1 + np.exp(-x))**2)
 
-    def softmax(self,liste): #axis à tester
+    def softmax(self,liste):
         return np.exp(liste) / np.sum(np.exp(liste), axis=0)
+
 
     def performance(self,label_pred, label_image):
             if label_pred != label_image :
