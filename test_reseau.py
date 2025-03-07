@@ -111,8 +111,10 @@ class reseau_neurones():
 
     def calcul_erreur(self,i): #l'erreur serait dans cette fonction
         #formule erreur :
-        # dérivée fonction d'activation avec en valeur la valeur de la fonction d'activation du poids
+        # dérivée fonction d'activation avec en valeur la valeur du neurone
         # x la somme des erreurs pondérées de la couche i+1 par les poids des neurones de la couche i+1
+
+        #calculs pour obtenir la somme des erreurs pondérées par les poids de la couche i+1
         dim=np.shape(self.archi_erreurs[i+1])
         vect_trans_erreur_couche_suivante=np.reshape(self.archi_erreurs[i+1],(dim[1],dim[0]))
         vect=np.matmul(vect_trans_erreur_couche_suivante,self.liste_poids[i+1])
