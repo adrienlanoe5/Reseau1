@@ -8,14 +8,15 @@ from mpmath.math2 import math_sqrt
 #from scipy.special import expit
 #np.seterr(all='raise')
 class reseau_neurones():
-    def __init__(self, liste_neurones):
+    def __init__(self, liste_neurones, param_fonc_activation,taux_apprentissage):
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
         #print(self.liste_poids)
         self.reussite=0
         self.defaite=0
-        self.n=0.03
+        self.n=taux_apprentissage
+        self.param=param_fonc_activation
         self.max_norme=0.5
 
     def initialisation_poids(self):
@@ -46,7 +47,7 @@ class reseau_neurones():
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
-            resultat_couche=self.fonction_activation(resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche,self.param)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
@@ -61,7 +62,7 @@ class reseau_neurones():
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
-            resultat_couche=self.fonction_activation(resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche,self.param)
             self.archi_resultats.append(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
@@ -166,12 +167,19 @@ class reseau_neurones():
             new_vect.append(np.matmul(a[i],b[i]))
         return np.array(new_vect)
 
-    def fonction_activation(self,vect):
+    def fonction_activation(self,vect,param):
+        if param=="sigmoide":
+            return 1/(1 + np.exp(vect))
+        elif param=="tangente hyperbolique":
+            return (np.exp(vect)-np.exp(-vect))/(np.exp(vect)+np.exp(-vect))
+        else:   # param=="tangente":
+            return np.tan(vect)
+
         #return expit(vect)
-        dim=np.shape(vect)
-        for i in range(dim[0]):
-            vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
-        return vect
+        #dim=np.shape(vect)
+        #for i in range(dim[0]):
+        #    vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
+        #return vect
 
     def derivee_fonction_activation(self, x):
         return np.exp(-x) / ((1 + np.exp(-x))**2)
@@ -253,6 +261,11 @@ test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_filepath, test_images_filepath,
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
+
+#taux apprentissage, nombre de neurones, nombre de couches, fonction activation
+
+
+
 
 liste=[2,2,6,10]
 Neurone=reseau_neurones(liste)
