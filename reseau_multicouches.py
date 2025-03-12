@@ -290,15 +290,15 @@ def boucle(liste,objet):
     print(resultat)
     print("______")
 
-taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
-type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
-liste_neurones=[]
-liste_couches=[]
+#taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
+#type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+#liste_neurones=[]
+#liste_couches=[]
 
-boucle(taux_apprentissage,"taux_apprentissage")
-boucle(type_fonction_acti,"fonction_activation")
-boucle(liste_neurones,"neurones")
-boucle(liste_couches,"couches")
+#boucle(taux_apprentissage,"taux_apprentissage")
+#boucle(type_fonction_acti,"fonction_activation")
+#boucle(liste_neurones,"neurones")
+#boucle(liste_couches,"couches")
 
 
 
