@@ -276,28 +276,30 @@ def declenchement(taux_apprentissage,type_fonction_acti,liste_neurones):
         Neurone.test(new_image, y_test[i])
     return Neurone.taux_reussite()
 
+def boucle(liste,objet):
+    resultat=[]
+    for i in range(len(liste)):
+        if objet=="taux_apprentissage":
+            resultat.append(declenchement(liste[i],"sigmoide",[2,2,6,10]))
+        elif objet=="fonction_activation":
+            resultat.append(declenchement(0.03,liste[i],[2,2,6,10]))
+        else:
+            resultat.append(declenchement(0.03, "sigmoide", liste[i]))
+    print("objet")
+    print(liste)
+    print(resultat)
+    print("______")
 
 taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
 type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
 liste_neurones=[]
+liste_couches=[]
 
+boucle(taux_apprentissage,"taux_apprentissage")
+boucle(type_fonction_acti,"fonction_activation")
+boucle(liste_neurones,"neurones")
+boucle(liste_couches,"couches")
 
-print("Fonctions d'activations :")
-print(type_fonction_acti)
-print(resultat_fonction_acti)
-print("______")
-print("Taux_apprentissage:")
-print(taux_apprentissage)
-print(resultat_taux)
-print("______")
-print("Nombre de neurones par couche")
-print(liste_couches)
-print(resultat_couches)
-print("______")
-print("Nombre de couches")
-print(liste_neurones)
-print(resultat_neurones)
-print("______")
 
 
 #commandes mise au point
