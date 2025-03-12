@@ -264,3 +264,5 @@ for i in range (len(x_test)) :
 #print(Neurone.reussite,Neurone.defaite)
 
 print(Neurone.taux_reussite())
+
+dictionnaire_resultat_parametre={((2,5,8),0.01) : 0.12} #exemple d'implementation. Ici, on suppose que le réseau avec 3 couches contenant 2, 5 et 8 neurones a eu un taux de réussite de 0.12
