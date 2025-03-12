@@ -285,7 +285,7 @@ def boucle(liste,objet):
             resultat.append(declenchement(0.03,liste[i],[2,2,6,10]))
         else:
             resultat.append(declenchement(0.03, "sigmoide", liste[i]))
-    print("objet")
+    print(objet)
     print(liste)
     print(resultat)
     print("______")
