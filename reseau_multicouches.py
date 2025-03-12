@@ -5,8 +5,8 @@
 
 import numpy as np
 from mpmath.math2 import math_sqrt
-from scipy.special import expit
-np.seterr(all='raise')
+#from scipy.special import expit
+#np.seterr(all='raise')
 class reseau_neurones():
     def __init__(self, liste_neurones):
         self.nb_neurones =liste_neurones
@@ -167,16 +167,16 @@ class reseau_neurones():
         return np.array(new_vect)
 
     def fonction_activation(self,vect):
-        return expit(vect)
-        #dim=np.shape(vect)
-        #for i in range(dim[0]):
-        #    vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
-        #return vect
+        #return expit(vect)
+        dim=np.shape(vect)
+        for i in range(dim[0]):
+            vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
+        return vect
 
     def derivee_fonction_activation(self, x):
-        # return np.exp(-x) / ((1 + np.exp(-x))**2)
-        a=(expit(x)) * (1 - expit(x))
-        return a
+        return np.exp(-x) / ((1 + np.exp(-x))**2)
+        #a=(expit(x)) * (1 - expit(x))
+        #return a
     def softmax(self,v):
 
         if v.ndim==1:
