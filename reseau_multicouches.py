@@ -262,27 +262,36 @@ mnist_dataloader = MnistDataloader(training_images_filepath, training_labels_fil
                                    test_labels_filepath)
 (x_train, y_train), (x_test, y_test) = mnist_dataloader.load_data()
 
-#taux apprentissage, nombre de neurones, nombre de couches, fonction activation
+def declenchement(taux_apprentissage,type_fonction_acti,liste_neurones):
+    Neurone = reseau_neurones(liste_neurones, type_fonction_acti,taux_apprentissage)
+    # phase apprentissage
+    for i in range(len(x_train)):
+        new_image = np.ravel(x_train[i])
+        Neurone.apprentissage(new_image, y_train[i])
+    Neurone.reset()
+    # phase de tests
+    for i in range(len(x_test)):
+        new_image = np.ravel(x_test[i])
+        Neurone.test(new_image, y_test[i])
 
 
-
+    return Neurone.taux_reussite()
+taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
+type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+liste_neurones=[]
 
 liste=[2,2,6,10]
-Neurone=reseau_neurones(liste)
-#phase apprentissage
-for i in range (len(x_train)) :
-    new_image=np.ravel(x_train[i])
+
+Neurone = reseau_neurones(liste, "sigmoide", 0.03)
+# phase apprentissage
+for i in range(len(x_train)):
+    new_image = np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
-print(Neurone.liste_poids)
 print(Neurone.taux_reussite())
 Neurone.reset()
-
-#phase de tests
-for i in range (len(x_test)) :
-    new_image=np.ravel(x_test[i])
+# phase de tests
+for i in range(len(x_test)):
+    new_image = np.ravel(x_test[i])
     Neurone.test(new_image, y_test[i])
-#print(Neurone.reussite,Neurone.defaite)
 
 print(Neurone.taux_reussite())
-
-dictionnaire_resultat_parametre={((2,5,8),0.01) : 0.12} #exemple d'implementation. Ici, on suppose que le réseau avec 3 couches contenant 2, 5 et 8 neurones a eu un taux de réussite de 0.12
