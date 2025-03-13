@@ -1,10 +1,23 @@
+import tkiteasy as tk
+
+
+g=tk.ouvrirFenetre(x=800,y=600)
+g.dessinerRectangle(x=0, y=0, l=800, h=600, col='white')
+liste=[]
+liste.append(g.attendreClic())
+print(g.recupererClic())
+while g.recupererClic()==None:
+    print(g.recupererPosition())
+    liste.append(g.recupererPosition()) #récupére l'ensemble des positions de l'utilisateur penddant le clic
+print(liste)
+
 #X_train : liste à 2 niveaux
 #1er niveau : une image
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
 import numpy as np
-from mpmath.math2 import math_sqrt
+#from mpmath.math2 import math_sqrt
 #from scipy.special import expit
 #np.seterr(all='raise')
 class reseau_neurones():
@@ -290,15 +303,15 @@ def boucle(liste,objet):
     print(resultat)
     print("______")
 
-#taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
-#type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
-#liste_neurones=[]
-#liste_couches=[]
+taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
+type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+liste_neurones=[]
+liste_couches=[]
 
-#boucle(taux_apprentissage,"taux_apprentissage")
-#boucle(type_fonction_acti,"fonction_activation")
-#boucle(liste_neurones,"neurones")
-#boucle(liste_couches,"couches")
+boucle(taux_apprentissage,"taux_apprentissage")
+boucle(type_fonction_acti,"fonction_activation")
+boucle(liste_neurones,"neurones")
+boucle(liste_couches,"couches")
 
 
 
@@ -317,3 +330,8 @@ for i in range(len(x_test)):
     Neurone.test(new_image, y_test[i])
 
 print(Neurone.taux_reussite())
+
+#interface _image
+
+
+
