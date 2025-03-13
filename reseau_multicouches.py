@@ -4,7 +4,9 @@
 #Y_train : labels
 
 import numpy as np
+from docutils.nodes import image
 from mpmath.math2 import math_sqrt
+import tkiteasy  as tk
 #from scipy.special import expit
 #np.seterr(all='raise')
 class reseau_neurones():
@@ -193,7 +195,7 @@ class reseau_neurones():
 
         if v.ndim==1:
             v=v.reshape(1,-1)
-        return np.exp(v) / np.sum(np.exp(v), axis=0,keepdims=True)
+        return np.exp(v-np.max(v)) / np.sum(np.exp(v), axis=0,keepdims=True)
 
 
     def performance(self,label_pred, label_image):
@@ -304,8 +306,20 @@ def boucle(liste,objet):
 #boucle(liste_neurones,"neurones")
 #boucle(liste_couches,"couches")
 
+#dessin à la main
+def dessin():
+    image=[]
+    g = tk.ouvrirFenetre(280, 280)
+    g.attendreClic()
+    while res==None:
+        g.recupererPosition()
+        g.dessinerRectangle(, , 1, 1, "black")
 
+        g.recupererClic()
+        res=g.recupererClic()
 
+    g.fermerFenetre()
+    return image
 #commandes mise au point
 liste=[2,2,6,10]
 Neurone = reseau_neurones(liste, "sigmoide", 0.03)
@@ -321,3 +335,5 @@ for i in range(len(x_test)):
     Neurone.test(new_image, y_test[i])
 
 print(Neurone.taux_reussite())
+
+
