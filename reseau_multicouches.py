@@ -12,7 +12,6 @@ class reseau_neurones():
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
-        #print(self.liste_poids)
         self.reussite=0
         self.defaite=0
         self.n=taux_apprentissage
@@ -22,6 +21,7 @@ class reseau_neurones():
     def initialisation_poids(self):
         liste=[]
         mat_1=self.tirage(self.nb_neurones[0],28*28+1)
+        #mat_1=self.tirage(self.nb_neurones[0],28*28)
         liste.append(mat_1)
         for i in range(1,self.nb_couches):
             mat=self.tirage(self.nb_neurones[i],self.nb_neurones[i-1])
@@ -45,6 +45,7 @@ class reseau_neurones():
     def test(self,image,label_image):
         # forward propagation
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
+        #resultat_couche=np.reshape(self.normalisation_image(image),(28*28,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche,self.param)
@@ -60,6 +61,7 @@ class reseau_neurones():
         self.archi_resultats =[]
         self.archi_erreurs={}
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
+        #resultat_couche=np.reshape(self.normalisation_image(image),(28*28,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche,self.param)
@@ -79,6 +81,7 @@ class reseau_neurones():
         self.archi_erreurs[self.nb_couches-1]=vect_erreur
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
+
         #couches précédentes
         for i in range(self.nb_couches-2,-1,-1):
             vect_erreur=self.calcul_erreur(i)
@@ -90,6 +93,7 @@ class reseau_neurones():
         #print(self.liste_poids[2][0])
         #print(self.liste_poids[3][0])
         #print("_____")
+
     def clipping_gradient(self,vect):
         dim=np.shape(vect)
         sum=0
