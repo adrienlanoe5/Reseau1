@@ -320,6 +320,8 @@ def dessin():
 
     g.fermerFenetre()
     return image
+
+
 #commandes mise au point
 liste=[2,2,6,10]
 Neurone = reseau_neurones(liste, "sigmoide", 0.03)

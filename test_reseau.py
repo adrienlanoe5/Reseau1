@@ -185,3 +185,17 @@ class reseau_neurones():
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
+
+def dessin():
+    image=[]
+    g = tk.ouvrirFenetre(280, 280)
+    g.attendreClic()
+    while res==None:
+        g.recupererPosition()
+        g.dessinerRectangle(, , 1, 1, "black")
+
+        g.recupererClic()
+        res=g.recupererClic()
+
+    g.fermerFenetre()
+    return image
