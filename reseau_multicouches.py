@@ -358,6 +358,15 @@ for elem in liste:
     x,y=elem
     grande_matrice[y][x]=1
     g.changerPixel(x, y, 'black')
+    #colorie aussi le voisinnage
+    g.changerPixel(x-1,y,'black') #gauche
+    grande_matrice[y][x-1] = 1
+    g.changerPixel(x+1, y, 'black') #droite
+    grande_matrice[y][x-1] = 1
+    g.changerPixel(x, y-1, 'black') #bas
+    grande_matrice[y-1][x] = 1
+    g.changerPixel(x, y+1, 'black') #haut
+    grande_matrice[y+1][x] = 1
 
 
 matrice=[[0 for i in range(28)] for j in range(28)]
@@ -373,15 +382,14 @@ for x in range(28):
         for i in range(cote//28):
             matrice_pixel.append(lignes_matrice_pixel[i][(cote // 28) * y: (cote // 28) * (y + 1)])
         #calcul de la coloration moyenne de la case
-        print(np.sum(matrice_pixel))
         a=np.sum(matrice_pixel)/(cote//28)**2
-        matrice[x][y]+=a
+        matrice[x][y]+=a*255 #annule la normalisation de l'image
 
 
 image=np.ravel(matrice)
 
 resultat=Neurone.prediction(image)
 
-g.afficherTexte('Le nombre dessiné est'+str(resultat), 50, 50, col='black', sizefont=10)
+g.afficherTexte('Le nombre prédit est '+str(resultat), cote/2, 50, col='black', sizefont=20)
 
 g.attendreClic()
