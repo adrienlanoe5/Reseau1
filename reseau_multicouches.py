@@ -2,8 +2,9 @@ import numpy as np
 from mpmath.math2 import math_sqrt
 from scipy.special import expit
 np.seterr(all='raise')
-import tkinter as tk
+import tkiteasy as tk
 
+np.seterr(all='ignore') #rajouté pour éviter des erreurs liées aux trop grandes valeurs : exp(-1000000000)=0
 
 #X_train : liste à 2 niveaux
 #1er niveau : une image
@@ -316,26 +317,27 @@ type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
 liste_neurones=[]
 liste_couches=[]
 
-boucle(taux_apprentissage,"taux_apprentissage")
-boucle(type_fonction_acti,"fonction_activation")
-boucle(liste_neurones,"neurones")
-boucle(liste_couches,"couches")
+#boucle(taux_apprentissage,"taux_apprentissage")
+#boucle(type_fonction_acti,"fonction_activation")
+#boucle(liste_neurones,"neurones")
+#boucle(liste_couches,"couches")
 
 
 
 #commandes mise au point
 liste=[2,2,6,10]
 Neurone = reseau_neurones(liste, "sigmoide", 0.03)
-# phase apprentissage
+
+#phase apprentissage
 for i in range(len(x_train)):
     new_image = np.ravel(x_train[i])
     Neurone.apprentissage(new_image, y_train[i])
 print(Neurone.taux_reussite())
 Neurone.reset()
-# phase de tests
+# # phase de tests
 for i in range(len(x_test)):
-    new_image = np.ravel(x_test[i])
-    Neurone.test(new_image, y_test[i])
+     new_image = np.ravel(x_test[i])
+     Neurone.test(new_image, y_test[i])
 
 print(Neurone.taux_reussite())
 
@@ -376,11 +378,10 @@ for x in range(28):
         matrice[x][y]+=a
 
 
-resultat=Neurone.prediction(matrice)
+image=np.ravel(matrice)
 
+resultat=Neurone.prediction(image)
+
+g.afficherTexte('Le nombre dessiné est'+str(resultat), 50, 50, col='black', sizefont=10)
 
 g.attendreClic()
-
-
-
-
