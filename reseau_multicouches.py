@@ -407,7 +407,7 @@ def interface_image():
 
     resultat=Neurone.prediction_dessin(image)
 
-    g.changerTexte(txt,'Le nombre prédit est '+str(resultat))
+    g.changerTexte(txt,'Le chiffre prédit est '+str(resultat))
 
     g.attendreClic()
 
