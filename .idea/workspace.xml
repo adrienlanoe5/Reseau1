@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
+    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="ajout dictionnaire resultat">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
@@ -55,16 +56,18 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python tests.Python tests in test_reseau.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dessin utilisateur réseau de neurones.executor&quot;: &quot;Run&quot;,
     &quot;Python.perceptron.executor&quot;: &quot;Run&quot;,
     &quot;Python.reseau_multicouches.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
       </set>
     </attachedChunks>
   </component>
@@ -76,6 +79,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732184990052</updated>
+    </task>
+    <task id="LOCAL-00032" summary="modif">
+      <option name="closed" value="true" />
+      <created>1736162800013</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736162800013</updated>
+    </task>
+    <task id="LOCAL-00033" summary="modif">
+      <option name="closed" value="true" />
+      <created>1736162920826</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1736162920826</updated>
+    </task>
+    <task id="LOCAL-00034" summary="modif">
+      <option name="closed" value="true" />
+      <created>1736412202333</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1736412202335</updated>
+    </task>
+    <task id="LOCAL-00035" summary="modif">
+      <option name="closed" value="true" />
+      <created>1738831518029</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1738831518029</updated>
+    </task>
+    <task id="LOCAL-00036" summary="modif">
+      <option name="closed" value="true" />
+      <created>1738831770789</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1738831770789</updated>
     </task>
     <task id="LOCAL-00037" summary="modif">
       <option name="closed" value="true" />
@@ -405,71 +448,31 @@
       <option name="project" value="LOCAL" />
       <updated>1741221424297</updated>
     </task>
-    <task id="LOCAL-00078" summary="modif">
+    <task id="LOCAL-00078" summary="ajout dictionnaire resultat">
       <option name="closed" value="true" />
-      <created>1741252673719</created>
+      <created>1741859593843</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1741252673719</updated>
+      <updated>1741859593843</updated>
     </task>
-    <task id="LOCAL-00079" summary="modif">
+    <task id="LOCAL-00079" summary="ajout dictionnaire resultat">
       <option name="closed" value="true" />
-      <created>1741252795507</created>
+      <created>1742332286066</created>
       <option name="number" value="00079" />
       <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1741252795507</updated>
+      <updated>1742332286066</updated>
     </task>
-    <task id="LOCAL-00080" summary="modif">
+    <task id="LOCAL-00080" summary="ajout dictionnaire resultat">
       <option name="closed" value="true" />
-      <created>1741254545299</created>
+      <created>1742415791923</created>
       <option name="number" value="00080" />
       <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
-      <updated>1741254545303</updated>
+      <updated>1742415791923</updated>
     </task>
-    <task id="LOCAL-00081" summary="modif">
-      <option name="closed" value="true" />
-      <created>1741258693650</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1741258693650</updated>
-    </task>
-    <task id="LOCAL-00082" summary="modif">
-      <option name="closed" value="true" />
-      <created>1741387800418</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1741387800418</updated>
-    </task>
-    <task id="LOCAL-00083" summary="modif">
-      <option name="closed" value="true" />
-      <created>1741387992318</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1741387992318</updated>
-    </task>
-    <task id="LOCAL-00084" summary="modif">
-      <option name="closed" value="true" />
-      <created>1741811739121</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1741811739121</updated>
-    </task>
-    <task id="LOCAL-00085" summary="modif">
-      <option name="closed" value="true" />
-      <created>1741813494718</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1741813494718</updated>
-    </task>
-    <option name="localTasksCounter" value="86" />
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -508,6 +511,7 @@
     <MESSAGE value="nettoyage" />
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif" />
+    <MESSAGE value="ajout dictionnaire resultat" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout dictionnaire resultat" />
   </component>
 </project>

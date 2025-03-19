@@ -344,8 +344,10 @@ print(Neurone.taux_reussite())
 #interface _image
 
 cote=28*20
-g=tk.ouvrirFenetre(x=cote,y=cote)
-g.dessinerRectangle(x=0, y=0, l=cote, h=cote, col='white')
+hplus=100
+g=tk.ouvrirFenetre(x=cote,y=cote+hplus)
+g.dessinerRectangle(x=0,y=0,l=cote,h=hplus,col='yellow')
+g.dessinerRectangle(x=0, y=hplus, l=cote, h=cote, col='white')
 liste=[] #ensemble des positions dessinées par l'utilisateur
 while g.recupererClic()==None: #attend que l'utilisateur clique
     pass
@@ -356,17 +358,17 @@ while g.recupererClic()==None: #récupère les positions avant le clic de fin
 grande_matrice=[[0 for i in range(cote)] for j in range(cote)] #matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
 for elem in liste:
     x,y=elem
-    grande_matrice[y][x]=1
+    grande_matrice[y-hplus][x]=1
     g.changerPixel(x, y, 'black')
     #colorie aussi le voisinnage
     g.changerPixel(x-1,y,'black') #gauche
-    grande_matrice[y][x-1] = 1
+    grande_matrice[y-hplus][x-1] = 1
     g.changerPixel(x+1, y, 'black') #droite
-    grande_matrice[y][x-1] = 1
+    grande_matrice[y-hplus][x-1] = 1
     g.changerPixel(x, y-1, 'black') #bas
-    grande_matrice[y-1][x] = 1
+    grande_matrice[y-hplus-1][x] = 1
     g.changerPixel(x, y+1, 'black') #haut
-    grande_matrice[y+1][x] = 1
+    grande_matrice[y-hplus+1][x] = 1
 
 
 matrice=[[0 for i in range(28)] for j in range(28)]
@@ -390,6 +392,6 @@ image=np.ravel(matrice)
 
 resultat=Neurone.prediction(image)
 
-g.afficherTexte('Le nombre prédit est '+str(resultat), cote/2, 50, col='black', sizefont=20)
+g.afficherTexte('Le nombre prédit est '+str(resultat), cote/2, hplus/2+1, col='black', sizefont=20)
 
 g.attendreClic()
