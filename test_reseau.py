@@ -185,3 +185,40 @@ class reseau_neurones():
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
+
+def dessin():
+    image=[]
+    g = tk.ouvrirFenetre(280, 280)
+    g.attendreClic()
+    while res==None:
+        g.recupererPosition()
+        g.dessinerRectangle(, , 1, 1, "black")
+
+        g.recupererClic()
+        res=g.recupererClic()
+
+    g.fermerFenetre()
+    return image
+
+#commandes mise au point
+liste=[2,2,6,10]
+Neurone = reseau_neurones(liste, "sigmoide", 0.03)
+# phase apprentissage
+for i in range(len(x_train)):
+    new_image = np.ravel(x_train[i])
+    Neurone.apprentissage(new_image, y_train[i])
+print(Neurone.taux_reussite())
+Neurone.reset()
+# phase de tests
+for i in range(len(x_test)):
+    new_image = np.ravel(x_test[i])
+    Neurone.test(new_image, y_test[i])
+
+print(Neurone.taux_reussite())
+
+
+
+
+
+
+

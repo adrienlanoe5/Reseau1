@@ -1,7 +1,7 @@
 import numpy as np
 from mpmath.math2 import math_sqrt
-from scipy.special import expit
-np.seterr(all='raise')
+#from scipy.special import expit
+#np.seterr(all='raise')
 import tkiteasy as tk
 
 np.seterr(all='ignore') #rajouté pour éviter des erreurs liées aux trop grandes valeurs : exp(-1000000000)=0
@@ -206,15 +206,12 @@ class reseau_neurones():
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
 
-    def prediction(self,image):
+    def prediction_dessin(self,image):
         #forward propagation
-        self.archi_resultats =[]
-        self.archi_erreurs={}
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche,self.param)
-            self.archi_resultats.append(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
