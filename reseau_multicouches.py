@@ -1,19 +1,22 @@
+import numpy as np
+from mpmath.math2 import math_sqrt
+from scipy.special import expit
+np.seterr(all='raise')
+import tkinter as tk
+
+
 #X_train : liste à 2 niveaux
 #1er niveau : une image
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-import numpy as np
-from docutils.nodes import image
-from mpmath.math2 import math_sqrt
-import tkiteasy  as tk
-#from scipy.special import expit
-#np.seterr(all='raise')
+
 class reseau_neurones():
     def __init__(self, liste_neurones, param_fonc_activation,taux_apprentissage):
         self.nb_neurones =liste_neurones
         self.nb_couches=len(self.nb_neurones) #ensemble des couches cachées et la derniere
         self.liste_poids= self.initialisation_poids()
+        #print(self.liste_poids)
         self.reussite=0
         self.defaite=0
         self.n=taux_apprentissage
@@ -23,7 +26,6 @@ class reseau_neurones():
     def initialisation_poids(self):
         liste=[]
         mat_1=self.tirage(self.nb_neurones[0],28*28+1)
-        #mat_1=self.tirage(self.nb_neurones[0],28*28)
         liste.append(mat_1)
         for i in range(1,self.nb_couches):
             mat=self.tirage(self.nb_neurones[i],self.nb_neurones[i-1])
@@ -47,7 +49,6 @@ class reseau_neurones():
     def test(self,image,label_image):
         # forward propagation
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
-        #resultat_couche=np.reshape(self.normalisation_image(image),(28*28,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche,self.param)
@@ -63,7 +64,6 @@ class reseau_neurones():
         self.archi_resultats =[]
         self.archi_erreurs={}
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
-        #resultat_couche=np.reshape(self.normalisation_image(image),(28*28,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche,self.param)
@@ -83,7 +83,6 @@ class reseau_neurones():
         self.archi_erreurs[self.nb_couches-1]=vect_erreur
         self.maj_poids(self.nb_couches-1,vect_erreur)
 
-
         #couches précédentes
         for i in range(self.nb_couches-2,-1,-1):
             vect_erreur=self.calcul_erreur(i)
@@ -95,7 +94,6 @@ class reseau_neurones():
         #print(self.liste_poids[2][0])
         #print(self.liste_poids[3][0])
         #print("_____")
-
     def clipping_gradient(self,vect):
         dim=np.shape(vect)
         sum=0
@@ -195,7 +193,7 @@ class reseau_neurones():
 
         if v.ndim==1:
             v=v.reshape(1,-1)
-        return np.exp(v-np.max(v)) / np.sum(np.exp(v), axis=0,keepdims=True)
+        return np.exp(v) / np.sum(np.exp(v), axis=0,keepdims=True)
 
 
     def performance(self,label_pred, label_image):
@@ -206,6 +204,23 @@ class reseau_neurones():
 
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
+
+    def prediction(self,image):
+        #forward propagation
+        self.archi_resultats =[]
+        self.archi_erreurs={}
+        resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
+        for i in range(self.nb_couches):
+            resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
+            resultat_couche=self.fonction_activation(resultat_couche,self.param)
+            self.archi_resultats.append(resultat_couche)
+
+        vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
+        rang_resultat=np.argmax(vect_resultat[0])
+
+        return rang_resultat
+
+
 
 
 
@@ -296,30 +311,16 @@ def boucle(liste,objet):
     print(resultat)
     print("______")
 
-#taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
-#type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
-#liste_neurones=[]
-#liste_couches=[]
+taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
+type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+liste_neurones=[]
+liste_couches=[]
 
-#boucle(taux_apprentissage,"taux_apprentissage")
-#boucle(type_fonction_acti,"fonction_activation")
-#boucle(liste_neurones,"neurones")
-#boucle(liste_couches,"couches")
+boucle(taux_apprentissage,"taux_apprentissage")
+boucle(type_fonction_acti,"fonction_activation")
+boucle(liste_neurones,"neurones")
+boucle(liste_couches,"couches")
 
-#dessin à la main
-def dessin():
-    image=[]
-    g = tk.ouvrirFenetre(280, 280)
-    g.attendreClic()
-    while res==None:
-        g.recupererPosition()
-        g.dessinerRectangle(, , 1, 1, "black")
-
-        g.recupererClic()
-        res=g.recupererClic()
-
-    g.fermerFenetre()
-    return image
 
 
 #commandes mise au point
@@ -337,5 +338,49 @@ for i in range(len(x_test)):
     Neurone.test(new_image, y_test[i])
 
 print(Neurone.taux_reussite())
+
+#interface _image
+
+cote=28*20
+g=tk.ouvrirFenetre(x=cote,y=cote)
+g.dessinerRectangle(x=0, y=0, l=cote, h=cote, col='white')
+liste=[] #ensemble des positions dessinées par l'utilisateur
+while g.recupererClic()==None: #attend que l'utilisateur clique
+    pass
+while g.recupererClic()!=None: #attend la fin du clic
+    pass
+while g.recupererClic()==None: #récupère les positions avant le clic de fin
+    liste.append((g.recupererPosition().x,g.recupererPosition().y)) #récupére l'ensemble des positions de l'utilisateur penddant le clic
+grande_matrice=[[0 for i in range(cote)] for j in range(cote)] #matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
+for elem in liste:
+    x,y=elem
+    grande_matrice[y][x]=1
+    g.changerPixel(x, y, 'black')
+
+
+matrice=[[0 for i in range(28)] for j in range(28)]
+for x in range(28):
+    for y in range(28):
+        # récupération de l'espace associé au pixel de la matrice
+        a=(cote//28)*x
+        b=(cote//28)*(x+1)
+        c=(cote//28)*y
+        d=cote//28*(y+1)
+        lignes_matrice_pixel=grande_matrice[(cote//28)*x:(cote//28)*(x+1)]
+        matrice_pixel=[]
+        for i in range(cote//28):
+            matrice_pixel.append(lignes_matrice_pixel[i][(cote // 28) * y: (cote // 28) * (y + 1)])
+        #calcul de la coloration moyenne de la case
+        print(np.sum(matrice_pixel))
+        a=np.sum(matrice_pixel)/(cote//28)**2
+        matrice[x][y]+=a
+
+
+resultat=Neurone.prediction(matrice)
+
+
+g.attendreClic()
+
+
 
 
