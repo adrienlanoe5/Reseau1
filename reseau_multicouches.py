@@ -316,10 +316,10 @@ type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
 liste_neurones=[]
 liste_couches=[]
 
-boucle(taux_apprentissage,"taux_apprentissage")
-boucle(type_fonction_acti,"fonction_activation")
-boucle(liste_neurones,"neurones")
-boucle(liste_couches,"couches")
+#boucle(taux_apprentissage,"taux_apprentissage")
+#boucle(type_fonction_acti,"fonction_activation")
+#boucle(liste_neurones,"neurones")
+#boucle(liste_couches,"couches")
 
 
 
