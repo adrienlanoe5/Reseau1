@@ -232,3 +232,4 @@ while g.recupererClic() == None:  # récupère les positions avant le clic de fi
 
 
 
+
