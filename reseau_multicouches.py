@@ -194,6 +194,15 @@ class reseau_neurones():
             return np.exp(-x) / ((1 + np.exp(-x))**2)
         elif self.param=="tangente hyperbolique":
             return 1+((np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x)))**2
+        elif self.param=="selu":
+            alpha = 1.67326324
+            scale = 1.05070098
+            for i in range(len(x)):
+                if x[i] > 0:
+                    x[i]=scale
+                else:
+                    x[i]=scale * alpha * np.exp(x[i])
+            return x
         else:
             return 1+np.tan(x)**2
 
