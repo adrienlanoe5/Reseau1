@@ -181,8 +181,8 @@ class reseau_neurones():
             for i in range(len(vect)):
                 if vect[i] > 0:
                     vect[i]=scale*vect[i]
-            else:
-                vect[i]=scale * alpha * (np.exp(vect[i]) - 1)
+                else:
+                    vect[i]=scale * alpha * (np.exp(vect[i]) - 1)
             return vect
 
         else:   # param=="tangente":
