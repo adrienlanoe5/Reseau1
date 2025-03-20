@@ -11,7 +11,8 @@ import tkiteasy as tk
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-
+#A faire :
+#-Selu fonction activation lien discord
 
 class reseau_neurones():
     def __init__(self, liste_neurones, param_fonc_activation,taux_apprentissage):
@@ -176,8 +177,6 @@ class reseau_neurones():
             return (np.exp(vect)-np.exp(-vect))/(np.exp(vect)+np.exp(-vect))
         else:   # param=="tangente":
             return np.tan(vect)
-
-
 
 
     def derivee_fonction_activation(self, x):
