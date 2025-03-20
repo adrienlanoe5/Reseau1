@@ -212,7 +212,7 @@ class reseau_neurones():
     def taux_reussite(self):
         return self.reussite / (self.reussite + self.defaite)
 
-    def prediction_dessin(self,image):
+    def prediction_dessin(self,image): #pour le test d'image dessinée à la main
         #forward propagation
         resultat_couche=np.reshape(image,(28*28+1,1))
         for i in range(self.nb_couches):
