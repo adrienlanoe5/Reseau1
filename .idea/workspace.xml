@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif" />
+    <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="ajout dictionnaire resultat">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +63,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
       </set>
     </attachedChunks>
   </component>
@@ -458,13 +460,13 @@
       <option name="project" value="LOCAL" />
       <updated>1742413644975</updated>
     </task>
-    <task id="LOCAL-00096" summary="modif">
+    <task id="LOCAL-00096" summary="ajout dictionnaire resultat">
       <option name="closed" value="true" />
-      <created>1742415248582</created>
+      <created>1742419666491</created>
       <option name="number" value="00096" />
       <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1742415248582</updated>
+      <updated>1742419666492</updated>
     </task>
     <option name="localTasksCounter" value="97" />
     <servers />
@@ -505,6 +507,7 @@
     <MESSAGE value="nettoyage" />
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="modif" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif" />
+    <MESSAGE value="ajout dictionnaire resultat" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout dictionnaire resultat" />
   </component>
 </project>

@@ -4,11 +4,13 @@ from mpmath.math2 import math_sqrt
 #np.seterr(all='raise')
 import tkiteasy as tk
 
+np.seterr(all='ignore') #rajouté pour éviter des erreurs liées aux trop grandes valeurs : exp(-1000000000)=0
 
 #X_train : liste à 2 niveaux
 #1er niveau : une image
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
+
 
 
 class reseau_neurones():
@@ -318,52 +320,95 @@ liste_couches=[]
 #boucle(liste_neurones,"neurones")
 #boucle(liste_couches,"couches")
 
+def activer_Neurone():
 
+    #commandes mise au point
+    liste=[2,2,6,10]
+    Neurone = reseau_neurones(liste, "sigmoide", 0.03)
 
+    #phase apprentissage
+    for i in range(len(x_train)):
+        new_image = np.ravel(x_train[i])
+        Neurone.apprentissage(new_image, y_train[i])
+    print(Neurone.taux_reussite())
+    Neurone.reset()
+    # # phase de tests
+    for i in range(len(x_test)):
+        new_image = np.ravel(x_test[i])
+        Neurone.test(new_image, y_test[i])
 
+    print(Neurone.taux_reussite())
 
 #interface _image
-def dessin():
-    cote = 28 * 20
-    g = tk.ouvrirFenetre(x=cote, y=cote)
-    g.dessinerRectangle(x=0, y=0, l=cote, h=cote, col='white')
-    grande_matrice = [[0 for i in range(cote)] for j in range(cote)]
-    # matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
-    while g.recupererClic() == None:  # attend que l'utilisateur clique
-        pass
-    while g.recupererClic() != None:  # attend la fin du clic
-        pass
-    while g.recupererClic() == None:  # récupère les positions avant le clic de fin
-        x, y = g.recupererPosition().x,g.recupererPosition().y
-        grande_matrice[y][x] = 1
-        g.changerPixel(x, y, 'black')
-        g.actualiser()
 
-    g.attendreClic()
-    matrice = [[0 for i in range(28)] for j in range(28)]
+def interface_image():
+    cote = 28 * 20
+    hplus = 100
+    g = tk.ouvrirFenetre(x=cote, y=cote + hplus)
+    g.dessinerRectangle(x=0, y=0, l=cote, h=hplus, col='yellow')
+    g.dessinerRectangle(x=0, y=hplus, l=cote, h=cote, col='white')
+    txt = g.afficherTexte('Chargement', cote / 2, hplus / 2 + 1, col='black', sizefont=20)
+
+
+    liste=[2,2,6,10]
+    Neurone = reseau_neurones(liste, "sigmoide", 0.03)
+    #phase apprentissage
+    for i in range(len(x_train)):
+        new_image = np.ravel(x_train[i])
+        Neurone.apprentissage(new_image, y_train[i])
+    print(Neurone.taux_reussite())
+    Neurone.reset()
+
+    g.changerTexte(txt,'cliquer pour dessiner')
+
+    liste=[] #ensemble des positions dessinées par l'utilisateur
+    g.attendreClic() #attend que l'utilisateur clique
+    g.changerTexte(txt,'dessin en cours')
+
+    while g.recupererClic()==None: #récupère les positions avant le clic de fin
+        liste.append((g.recupererPosition().x,g.recupererPosition().y)) #récupére l'ensemble des positions de l'utilisateur penddant le clic
+
+    g.changerTexte(txt,'chargement')
+
+    grande_matrice=[[0 for i in range(cote)] for j in range(cote)] #matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
+    for elem in liste:
+        x,y=elem
+        grande_matrice[y-hplus][x]=1
+        g.changerPixel(x, y, 'black')
+        #colorie aussi le voisinnage
+        g.changerPixel(x-1,y,'black') #gauche
+        grande_matrice[y-hplus][x-1] = 1
+        g.changerPixel(x+1, y, 'black') #droite
+        grande_matrice[y-hplus][x-1] = 1
+        g.changerPixel(x, y-1, 'black') #bas
+        grande_matrice[y-hplus-1][x] = 1
+        g.changerPixel(x, y+1, 'black') #haut
+        grande_matrice[y-hplus+1][x] = 1
+
+
+    matrice=[[0 for i in range(28)] for j in range(28)]
     for x in range(28):
         for y in range(28):
             # récupération de l'espace associé au pixel de la matrice
-            a = (cote // 28) * x
-            b = (cote // 28) * (x + 1)
-            c = (cote // 28) * y
-            d = cote // 28 * (y + 1)
-            lignes_matrice_pixel = grande_matrice[(cote // 28) * x:(cote // 28) * (x + 1)]
-            matrice_pixel = []
-            for i in range(cote // 28):
+            a=(cote//28)*x
+            b=(cote//28)*(x+1)
+            c=(cote//28)*y
+            d=cote//28*(y+1)
+            lignes_matrice_pixel=grande_matrice[(cote//28)*x:(cote//28)*(x+1)]
+            matrice_pixel=[]
+            for i in range(cote//28):
                 matrice_pixel.append(lignes_matrice_pixel[i][(cote // 28) * y: (cote // 28) * (y + 1)])
-            # calcul de la coloration moyenne de la case
-            print(np.sum(matrice_pixel))
-            a = np.sum(matrice_pixel) / (cote // 28) ** 2
-            matrice[x][y] += a
+            #calcul de la coloration moyenne de la case
+            a=np.sum(matrice_pixel)/(cote//28)**2
+            matrice[x][y]+=a*255 #annule la normalisation de l'image
+
+
+    image=np.ravel(matrice)
+
+    resultat=Neurone.prediction_dessin(image)
+
+    g.changerTexte(txt,'Le chiffre prédit est '+str(resultat))
+
     g.attendreClic()
 
-dessin()
-#resultat=Neurone.prediction(matrice)
-
-
-
-
-
-
-
+interface_image()
