@@ -134,7 +134,7 @@ class reseau_neurones():
         vect_derivees=[]
 
         for k in range(dim[0]):
-            nb=self.derivee_fonction_activation(vect_res_couche_i[k])
+            nb=self.derivee_fonction_activation(vect_res_couche_i[k],self.param)
             vect_derivees.append(nb)
         vect_derivees=np.array(vect_derivees)
 
@@ -189,8 +189,13 @@ class reseau_neurones():
             return np.tan(vect)
 
 
-    def derivee_fonction_activation(self, x):
-        return np.exp(-x) / ((1 + np.exp(-x))**2)
+    def derivee_fonction_activation(self, x,param):
+        if param=="sigmoide":
+            return np.exp(-x) / ((1 + np.exp(-x))**2)
+        elif param=="tangente hyperbolique":
+            return 1+((np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x)))**2
+        else:
+            return 1+np.tan(x)**2
 
     def softmax(self,v):
         if v.ndim==1:
