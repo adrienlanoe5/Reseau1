@@ -171,16 +171,14 @@ class reseau_neurones():
     def fonction_activation(self,vect,param):
         if param=="sigmoide":
             return 1/(1 + np.exp(vect))
+            # return expit(vect)
         elif param=="tangente hyperbolique":
             return (np.exp(vect)-np.exp(-vect))/(np.exp(vect)+np.exp(-vect))
         else:   # param=="tangente":
             return np.tan(vect)
 
-        #return expit(vect)
-        #dim=np.shape(vect)
-        #for i in range(dim[0]):
-        #    vect[i]=1/(1 + np.exp(-float(vect[i]))) #sigmoide
-        #return vect
+
+
 
     def derivee_fonction_activation(self, x):
         return np.exp(-x) / ((1 + np.exp(-x))**2)
