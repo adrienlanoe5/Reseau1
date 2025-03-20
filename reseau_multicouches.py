@@ -12,7 +12,7 @@ import tkiteasy as tk
 #Y_train : labels
 
 #A faire :
-#-Selu fonction activation lien discord
+#-dérivées fonctions activation
 
 class reseau_neurones():
     def __init__(self, liste_neurones, param_fonc_activation,taux_apprentissage):
