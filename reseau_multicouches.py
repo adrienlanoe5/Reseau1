@@ -340,7 +340,6 @@ def interface_image():
     g.dessinerRectangle(x=0, y=hplus, l=cote, h=cote, col='white')
     txt = g.afficherTexte('cliquer pour dessiner', cote / 2, hplus / 2 + 1, col='black', sizefont=20)
 
-
     g.attendreClic() #attend que l'utilisateur clique
     g.changerTexte(txt,'dessin en cours')
     grande_matrice = [[0 for i in range(cote)] for j in range(cote)]  # matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
@@ -383,5 +382,5 @@ def interface_image():
     print(res)
 
 
-interface_image()
+#interface_image()
 #activer_Neurone()
