@@ -11,9 +11,6 @@ import tkiteasy as tk
 #2ème : plusieurs listes correspondant à chacune à un niveau de l'image
 #Y_train : labels
 
-#A faire :
-#-dérivées fonctions activation
-
 class reseau_neurones():
     def __init__(self, liste_neurones, param_fonc_activation,taux_apprentissage):
         self.nb_neurones =liste_neurones
