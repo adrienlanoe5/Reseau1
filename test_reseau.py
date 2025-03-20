@@ -216,7 +216,18 @@ for i in range(len(x_test)):
 
 print(Neurone.taux_reussite())
 
-
+g.dessinerRectangle(x=0, y=0, l=cote, h=cote, col='white')
+grande_matrice = [[0 for i in range(cote)] for j in range(cote)]
+# matrice contenant l'ensemble des pixels dessinés par l'utilisateur : 1 si récupéré, 0 sinon
+while g.recupererClic() == None:  # attend que l'utilisateur clique
+    pass
+while g.recupererClic() != None:  # attend la fin du clic
+    pass
+while g.recupererClic() == None:  # récupère les positions avant le clic de fin
+    x, y = g.recupererPosition().x, g.recupererPosition().y
+    grande_matrice[y][x] = 1
+    g.changerPixel(x, y, 'black')
+    g.actualiser()
 
 
 
