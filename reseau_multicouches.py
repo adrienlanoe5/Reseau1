@@ -53,7 +53,7 @@ class reseau_neurones():
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
-            resultat_couche=self.fonction_activation(resultat_couche,self.param)
+            resultat_couche=self.fonction_activation(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
@@ -68,7 +68,7 @@ class reseau_neurones():
         resultat_couche=np.reshape(self.normalisation_image(image),(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
-            resultat_couche=self.fonction_activation(resultat_couche,self.param)
+            resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
@@ -134,7 +134,7 @@ class reseau_neurones():
         vect_derivees=[]
 
         for k in range(dim[0]):
-            nb=self.derivee_fonction_activation(vect_res_couche_i[k],self.param)
+            nb=self.derivee_fonction_activation(vect_res_couche_i[k])
             vect_derivees.append(nb)
         vect_derivees=np.array(vect_derivees)
 
@@ -169,13 +169,13 @@ class reseau_neurones():
             new_vect.append(np.matmul(a[i],b[i]))
         return np.array(new_vect)
 
-    def fonction_activation(self,vect,param):
-        if param=="sigmoide":
+    def fonction_activation(self,vect):
+        if self.param=="sigmoide":
             return 1/(1 + np.exp(vect))
             # return expit(vect)
-        elif param=="tangente hyperbolique":
+        elif self.param=="tangente hyperbolique":
             return (np.exp(vect)-np.exp(-vect))/(np.exp(vect)+np.exp(-vect))
-        elif param=="selu":
+        elif self.param=="selu":
             alpha = 1.67326324
             scale = 1.05070098
             for i in range(len(vect)):
@@ -189,10 +189,10 @@ class reseau_neurones():
             return np.tan(vect)
 
 
-    def derivee_fonction_activation(self, x,param):
-        if param=="sigmoide":
+    def derivee_fonction_activation(self, x):
+        if self.param=="sigmoide":
             return np.exp(-x) / ((1 + np.exp(-x))**2)
-        elif param=="tangente hyperbolique":
+        elif self.param=="tangente hyperbolique":
             return 1+((np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x)))**2
         else:
             return 1+np.tan(x)**2
@@ -217,7 +217,7 @@ class reseau_neurones():
         resultat_couche=np.reshape(image,(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
-            resultat_couche=self.fonction_activation(resultat_couche,self.param)
+            resultat_couche=self.fonction_activation(resultat_couche)
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
