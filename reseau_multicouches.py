@@ -32,7 +32,7 @@ class reseau_neurones():
         return liste
 
     def tirage(self, l,c):
-        mat=np.random.uniform(-0.1,0.1,(l,c))
+        mat=np.random.uniform(-0.5,0.5,(l,c))
         return np.reshape(mat,(l,c))
 
     def normalisation_image(self,image):
@@ -67,6 +67,7 @@ class reseau_neurones():
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
+
 
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
