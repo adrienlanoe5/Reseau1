@@ -231,9 +231,6 @@ class reseau_neurones():
         return rang_resultat
 
 
-
-
-
 # MNIST Dataset
 
 import struct
@@ -322,7 +319,7 @@ def boucle(liste,objet):
     print("______")
 
 taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
-type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+type_fonction_acti=["sigmoide","tangente hyperbolique","tangente","selu"]
 liste_neurones=[]
 liste_couches=[]
 
@@ -334,14 +331,14 @@ liste_couches=[]
 def activer_Neurone():
     #commandes mise au point
     liste=[2,2,6,10]
-    Neurone = reseau_neurones(liste, "sigmoide", 0.03)
+    Neurone = reseau_neurones(liste, "selu", 0.03)
     #phase apprentissage
     for i in range(len(x_train)):
         new_image = np.ravel(x_train[i])
         Neurone.apprentissage(new_image, y_train[i])
     print(Neurone.taux_reussite())
     Neurone.reset()
-    # # phase de tests
+    # phase de tests
     for i in range(len(x_test)):
         new_image = np.ravel(x_test[i])
         Neurone.test(new_image, y_test[i])
@@ -401,4 +398,4 @@ def interface_image():
 
 
 #interface_image()
-#activer_Neurone()
+activer_Neurone()
