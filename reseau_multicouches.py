@@ -32,7 +32,7 @@ class reseau_neurones():
         return liste
 
     def tirage(self, l,c):
-        mat=np.random.uniform(-0.5,0.5,(l,c))
+        mat=np.random.uniform(-0.1,0.1,(l,c))
         return np.reshape(mat,(l,c))
 
     def normalisation_image(self,image):
@@ -331,7 +331,7 @@ liste_couches=[]
 
 def activer_Neurone():
     #commandes mise au point
-    liste=[2,2,6,10]
+    liste=[5,8,6,10]
     Neurone = reseau_neurones(liste, "selu", 0.03)
     #phase apprentissage
     for i in range(len(x_train)):
