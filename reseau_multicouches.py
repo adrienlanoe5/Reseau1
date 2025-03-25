@@ -452,10 +452,10 @@ def ChargementBase(dossier):
     images = np.array(images, dtype=np.float32)  # Optionnel : Normalisation possible
     labels = np.array(labels, dtype=np.int32)
 
-    combinaison = np.column_stack((images, labels))
-    np.random.shuffle(combinaison)
-    images = combinaison[:, 0]
-    labels = combinaison[:, 1]
+    #combinaison = np.column_stack((images, labels))
+    #np.random.shuffle(combinaison)
+    #images = combinaison[:, 0]
+    #labels = combinaison[:, 1]
 
     images_train = images[:3000]
     images_test = images[3000:]
