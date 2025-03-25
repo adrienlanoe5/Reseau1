@@ -269,9 +269,6 @@ test_images_filepath = 'Reseaudeneurones/archive/train-images.idx3-ubyte'
 test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 
 training_images_filepath_dataform = 'données dentrainement formes/Data forme'
-training_labels_filepath_dataform = 'Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
-test_images_filepath_dataform = 'Reseaudeneurones/archive/train-images.idx3-ubyte'
-test_labels_filepath_dataform = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
 
 
 # Load MINST dataset
