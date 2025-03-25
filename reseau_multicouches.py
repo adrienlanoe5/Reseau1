@@ -451,20 +451,21 @@ def ChargementBase(dossier):
     images = np.array(images, dtype=np.float32)  # Optionnel : Normalisation possible
     labels = np.array(labels, dtype=np.int32)
 
+    images_train = images[:3000]
+    images_test = images[3000:]
+    labels_train = labels[:3000]
+    labels_tests = labels[3000:]
+
     print(f"Base chargée avec {len(images)} images")
     print(f"Noms des premières images : {noms_images[:5]}")
     print(f"Labels des premières images : {labels[:5]}")
 
-    return images, labels
+    return (images_train,labels_train),(images_test,labels_tests)
 
 
 images_filepath="données d'entrainement formes/Data forme"
-images, labels = ChargementBase(images_filepath)
-images_train=images[:3000]
-images_test=images[3000:]
-labels_train=labels[:3000]
-labels_tests=labels[3000:]
+(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
 
 #interface_image()
-#activer_Neurone()
+#activer_Neurone(x_train,y_train)
