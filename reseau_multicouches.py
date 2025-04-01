@@ -471,7 +471,7 @@ def ChargementBase(dossier):
     return (images_train,labels_train),(images_test,labels_tests)
 
 
-images_filepath="données d'entrainement formes/Data forme"
+images_filepath="donnees_entrainement_formes/Data forme"
 (images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
 
