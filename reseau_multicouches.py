@@ -331,9 +331,9 @@ liste_couches=[]
 #boucle(liste_neurones,"neurones")
 #boucle(liste_couches,"couches")
 
-def activer_Neurone(x_train, y_train,x_test,y_test):
+def activer_Neurone(x_train, y_train,x_test,y_test,param):
     #commandes mise au point
-    liste=[5,8,6,10]
+    liste=[5,8,6,param]
     Neurone = reseau_neurones(liste, "selu", 0.03)
     #phase apprentissage
     for i in range(len(x_train)):
@@ -476,5 +476,5 @@ images_filepath="donnees_entrainement_formes/Data forme"
 
 
 #interface_image()
-#activer_Neurone(x_train, y_train,x_test,y_test)
-#activer_Neurone(images_train,labels_train, images_test,labels_tests)
+#activer_Neurone(x_train, y_train,x_test,y_test,10)
+#activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
