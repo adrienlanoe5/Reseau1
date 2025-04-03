@@ -68,6 +68,7 @@ class reseau_neurones():
             resultat_couche=self.fonction_activation(resultat_couche)
             self.archi_resultats.append(resultat_couche)
 
+
         vect_resultat=np.reshape(self.softmax(resultat_couche),(1,10))
         rang_resultat=np.argmax(vect_resultat[0])
 
@@ -231,9 +232,6 @@ class reseau_neurones():
         return rang_resultat
 
 
-
-
-
 # MNIST Dataset
 
 import struct
@@ -324,7 +322,7 @@ def boucle(liste,objet):
     print("______")
 
 taux_apprentissage=[0.01, 0.03, 0.06, 0.25, 0.5, 0.75, 1]
-type_fonction_acti=["sigmoide","tangente hyperbolique","tangente"]
+type_fonction_acti=["sigmoide","tangente hyperbolique","tangente","selu"]
 liste_neurones=[]
 liste_couches=[]
 
@@ -333,17 +331,17 @@ liste_couches=[]
 #boucle(liste_neurones,"neurones")
 #boucle(liste_couches,"couches")
 
-def activer_Neurone():
+def activer_Neurone(x_train, y_train,x_test,y_test,param):
     #commandes mise au point
-    liste=[2,2,6,10]
-    Neurone = reseau_neurones(liste, "sigmoide", 0.03)
+    liste=[5,8,6,param]
+    Neurone = reseau_neurones(liste, "selu", 0.03)
     #phase apprentissage
     for i in range(len(x_train)):
         new_image = np.ravel(x_train[i])
         Neurone.apprentissage(new_image, y_train[i])
     print(Neurone.taux_reussite())
     Neurone.reset()
-    # # phase de tests
+    # phase de tests
     for i in range(len(x_test)):
         new_image = np.ravel(x_test[i])
         Neurone.test(new_image, y_test[i])
@@ -401,6 +399,89 @@ def interface_image():
     res=Neurone.prediction_dessin(image)
     print(res)
 
+#Formes géométriques
+# A faire :
+#- séparer en 2 listes pour phase d'apprentissage et phase de test (voir discord)
+#-fragmenter les images en 28x28
+#- enlever les couleurs et les mettre en nuances de gris
 
+import os
+from PIL import Image
+
+def ChargementBase(dossier):
+    images = []
+    labels = []
+    noms_images = []
+
+    # Parcours de tous les fichiers du dossier
+    for fichier in os.listdir(dossier):
+        chemin_complet = os.path.join(dossier, fichier)
+
+        # Vérifier si c'est bien une image
+        if fichier.endswith((".jpg", ".png", ".jpeg")):
+            # Chargement et transformation de l'image
+            image = Image.open(chemin_complet)
+            image = image.resize((28, 28))
+            image = image.convert("L")  # Convertir en niveaux de gris
+            image_array = np.asarray(image).flatten()  # Aplatir en 1D
+
+            # Définition du label basé sur le nom de l’image
+            if "circle" in fichier.lower():
+                label = 1
+            elif "square" in fichier.lower():
+                label = 2
+            elif "triangle" in fichier.lower():
+                label = 3
+            elif "kite" in fichier.lower():
+                label = 4
+            elif "parallelogram" in fichier.lower():
+                label = 5
+            elif "rectangle" in fichier.lower():
+                label = 6
+            elif "rhombus" in fichier.lower():
+                label = 7
+            elif "trapezoid" in fichier.lower():
+                label = 8
+            else:
+                label = 0  # Label par défaut si inconnu
+
+            # Stocker l'image, son label et son nom
+            images.append(image_array)
+            labels.append(label)
+            noms_images.append(fichier)
+
+    # Conversion en tableaux NumPy
+    images = np.array(images, dtype=np.float32)  # Optionnel : Normalisation possible
+    labels = np.array(labels, dtype=np.int32)
+
+    images_train = images[:3000]
+    images_test = images[3000:]
+    labels_train = labels[:3000]
+    labels_tests = labels[3000:]
+
+    print(f"Base chargée avec {len(images)} images")
+    print(f"Noms des premières images : {noms_images[:5]}")
+    print(f"Labels des premières images : {labels[:5]}")
+
+    return (images_train,labels_train),(images_test,labels_tests)
+
+#Bdd lettres
+import sys
+def importer_bdd_lettres():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project__root = os.path.abspath(os.path.join(current_dir, ".."))
+    sys.path.append(project__root)
+    from DataSetCreator.handwritting.extract import bdd
+    ma_bdd = bdd()
+    return ma_bdd
+
+
+
+
+#images_filepath="donnees_entrainement_formes/Data_forme"
+#(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
+
+bdd=importer_bdd_lettres()
+#activer_Neurone(x_train, y_train,x_test,y_test,10)
 #interface_image()
-#activer_Neurone()
+#activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
