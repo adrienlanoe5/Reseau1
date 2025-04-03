@@ -481,7 +481,7 @@ def importer_bdd_lettres():
 #images_filepath="donnees_entrainement_formes/Data_forme"
 #(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
-lettres_train,lettres_label_train,lettres_test,lettres_label_test=importer_bdd_lettres()
+(lettres_train,lettres_label_train),(lettres_test,lettres_label_test)=importer_bdd_lettres()
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
 #interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
