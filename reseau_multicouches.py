@@ -406,13 +406,24 @@ def interface_image():
 #- enlever les couleurs et les mettre en nuances de gris
 
 import os
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 def ChargementBase(dossier):
     images = []
     labels = []
     noms_images = []
-
+    chemin_image=dossier
+    if not os.path.isfile(chemin_image):
+        print(f"Le fichier {chemin_image} n'existe pas.")
+    else:
+        try:
+            image = Image.open(chemin_image)
+            image.show()  # Affiche l'image
+            print("L'image a été lue avec succès.")
+        except UnidentifiedImageError:
+            print(f"Le fichier {chemin_image} n'est pas une image valide ou est corrompu.")
+        except IOError:
+            print(f"Impossible de lire l'image {chemin_image}. Vérifiez les permissions.")
     # Parcours de tous les fichiers du dossier
     for fichier in os.listdir(dossier):
         chemin_complet = os.path.join(dossier, fichier)
@@ -453,11 +464,6 @@ def ChargementBase(dossier):
     # Conversion en tableaux NumPy
     images = np.array(images, dtype=np.float32)  # Optionnel : Normalisation possible
     labels = np.array(labels, dtype=np.int32)
-
-    #combinaison = np.column_stack((images, labels))
-    #np.random.shuffle(combinaison)
-    #images = combinaison[:, 0]
-    #labels = combinaison[:, 1]
 
     images_train = images[:3000]
     images_test = images[3000:]
