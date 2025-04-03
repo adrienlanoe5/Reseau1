@@ -482,6 +482,9 @@ def importer_bdd_lettres():
 #(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
 bdd=importer_bdd_lettres()
+bdd.verify_archive_structure()
+bdd.load_data_alternative()
+
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
 #interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)

@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="102d2e6d-e1e7-4c47-9f70-3538a6840386" name="Changes" comment="modif">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reseau_multicouches.py" beforeDir="false" afterPath="$PROJECT_DIR$/reseau_multicouches.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -510,6 +509,7 @@
     <MESSAGE value="retsauration version précédente" />
     <MESSAGE value="ajout dictionnaire resultat" />
     <MESSAGE value="modif" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif" />
+    <MESSAGE value="réseau de neurones dataforme" />
+    <option name="LAST_COMMIT_MESSAGE" value="réseau de neurones dataforme" />
   </component>
 </project>
