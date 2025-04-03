@@ -465,10 +465,23 @@ def ChargementBase(dossier):
 
     return (images_train,labels_train),(images_test,labels_tests)
 
+#Bdd lettres
+import sys
+def importer_bdd_lettres():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project__root = os.path.abspath(os.path.join(current_dir, ".."))
+    sys.path.append(project__root)
+    from DataSetCreator.handwritting.extract import bdd
+    ma_bdd = bdd()
+    return ma_bdd
 
-images_filepath="donnees_entrainement_formes/Data_forme"
-(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
+
+
+#images_filepath="donnees_entrainement_formes/Data_forme"
+#(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
+
+bdd=importer_bdd_lettres()
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
 #interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
