@@ -406,24 +406,13 @@ def interface_image():
 #- enlever les couleurs et les mettre en nuances de gris
 
 import os
-from PIL import Image, UnidentifiedImageError
+from PIL import Image
 
 def ChargementBase(dossier):
     images = []
     labels = []
     noms_images = []
-    chemin_image=dossier
-    if not os.path.isfile(chemin_image):
-        print(f"Le fichier {chemin_image} n'existe pas.")
-    else:
-        try:
-            image = Image.open(chemin_image)
-            image.show()  # Affiche l'image
-            print("L'image a été lue avec succès.")
-        except UnidentifiedImageError:
-            print(f"Le fichier {chemin_image} n'est pas une image valide ou est corrompu.")
-        except IOError:
-            print(f"Impossible de lire l'image {chemin_image}. Vérifiez les permissions.")
+
     # Parcours de tous les fichiers du dossier
     for fichier in os.listdir(dossier):
         chemin_complet = os.path.join(dossier, fichier)
@@ -480,7 +469,6 @@ def ChargementBase(dossier):
 images_filepath="donnees_entrainement_formes/Data_forme"
 (images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
-
-#interface_image()
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
+#interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
