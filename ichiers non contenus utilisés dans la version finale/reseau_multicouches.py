@@ -332,20 +332,26 @@ liste_couches=[]
 #boucle(liste_neurones,"neurones")
 #boucle(liste_couches,"couches")
 
-def activer_Neurone(x_train, y_train,x_test,y_test,param):
+def activer_Neurone(x_train, y_train,x_test,y_test,param, lettres=False):
     #commandes mise au point
     liste=[5,8,6,param]
     Neurone = reseau_neurones(liste, "selu", 0.03)
     #phase apprentissage
     for i in range(len(x_train)):
         new_image = np.ravel(x_train[i])
-        Neurone.apprentissage(new_image, y_train[i])
+        if lettres==True:
+            Neurone.apprentissage(new_image, y_train[i-33])
+        else:
+            Neurone.apprentissage(new_image, y_train[i])
     print(Neurone.taux_reussite())
     Neurone.reset()
     # phase de tests
     for i in range(len(x_test)):
         new_image = np.ravel(x_test[i])
-        Neurone.test(new_image, y_test[i])
+        if lettres==True:
+            Neurone.test(new_image, y_test[i-33])
+        else:
+            Neurone.apprentissage(new_image, y_train[i])
     print(Neurone.taux_reussite())
 
 
@@ -492,4 +498,4 @@ def importer_bdd_lettres():
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
 interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
-#activer_Neurone(lettres_train,lettres_label_train,lettres_test,lettres_label_test,93)
+#activer_Neurone(lettres_train,lettres_label_train,lettres_test,lettres_label_test,93,True)
