@@ -1,5 +1,4 @@
 #coding: utf-8
-from tkiteasy import *
 
 ###### ouverture de fenêtre
 g = ouvrirFenetre(800,600)

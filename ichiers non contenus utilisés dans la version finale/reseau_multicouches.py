@@ -221,6 +221,7 @@ class reseau_neurones():
 
     def prediction_dessin(self,image): #pour le test d'image dessinée à la main
         #forward propagation
+        image=self.normalisation_image(image)
         resultat_couche=np.reshape(image,(28*28+1,1))
         for i in range(self.nb_couches):
             resultat_couche=np.matmul(self.liste_poids[i],resultat_couche)
@@ -279,10 +280,10 @@ class MnistDataloader(object):
 
 # Set file paths based on added MNIST Datasets
 
-training_images_filepath = 'Reseaudeneurones/archive/t10k-images.idx3-ubyte'
-training_labels_filepath = 'Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
-test_images_filepath = 'Reseaudeneurones/archive/train-images.idx3-ubyte'
-test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
+training_images_filepath = '../Reseaudeneurones/archive/t10k-images.idx3-ubyte'
+training_labels_filepath = '../Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
+test_images_filepath = '../Reseaudeneurones/archive/train-images.idx3-ubyte'
+test_labels_filepath = '../Reseaudeneurones/archive/train-labels.idx1-ubyte'
 
 training_images_filepath_dataform = 'données dentrainement formes/Data forme'
 
@@ -473,6 +474,7 @@ def importer_bdd_lettres():
     sys.path.append(project__root)
     from DataSetCreator.handwritting.extract import bdd
     ma_bdd = bdd()
+    ma_bdd.verify_archive_structure()
     return ma_bdd.sortie()
 
 
@@ -482,7 +484,12 @@ def importer_bdd_lettres():
 #(images_train,labels_train),(images_test,labels_tests)= ChargementBase(images_filepath)
 
 (lettres_train,lettres_label_train),(lettres_test,lettres_label_test)=importer_bdd_lettres()
+
+#enlever 33 à tous les éléments de y_train et à tous les éléments de y_test pour faire en sorte que tous les labels soient compris entre 0 et 93
+
+
+
 #activer_Neurone(x_train, y_train,x_test,y_test,10)
-#interface_image()
+interface_image()
 #activer_Neurone(images_train,labels_train, images_test,labels_tests,8)
 #activer_Neurone(lettres_train,lettres_label_train,lettres_test,lettres_label_test,93)

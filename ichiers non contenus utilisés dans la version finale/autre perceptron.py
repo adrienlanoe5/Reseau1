@@ -56,10 +56,10 @@ class MnistDataloader(object):
 
 # Set file paths based on added MNIST Datasets
 
-training_images_filepath = 'Reseaudeneurones/archive/t10k-images.idx3-ubyte'
-training_labels_filepath = 'Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
-test_images_filepath = 'Reseaudeneurones/archive/train-images.idx3-ubyte'
-test_labels_filepath = 'Reseaudeneurones/archive/train-labels.idx1-ubyte'
+training_images_filepath = '../Reseaudeneurones/archive/t10k-images.idx3-ubyte'
+training_labels_filepath = '../Reseaudeneurones/archive/t10k-labels.idx1-ubyte'
+test_images_filepath = '../Reseaudeneurones/archive/train-images.idx3-ubyte'
+test_labels_filepath = '../Reseaudeneurones/archive/train-labels.idx1-ubyte'
 
 
 # Load MINST dataset
